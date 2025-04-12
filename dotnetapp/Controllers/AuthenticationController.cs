@@ -10,6 +10,14 @@ namespace dotnetapp.Controllers
     [Route("api/[controller]")]
     public class AuthenticationController : ControllerBase
     {
-        
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+
+        }
+
+        public async Task<IActionResult> Register(User model)
+        {
+            
+        }
     }
 }
