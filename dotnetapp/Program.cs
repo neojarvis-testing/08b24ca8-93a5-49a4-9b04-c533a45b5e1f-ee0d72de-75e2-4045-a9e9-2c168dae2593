@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Data;
 using dotnetapp.Services;
-
+ 
 var builder = WebApplication.CreateBuilder(args);
  
 // Add services to the container.
@@ -15,7 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(db =>
     db.UseSqlServer(builder.Configuration.GetConnectionString("Myconnstring"));
 });
  
-//builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISavingsPlanService, SavingsPlanService>();
 builder.Services.AddScoped<IPlanApplicationService, PlanApplicationService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
@@ -35,4 +35,5 @@ app.UseAuthorization();
  
 app.MapControllers();
  
-
+app.Run();
+ 
