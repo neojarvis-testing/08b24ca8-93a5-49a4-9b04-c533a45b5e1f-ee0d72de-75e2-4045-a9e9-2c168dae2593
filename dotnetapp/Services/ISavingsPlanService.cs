@@ -9,7 +9,7 @@ namespace dotnetapp.Services
 {
     public interface ISavingsPlanService
     {
-         Task<IEnumerable<SavingsPlan>> GetAllSavingsPlan();
+         Task<IEnumerable<SavingsPlan>> GetAllSavingsPlans();
          Task<SavingsPlan> GetSavingsPlanById(int savingPlanId);
          Task<bool> AddSavingsPlan(SavingsPlan savingsPlan);
          Task<bool> UpdateSavingsPlan(SavingsPlan savingsPlan);
