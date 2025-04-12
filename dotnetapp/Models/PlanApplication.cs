@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace dotnetapp.Models
 {
@@ -13,11 +14,9 @@ namespace dotnetapp.Models
     public int PlanApplicationId { get; set; }
 
     [Required]
-   
     public int UserId { get; set; }
 
     [Required]
-
     public int SavingsPlanId { get; set; }
 
     [Required]
@@ -35,9 +34,10 @@ namespace dotnetapp.Models
     public string? Remarks { get; set; }
 
     public string? ProofDocument { get; set; }
-
-    // Navigation properties
+    
+    [JsonIgnore]
     public  User? User { get; set; }
+    [JsonIgnore]
     public  SavingsPlan? SavingsPlan { get; set; }
         
     }
