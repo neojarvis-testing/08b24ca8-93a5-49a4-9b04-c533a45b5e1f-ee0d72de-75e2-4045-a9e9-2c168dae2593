@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using dotnetapp.Models;
+using dotnetapp.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Controllers
