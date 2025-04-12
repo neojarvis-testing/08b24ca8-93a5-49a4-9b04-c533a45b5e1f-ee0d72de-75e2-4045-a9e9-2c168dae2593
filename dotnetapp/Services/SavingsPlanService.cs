@@ -17,7 +17,7 @@ namespace dotnetapp.Services
             db = db1;
         }
 
-        public async Task<IEnumerable<SavingsPlan>> GetAllSavingsPlan()
+        public async Task<IEnumerable<SavingsPlan>> GetAllSavingsPlans()
         {
             return await db.SavingsPlans.ToListAsync();
         }
@@ -53,7 +53,7 @@ namespace dotnetapp.Services
             }
 
             existingPlan.Name = savingsPlan.Name;
-            //existingPlan.Details = savingsPlan.Details;
+            existingPlan.Description = savingsPlan.Description;
             await db.SaveChangesAsync();
             return true;
         }

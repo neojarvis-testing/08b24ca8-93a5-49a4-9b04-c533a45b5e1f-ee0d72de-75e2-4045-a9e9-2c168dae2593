@@ -22,7 +22,7 @@ namespace dotnetapp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlan()
         {
-            var savingsPlans = await _savingsPlanService.GetAllSavingsPlan();
+            var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
             return Ok(savingsPlans);
         }
 
