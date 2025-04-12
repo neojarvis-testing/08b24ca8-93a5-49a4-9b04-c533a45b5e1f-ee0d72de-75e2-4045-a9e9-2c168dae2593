@@ -9,7 +9,7 @@ using dotnetapp.Services;
 namespace dotnetapp.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/")]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthService _authService;
