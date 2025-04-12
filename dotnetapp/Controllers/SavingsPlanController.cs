@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Services;
+using dotnetapp.Models;
+using dotnetapp.Services;
+using dotnetapp.Exceptions;
 
 namespace dotnetapp.Controllers
 {
@@ -17,9 +20,9 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
+        public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlan()
         {
-            var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
+            var savingsPlans = await _savingsPlanService.GetAllSavingsPlan();
             return Ok(savingsPlans);
         }
 
