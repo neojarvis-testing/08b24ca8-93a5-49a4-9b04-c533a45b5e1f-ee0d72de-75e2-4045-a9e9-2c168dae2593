@@ -6,14 +6,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace dotnetapp.Models
 {
-    public class LoginModel
-
+    public class UserRoles
     {
-        [Required]
-        public string Email{get;set;}
-        
-        [Required]
-        public string Password{get;set;}
+        public const string User="Customer";
+        public const string User1="RegionalManager";
         
     }
 }
