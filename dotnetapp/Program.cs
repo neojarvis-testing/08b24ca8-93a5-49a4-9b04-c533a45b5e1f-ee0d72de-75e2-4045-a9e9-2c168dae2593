@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Data;
 using dotnetapp.Services;
- 
+
 var builder = WebApplication.CreateBuilder(args);
  
 // Add services to the container.
@@ -34,6 +34,4 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
  
 app.MapControllers();
- 
-app.Run();
  
