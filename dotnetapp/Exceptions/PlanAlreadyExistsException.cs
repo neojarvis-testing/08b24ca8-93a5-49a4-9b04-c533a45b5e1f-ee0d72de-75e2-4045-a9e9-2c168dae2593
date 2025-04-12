@@ -5,8 +5,13 @@ using System.Threading.Tasks;
 
 namespace dotnetapp.Exceptions
 {
-    public class PlanAlreadyExistsException
+    public class PlanAlreadyExistsException : Exception
     {
-        
+        public PlanAlreadyExistsException() : base() {}
+
+        public PlanAlreadyExistsException(string message): base(message)
+        {
+            
+        }
     }
 }

@@ -3,6 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Data;
+using dotnetapp.Models;
+using dotnetapp.Exceptions;
 
 namespace dotnetapp.Services
 {
@@ -15,7 +17,7 @@ namespace dotnetapp.Services
             db = db1;
         }
 
-        public async Task<IEnumerable<SavingsPlan>> GetAllSavingsPlans()
+        public async Task<IEnumerable<SavingsPlan>> GetAllSavingsPlan()
         {
             return await db.SavingsPlans.ToListAsync();
         }
@@ -47,11 +49,11 @@ namespace dotnetapp.Services
 
             if (existingPlan.Name != savingsPlan.Name && db.SavingsPlans.Any(sp => sp.Name == savingsPlan.Name))
             {
-                throw new PlanAlreadyExistsException("Plan with the same name already exists");
+                throw new PlanAlreadyExistsException ("Plan with the same name already exists");
             }
 
             existingPlan.Name = savingsPlan.Name;
-            existingPlan.Details = savingsPlan.Details;
+            //existingPlan.Details = savingsPlan.Details;
             await db.SaveChangesAsync();
             return true;
         }
