@@ -20,7 +20,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlan()
+        public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
             return Ok(savingsPlans);
