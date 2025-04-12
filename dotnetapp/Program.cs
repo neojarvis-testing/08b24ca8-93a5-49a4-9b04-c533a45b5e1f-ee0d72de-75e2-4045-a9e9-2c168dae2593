@@ -14,7 +14,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(db =>
 {
     db.UseSqlServer(builder.Configuration.GetConnectionString("Myconnstring"));
 });
-
+ 
+//builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ISavingsPlanService, SavingsPlanService>();
+builder.Services.AddScoped<IPlanApplicationService, PlanApplicationService>();
+builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+ 
 var app = builder.Build();
  
 // Configure the HTTP request pipeline.
@@ -30,4 +35,3 @@ app.UseAuthorization();
  
 app.MapControllers();
  
-app.Run();
