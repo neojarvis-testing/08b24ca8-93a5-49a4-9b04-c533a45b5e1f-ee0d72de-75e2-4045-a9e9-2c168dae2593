@@ -10,6 +10,16 @@ namespace dotnetapp.Controllers
     [Route("api/[controller]")]
     public class PlanApplicationController : ControllerBase
     {
+       
+       private readonly IPlanApplicationService _planApplicationService;
+
+       public PlanApplicationController(IPlanApplicationService planApplicationService)
+       {
+        _planApplicationService=planApplicationService;
+       }
         
+     
+     
+      
     }
 }
