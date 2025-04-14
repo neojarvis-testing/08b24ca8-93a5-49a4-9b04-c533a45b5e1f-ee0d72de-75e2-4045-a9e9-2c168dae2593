@@ -22,7 +22,7 @@ export class UseraddfeedbackComponent implements OnInit {
   }
   addUserFeedback(){
     if(this.newUserFeedback.UserId&&this.newUserFeedback.Comments&&this.newUserFeedback.DateProvided){
-      
+      this.service.sendFeedback(this.newUserFeedback);
     }
   }
 
