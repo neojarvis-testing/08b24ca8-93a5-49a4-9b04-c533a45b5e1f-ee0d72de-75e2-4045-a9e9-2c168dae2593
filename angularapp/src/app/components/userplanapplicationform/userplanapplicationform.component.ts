@@ -30,7 +30,7 @@ export class UserplanapplicationformComponent implements OnInit {
 
   addPlanApplication(): void {
     this.formSubmitted = true;
-    if (this.newPlanApplication.AppliedAmount && this.newPlanApplication.Status && this.newPlanApplication.ApplicationDate&& this.newPlanApplication.ProofDocument && this.newPlanApplication.UserId && this.newPlanApplication.SavingsPlanId) {
+    if (this.newPlanApplication.AppliedAmount && this.newPlanApplication.ApplicationDate&& this.newPlanApplication.ProofDocument  && this.newPlanApplication.SavingsPlanId) {
       this.planApplicationService.addPlanApplication(this.newPlanApplication).subscribe(() => {
         this.router.navigate(['/']);
       });
