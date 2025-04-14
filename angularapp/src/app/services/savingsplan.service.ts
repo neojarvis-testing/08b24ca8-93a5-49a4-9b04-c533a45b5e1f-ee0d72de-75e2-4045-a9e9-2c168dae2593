@@ -105,8 +105,8 @@ export class SavingsplanService {
     });
 }
 
-  // updateSavingsPlan(id: string, requestObject: SavingsPlan): Observable<SavingsPlan> {
-  //   const url = `${this.apiUrl}/${id}`;
-  //   return this.http.put<SavingsPlan>(url, requestObject, { headers: this.getAuthHeaders() });
-  // }
+  updateSavingsPlan(id: string, requestObject: SavingsPlan): Observable<SavingsPlan> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.put<SavingsPlan>(url, requestObject, { headers: this.getAuthHeaders() });
+  }
 }

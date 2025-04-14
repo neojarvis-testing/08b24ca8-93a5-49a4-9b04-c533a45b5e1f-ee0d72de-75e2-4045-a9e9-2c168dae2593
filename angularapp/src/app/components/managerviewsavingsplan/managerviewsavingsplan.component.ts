@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SavingsplanService } from '../services/savingsplan.service';
+import { SavingsplanService } from '../../services/savingsplan.service';
 import { Router } from '@angular/router';
-import { SavingsPlan } from '../models/savingsplan.model';
+import { SavingsPlan } from '../../models/savingsplan.model';
 
 @Component({
   selector: 'app-managerviewsavingsplan',
