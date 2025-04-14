@@ -7,16 +7,17 @@ import { UseraddfeedbackComponent } from './components/useraddfeedback/useraddfe
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { ManagerviewfeedbackComponent } from './components/managerviewfeedback/managerviewfeedback.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     UseraddfeedbackComponent,
-    UserviewfeedbackComponent,
-    ManagerviewfeedbackComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

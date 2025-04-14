@@ -1,0 +1,68 @@
+<!-- <div class="container">
+    <h2>View Savings Plans</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Goal Amount</th>
+          <th>Time Frame</th>
+          <th>Risk Level</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of savingsPlans; let i = index">
+          <td>{{plan.SavingsPlanId}}</td>
+          <td>{{ plan.Name }}</td>
+          <td>{{ plan.GoalAmount }}</td>
+          <td>{{ plan.TimeFrame }}</td>
+          <td>{{ plan.RiskLevel }}</td>
+          <td>{{ plan.Description }}</td>
+          <td>{{ plan.Status }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editSavingsPlan(plan.SavingPlanId)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteSavingsPlan(plan.SavingPlanId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
+  
+
+  <div class="container">
+    <h2>View Savings Plans</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Goal Amount</th>
+          <th>Time Frame</th>
+          <th>Risk Level</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of savingsPlans; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{ plan.name }}</td>
+          <td>{{ plan.goalAmount }}</td>
+          <td>{{ plan.timeFrame }}</td>
+          <td>{{ plan.riskLevel }}</td>
+          <td>{{ plan.description }}</td>
+          <td>{{ plan.status }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editSavingsPlan(plan.SavingPlanId)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteSavingsPlan(plan.SavingPlanId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
