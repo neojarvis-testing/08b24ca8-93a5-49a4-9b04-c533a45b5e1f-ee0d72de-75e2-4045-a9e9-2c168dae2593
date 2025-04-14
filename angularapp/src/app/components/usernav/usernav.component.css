@@ -1,8 +1,8 @@
 .usernav {
  
-    background: linear-gradient(to right, #ef71cf, #f99dd4);
+    background: linear-gradient(to right, #146c07, rgb(166,249,157));
    
-    color: rgb(208, 0, 255);
+    color: rgb(224, 240, 231);
    
     padding: 15px 30px;
    
@@ -17,6 +17,22 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
    
    }
+   body{
+   margin-top: 5px; 
+
+   padding: 20px; 
+   /* background-image: url("/assets/Screenshot 2025-04-14 110128.png"); */
+   background-image: url("/assets/savings2.jpg"); 
+   
+
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   min-height: 100vh;
+   padding: 2px; 
+   color:white;
+   }
+
    
    
    
@@ -51,10 +67,17 @@
    .nav-links a {
    
     color: white;
+    background-color: #bc96b2; 
    
     text-decoration: none;
    
     margin-left: 20px;
+    
+    border-radius: 7px; 
+    
+    transition: background-color 0.3s ease; 
+
+
    
     font-weight: bold;
    
@@ -66,7 +89,9 @@
    
    .active-link {
    
-    text-decoration: underline;
+    background-color: #0056b3; 
+   
+    text-decoration: none;
    
    }
    .logout-btn{

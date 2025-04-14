@@ -9,14 +9,14 @@
 
     padding: 20px; 
     /* background-image: url("/assets/Screenshot 2025-04-14 110128.png"); */
-    background-image: url("/assets/savings2.jpg");
+    background-image: url("/assets/savings2.jpg"); 
     
 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
-    padding: 5px; 
+    padding: 2px; 
     color:white;
 
 } 
@@ -33,7 +33,7 @@ h1
 
 p{ 
 
-    color: #666; 
+    color: #f2e1e1; 
 
     font-size: 18px; 
 
