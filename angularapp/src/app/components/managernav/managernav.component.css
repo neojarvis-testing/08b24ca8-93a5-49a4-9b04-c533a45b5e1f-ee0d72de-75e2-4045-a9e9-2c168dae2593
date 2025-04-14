@@ -1,0 +1,85 @@
+.managernav {
+ 
+    background: linear-gradient(to right, #ef71cf, #f99dd4);
+   
+    color: rgb(208, 0, 255);
+   
+    padding: 15px 30px;
+   
+    display: flex;
+   
+    justify-content: space-between;
+   
+    align-items: center;
+   
+    border-radius: 4px;
+   
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   
+   }
+   
+   
+   
+   .title {
+   
+    margin: 0;
+   
+    font-size: 20px;
+   
+    font-weight: bold;
+   
+    letter-spacing: 1px;
+   
+   }
+   .manager-btn{
+    background-color: #4d91ff;
+    border:none;
+    padding: 6px 12px;
+    color:white;
+    border-radius:4px;
+    margin-left: 20px;
+    cursor:pointer;
+
+   }
+   .manager-btn:hover{
+    background-color: #cc0000;
+   }
+ 
+   
+   
+   
+   .nav-links a {
+   
+    color: white;
+   
+    text-decoration: none;
+   
+    margin-left: 20px;
+   
+    font-weight: bold;
+   
+   }
+   
+   
+   
+   .nav-links a:hover,
+   
+   .active-link {
+   
+    text-decoration: underline;
+   
+   }
+   .logout-btn{
+    background-color: #4d91ff;
+    border:none;
+    padding: 6px 12px;
+    color:white;
+    border-radius:4px;
+    margin-left: 20px;
+    cursor:pointer;
+
+   }
+   .logout-btn:hover{
+    background-color: #cc0000;
+   }
+ 
