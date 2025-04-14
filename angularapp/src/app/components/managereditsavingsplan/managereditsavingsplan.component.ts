@@ -1,24 +1,7 @@
-// import { Component, OnInit } from '@angular/core';
-
-// @Component({
-//   selector: 'app-managereditsavingsplan',
-//   templateUrl: './managereditsavingsplan.component.html',
-//   styleUrls: ['./managereditsavingsplan.component.css']
-// })
-// export class ManagereditsavingsplanComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit(): void {
-//   }
-
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SavingsPlan } from '../../models/savingsplan.model';
 import { SavingsplanService } from '../../services/savingsplan.service';
-
 
 @Component({
   selector: 'app-managereditsavingsplan',
@@ -37,24 +20,24 @@ export class ManagereditsavingsplanComponent implements OnInit {
     status: ''
   };
 
-  filterdata:
+  savingPlanId:any ={};
   formSubmitted = false;
   errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-  private savingsPlanService:SavingsplanService
+    private savingsPlanService: SavingsplanService
   ) {}
 
   ngOnInit(): void {
     // Retrieve the savingsPlanId from the route parameters
-    this.savingsPlanId = +this.route.snapshot.paramMap.get('savingsPlanId')!;
+    this.savingPlanId = +this.route.snapshot.paramMap.get('savingsPlanId')!;
     this.getSavingsPlan();
   }
 
   getSavingsPlan(): void {
-    this.savingsPlanService.getAllSavingsPlans(this.savingsPlanId).subscribe({
+    this.savingsPlanService.getSavingsPlanById(this.savingPlanId).subscribe({
       next: (data) => {
         this.savingsPlan = data;
       },
@@ -65,14 +48,28 @@ export class ManagereditsavingsplanComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.savingsPlanService.updateSavingsPlan(this.savingsPlanId, this.savingsPlan).subscribe({
-      next: () => {
-        this.formSubmitted = true;
-        setTimeout(() => this.router.navigate(['/savingsplans']), 2000); // Redirect after success
-      },
-      error: (err) => {
-        this.errorMessage = 'Error updating savings plan';
-      }
-    });
+    this.formSubmitted = true;
+
+    // Validate required fields
+    if (
+      this.savingsPlan.name &&
+      this.savingsPlan.goalAmount > 0 &&
+      this.savingsPlan.timeFrame > 0 &&
+      this.savingsPlan.riskLevel &&
+      this.savingsPlan.description &&
+      this.savingsPlan.status
+    ) {
+      this.savingsPlanService.updateSavingsPlan(this.savingPlanId, this.savingsPlan).subscribe({
+        next: () => {
+          this.formSubmitted = true;
+          setTimeout(() => this.router.navigate(['/savingsplans']), 2000); // Redirect after success
+        },
+        error: (err) => {
+          this.errorMessage = 'Error updating savings plan';
+        }
+      });
+    } else {
+      this.errorMessage = 'Please fill out all required fields correctly.';
+    }
   }
 }

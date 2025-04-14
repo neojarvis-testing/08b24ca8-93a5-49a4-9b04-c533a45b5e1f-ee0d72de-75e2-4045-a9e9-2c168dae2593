@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManagerviewfeedbackComponent } from './managerviewfeedback.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ManagerviewfeedbackComponent', () => {
   let component: ManagerviewfeedbackComponent;
@@ -8,7 +11,8 @@ describe('ManagerviewfeedbackComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManagerviewfeedbackComponent ]
+      declarations: [ ManagerviewfeedbackComponent ],
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, FormsModule]
     })
     .compileComponents();
   });
@@ -19,7 +23,12 @@ describe('ManagerviewfeedbackComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('Frontend_should_create_adminviewfeedback_component', () => {
     expect(component).toBeTruthy();
+  });
+
+  fit('Frontend_should_contain_feedback_details_heading_in_the_adminviewfeedback_component', () => {
+    const componentHTML = fixture.debugElement.nativeElement.outerHTML;
+    expect(componentHTML).toContain('Feedback Details');
   });
 });
