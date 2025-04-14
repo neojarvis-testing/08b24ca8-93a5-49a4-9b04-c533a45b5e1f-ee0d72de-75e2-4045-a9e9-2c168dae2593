@@ -90,10 +90,10 @@ export class SavingsplanService {
   //   return this.http.delete<void>(url, { headers: this.getAuthHeaders() });
   // }
 
-  // getSavingsPlanById(id: string): Observable<SavingsPlan> {
-  //   const url = `${this.apiUrl}/${id}`;
-  //   return this.http.get<SavingsPlan>(url, { headers: this.getAuthHeaders() });
-  // }
+  getSavingsPlanById(id: string): Observable<SavingsPlan> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<SavingsPlan>(url, { headers: this.getAuthHeaders() });
+  }
 
   // addSavingsPlan(requestObject: SavingsPlan): Observable<SavingsPlan> {
   //   return this.http.post<SavingsPlan>(this.apiUrl, requestObject, { headers: this.getAuthHeaders() });
