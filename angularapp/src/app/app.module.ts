@@ -16,7 +16,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernavComponent } from './components/usernav/usernav.component';
 import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
-
+import { PiggyBankLoaderComponent } from './components/piggy-bank-loader/piggy-bank-loader.component';
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { UserviewfeedbackComponent } from './components/userviewfeedback/uservie
     UseraddfeedbackComponent,
     UsernavComponent,
     UserplanapplicationformComponent,
-    UserviewfeedbackComponent
+    UserviewfeedbackComponent,
+    PiggyBankLoaderComponent
 
   ],
   imports: [
