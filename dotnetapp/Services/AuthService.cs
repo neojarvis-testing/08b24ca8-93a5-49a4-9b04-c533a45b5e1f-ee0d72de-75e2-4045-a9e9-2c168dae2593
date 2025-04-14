@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using System.Security.Cryptography;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using dotnetapp.Models;
@@ -30,7 +29,7 @@ namespace dotnetapp.Services
 
             // Hash password using SHA256
             model.Password = HashPassword(model.Password);
-            model.UserRole = userRole; // Changed from Role to UserRole
+            model.UserRole = userRole;
 
             // Add user to database
             _context.Users.Add(model);
@@ -55,33 +54,59 @@ namespace dotnetapp.Services
             }
 
             // Generate JWT token
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Email),
-                new Claim(ClaimTypes.Role, user.UserRole) // Changed from Role to UserRole
-            };
-
-            string token = GenerateToken(claims);
+            string token = GenerateToken(user);
             return (1, token);
         }
 
-        private string GenerateToken(IEnumerable<Claim> claims)
+        private string GenerateToken(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            // Retrieve secret key and validate
+            var secretKey = _configuration["JWT:SecretKey"];
+            if (string.IsNullOrEmpty(secretKey))
+            {
+                throw new InvalidOperationException("JWT secret key is not configured.");
+            }
+
+            // Retrieve issuer and audience from configuration and validate
+            var issuer = _configuration["JWT:ValidIssuer"];
+            var audience = _configuration["JWT:ValidAudience"];
+            if (string.IsNullOrEmpty(issuer))
+            {
+                throw new InvalidOperationException("JWT issuer is not configured.");
+            }
+            if (string.IsNullOrEmpty(audience))
+            {
+                throw new InvalidOperationException("JWT audience is not configured.");
+            }
+
+            // Create signing credentials
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
+            var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            // Define claims (use custom names instead of default URIs)
+            var claims = new List<Claim>
+            {
+                new Claim("userId", user.UserId.ToString()), // Custom claim for userId
+                new Claim("email", user.Email),             // Custom claim for email
+                new Claim("role", user.UserRole)            // Custom claim for role
+            };
+
+            // Generate token
             var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(1),
+                issuer: issuer,
+                audience: audience,
+                expires: DateTime.UtcNow.AddHours(1), // Token expiration time
                 claims: claims,
-                signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+                signingCredentials: signingCredentials
             );
 
+            // Return serialized token
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         private string HashPassword(string password)
         {
-            using (var sha256 = SHA256.Create())
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 var bytes = Encoding.UTF8.GetBytes(password);
                 var hash = sha256.ComputeHash(bytes);

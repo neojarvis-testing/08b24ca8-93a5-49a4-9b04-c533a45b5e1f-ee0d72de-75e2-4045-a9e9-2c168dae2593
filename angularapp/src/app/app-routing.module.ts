@@ -5,9 +5,6 @@ import { UsernavComponent } from './components/usernav/usernav.component';
 import { ManagernavComponent } from './components/managernav/managernav.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path:'',component: UsernavComponent},
-  {path:'',component:ManagernavComponent}
 ];
 
 @NgModule({
