@@ -5,21 +5,23 @@ using dotnetapp.Services;
 using dotnetapp.Models;
 using dotnetapp.Services;
 using dotnetapp.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotnetapp.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class SavingsPlanController : ControllerBase
+    public class SavingsPlansController : ControllerBase
     {
         private readonly ISavingsPlanService _savingsPlanService;
 
-        public SavingsPlanController(ISavingsPlanService savingsPlanService)
+        public SavingsPlansController(ISavingsPlanService savingsPlanService)
         {
             _savingsPlanService = savingsPlanService;
         }
 
         [HttpGet]
+        //[Authorize(Roles = "Customer,RegionalManager")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();

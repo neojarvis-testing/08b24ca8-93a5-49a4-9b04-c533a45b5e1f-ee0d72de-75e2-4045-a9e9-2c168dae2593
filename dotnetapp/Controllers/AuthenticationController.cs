@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Models;
@@ -33,7 +30,7 @@ namespace dotnetapp.Controllers
                 return Unauthorized(result);
             }
 
-            return Ok(new { Token = result });
+            return Ok(new { token = result });
         }
 
         [HttpPost("register")]
