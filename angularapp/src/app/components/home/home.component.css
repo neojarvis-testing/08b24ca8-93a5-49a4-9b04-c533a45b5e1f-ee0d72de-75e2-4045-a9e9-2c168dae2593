@@ -1,0 +1,43 @@
+
+.container 
+
+
+
+{
+
+    margin-top: 5px; 
+
+    padding: 20px; 
+    background-image: url("/assets/Screenshot 2025-04-14 110128.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 5px; 
+    color:white;
+
+} 
+
+
+
+h1 
+
+{ 
+
+    color: #333; 
+
+} 
+
+p{ 
+
+    color: #666; 
+
+    font-size: 18px; 
+
+}  
+
+
+
+
+
+

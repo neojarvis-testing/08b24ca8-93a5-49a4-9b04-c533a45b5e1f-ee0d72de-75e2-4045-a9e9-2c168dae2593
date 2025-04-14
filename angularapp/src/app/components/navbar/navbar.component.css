@@ -1,0 +1,58 @@
+.navbar {
+ 
+    background: linear-gradient(to right, #ef71cf, #f99dd4);
+   
+    color: rgb(208, 0, 255);
+   
+    padding: 15px 30px;
+   
+    display: flex;
+   
+    justify-content: space-between;
+   
+    align-items: center;
+   
+    border-radius: 4px;
+   
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+   
+   }
+   
+   
+   
+   .title {
+   
+    margin: 0;
+   
+    font-size: 20px;
+   
+    font-weight: bold;
+   
+    letter-spacing: 1px;
+   
+   }
+   
+   
+   
+   .nav-links a {
+   
+    color: white;
+   
+    text-decoration: none;
+   
+    margin-left: 20px;
+   
+    font-weight: bold;
+   
+   }
+   
+   
+   
+   .nav-links a:hover,
+   
+   .active-link {
+   
+    text-decoration: underline;
+   
+   }
+ 
