@@ -1,86 +1,82 @@
 <div class="container">
-    <h2>Update Savings Plan</h2>
-    <form (ngSubmit)="onSubmit()" #savingsPlanForm="ngForm">
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          class="form-control"
-          [(ngModel)]="savingsPlan.name"
-          name="name"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="goalAmount">Goal Amount</label>
-        <input
-          type="number"
-          id="goalAmount"
-          class="form-control"
-          [(ngModel)]="savingsPlan.goalAmount"
-          name="goalAmount"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="timeFrame">Time Frame (months)</label>
-        <input
-          type="number"
-          id="timeFrame"
-          class="form-control"
-          [(ngModel)]="savingsPlan.timeFrame"
-          name="timeFrame"
-          required
-        />
-      </div>
-      <div class="form-group">
-        <label for="riskLevel">Risk Level</label>
-        <select
-          id="riskLevel"
-          class="form-control"
-          [(ngModel)]="savingsPlan.riskLevel"
-          name="riskLevel"
-          required
-        >
-          <option value="Low">Low</option>
-          <option value="Medium">Medium</option>
-          <option value="High">High</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          id="description"
-          class="form-control"
-          [(ngModel)]="savingsPlan.description"
-          name="description"
-          required
-        ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <input
-          type="text"
-          id="status"
-          class="form-control"
-          [(ngModel)]="savingsPlan.status"
-          name="status"
-          required
-        />
-      </div>
-      <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="savingsPlanForm.form.invalid"
+  <h2>Update Savings Plan</h2>
+  <form (ngSubmit)="onSubmit()" #savingsPlanForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="savingsPlan.name"
+        name="name"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="goalAmount">Goal Amount</label>
+      <input
+        type="number"
+        id="goalAmount"
+        class="form-control"
+        [(ngModel)]="savingsPlan.goalAmount"
+        name="goalAmount"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="timeFrame">Time Frame (months)</label>
+      <input
+        type="number"
+        id="timeFrame"
+        class="form-control"
+        [(ngModel)]="savingsPlan.timeFrame"
+        name="timeFrame"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="riskLevel">Risk Level</label>
+      <select
+        id="riskLevel"
+        class="form-control"
+        [(ngModel)]="savingsPlan.riskLevel"
+        name="riskLevel"
+        required
       >
-        Update
-      </button>
-    </form>
-    <div *ngIf="formSubmitted" class="alert alert-success mt-3">
-      Savings plan successfully updated!
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select>
     </div>
-    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
-      {{ errorMessage }}
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        class="form-control"
+        [(ngModel)]="savingsPlan.description"
+        name="description"
+        required
+      ></textarea>
     </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" class="form-control" [(ngModel)]="savingsPlan.status" name="status" required>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="savingsPlanForm.form.invalid"
+    >
+      Update
+    </button>
+  </form>
+  <div *ngIf="formSubmitted" class="alert alert-success mt-3">
+    Savings plan successfully updated!
   </div>
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    {{ errorMessage }}
+  </div>
+</div>

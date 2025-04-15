@@ -20,7 +20,6 @@ export class ManagereditsavingsplanComponent implements OnInit {
     status: ''
   };
 
-  savingPlanId:any ={};
   formSubmitted = false;
   errorMessage = '';
 
@@ -31,21 +30,18 @@ export class ManagereditsavingsplanComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Retrieve the savingsPlanId from the route parameters
-    this.savingPlanId = +this.route.snapshot.paramMap.get('savingsPlanId')!;
-    if (this.savingPlanId) {
-      this.getSavingsPlan();
-    } else {
-      this.errorMessage = 'Invalid savings plan ID';
+    const savingPlanId = +this.route.snapshot.paramMap.get('savingPlanId')!;
+    if (savingPlanId) {
+      this.getSavingsPlan(savingPlanId);
     }
   }
 
-  getSavingsPlan(): void {
-    this.savingsPlanService.getSavingsPlanById(this.savingPlanId.toString()).subscribe({
+  getSavingsPlan(savingPlanId: number): void {
+    this.savingsPlanService.getSavingsPlanById(savingPlanId.toString()).subscribe({
       next: (data) => {
         this.savingsPlan = data;
       },
-      error: (err) => {
+      error: () => {
         this.errorMessage = 'Error fetching savings plan details';
       }
     });
@@ -54,7 +50,6 @@ export class ManagereditsavingsplanComponent implements OnInit {
   onSubmit(): void {
     this.formSubmitted = true;
 
-    // Validate required fields
     if (
       this.savingsPlan.name &&
       this.savingsPlan.goalAmount > 0 &&
@@ -63,12 +58,12 @@ export class ManagereditsavingsplanComponent implements OnInit {
       this.savingsPlan.description &&
       this.savingsPlan.status
     ) {
-      this.savingsPlanService.updateSavingsPlan(this.savingPlanId.toString(), this.savingsPlan).subscribe({
+      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.savingPlanId.toString(), this.savingsPlan).subscribe({
         next: () => {
           this.formSubmitted = true;
-          setTimeout(() => this.router.navigate(['/savingsplans']), 2000); // Redirect after success
+          setTimeout(() => this.router.navigate(['/savingsplans']), 2000);
         },
-        error: (err) => {
+        error: () => {
           this.errorMessage = 'Error updating savings plan';
         }
       });

@@ -11,6 +11,7 @@ import { ManagereditsavingsplanComponent } from './components/managereditsavings
 
 const routes: Routes = [
   //{path:'',component:HomeComponent},
+  { path: 'editsavingsplan/:savingPlanId', component: ManagereditsavingsplanComponent },
   //{path:'',component:NavbarComponent}
   //{path:'',component:UsernavComponent},
   //{path:'',component:ManagernavComponent},

@@ -1,27 +1,29 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using dotnetapp.Services;
-using dotnetapp.Models;
-using dotnetapp.Services;
 using dotnetapp.Exceptions;
+using dotnetapp.Models;
 using Microsoft.AspNetCore.Authorization;
+using dotnetapp.Services;
 
 namespace dotnetapp.Controllers
 {
+    //[Authorize]
     [ApiController]
-    [Route("api/[controller]")]
-    public class SavingsPlansController : ControllerBase
+    [Route("api/savingsplan")]
+    public class SavingsPlanController : ControllerBase
     {
         private readonly ISavingsPlanService _savingsPlanService;
 
-        public SavingsPlansController(ISavingsPlanService savingsPlanService)
+        public SavingsPlanController(ISavingsPlanService savingsPlanService)
         {
             _savingsPlanService = savingsPlanService;
         }
 
         [HttpGet]
-        [Authorize(Roles = "Customer,RegionalManager")]
+        // [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
@@ -29,40 +31,43 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("{savingsPlanId}")]
+        // [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult<SavingsPlan>> GetSavingsPlanById(int savingsPlanId)
         {
             var savingsPlan = await _savingsPlanService.GetSavingsPlanById(savingsPlanId);
             if (savingsPlan == null)
             {
-                return NotFound(new { message = "Cannot find any savings plan" });
+                return NotFound(new { Message = "Cannot find any savings plan" });
             }
             return Ok(savingsPlan);
         }
 
         [HttpPost]
+        // [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult> AddSavingsPlan([FromBody] SavingsPlan savingsPlan)
         {
             try
             {
                 await _savingsPlanService.AddSavingsPlan(savingsPlan);
-                return Ok(new { message = "Savings plan successfully created" });
+                return Ok(new { Message = "Savings plan successfully created" });
             }
             catch (PlanAlreadyExistsException ex)
             {
-                return Conflict(new { message = ex.Message });
+                return Conflict(new { Message = ex.Message });
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(500, new { message = "An error occurred while adding the savings plan" });
+                return StatusCode(500, new { Message = $"An error occurred while adding the savings plan: {ex.Message}" });
             }
         }
 
         [HttpPut("{savingsPlanId}")]
+        // [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult> UpdateSavingsPlan(int savingsPlanId, [FromBody] SavingsPlan savingsPlan)
         {
             if (savingsPlanId != savingsPlan.SavingsPlanId)
             {
-                return BadRequest(new { message = "SavingsPlanId mismatch" });
+                return BadRequest(new { Message = "SavingsPlanId mismatch" });
             }
 
             try
@@ -70,21 +75,22 @@ namespace dotnetapp.Controllers
                 var result = await _savingsPlanService.UpdateSavingsPlan(savingsPlan);
                 if (!result)
                 {
-                    return NotFound(new { message = "Cannot find any savings plan" });
+                    return NotFound(new { Message = "Cannot find any savings plan" });
                 }
-                return Ok(new { message = "Savings plan successfully updated" });
+                return Ok(new { Message = "Savings plan successfully updated" });
             }
             catch (PlanAlreadyExistsException ex)
             {
-                return Conflict(new { message = ex.Message });
+                return Conflict(new { Message = ex.Message });
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(500, new { message = "An error occurred while updating the savings plan" });
+                return StatusCode(500, new { Message = $"An error occurred while updating the savings plan: {ex.Message}" });
             }
         }
 
         [HttpDelete("{savingsPlanId}")]
+        // [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult> DeleteSavingsPlan(int savingsPlanId)
         {
             try
@@ -92,13 +98,13 @@ namespace dotnetapp.Controllers
                 var result = await _savingsPlanService.DeleteSavingsPlan(savingsPlanId);
                 if (!result)
                 {
-                    return NotFound(new { message = "Cannot find any savings plan" });
+                    return NotFound(new { Message = "Cannot find any savings plan" });
                 }
-                return Ok(new { message = "Savings plan successfully deleted" });
+                return Ok(new { Message = "Savings plan successfully deleted" });
             }
-            catch
+            catch (Exception ex)
             {
-                return StatusCode(500, new { message = "An error occurred while deleting the savings plan" });
+                return StatusCode(500, new { Message = $"An error occurred while deleting the savings plan: {ex.Message}" });
             }
         }
     }
