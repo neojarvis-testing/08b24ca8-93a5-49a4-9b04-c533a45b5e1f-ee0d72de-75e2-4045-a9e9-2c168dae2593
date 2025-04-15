@@ -9,7 +9,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
   styleUrls: ['./userviewfeedback.component.css']
 })
 export class UserviewfeedbackComponent implements OnInit {
-  Feedbacks:Feedback[]=[];
+  feedbacks:Feedback[]=[];
 
   constructor(private router:Router, private service:FeedbackService) { }
 
@@ -18,8 +18,11 @@ export class UserviewfeedbackComponent implements OnInit {
   }
   loadFeedbacks(){
     this.service.getFeedbacks().subscribe(data=>{
-      this.Feedbacks=data;
+      this.feedbacks=data;
     });
+  }
+  confirmDelete(id:number):void{
+    
   }
 
 }
