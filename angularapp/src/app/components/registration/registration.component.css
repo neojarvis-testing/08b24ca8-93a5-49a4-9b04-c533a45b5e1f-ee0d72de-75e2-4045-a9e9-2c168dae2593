@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items to the top */
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    overflow: hidden;
+}
+
+.registration-container {
+    width: 100%;
+    max-width: 450px;
+    background-color: #ffffff;
+    padding: 20px; /* Reduced padding */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    margin: 20px auto; /* Add margin to the top and bottom */
+    overflow-y: auto;
+    max-height: calc(100vh - 40px); /* Ensure it fits within the viewport */
+}
+
+.registration-container h1 {
+    color: #333333;
+    font-size: 28px; /* Reduced font size */
+    text-align: center;
+    margin-bottom: 20px; /* Reduced margin */
+    font-weight: 700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Added text shadow */
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px; /* Reduced margin */
+    color: #444444;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input, select {
+    display: block;
+    width: 100%;
+    padding: 10px; /* Reduced padding */
+    margin-bottom: 8px; /* Reduced margin */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+input:focus, select:focus {
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px; /* Reduced padding */
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added box shadow */
+}
+
+button:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb);
+    transform: translateY(-3px);
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #ff0000;
+    margin-top: -8px;
+    margin-bottom: 10px;
+}
+
+.password-requirements {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.password-requirements li {
+    font-size: 12px;
+    padding: 2px 0;
+}
+
+.password-requirements li.valid {
+    color: green;
+}
+
+.password-requirements li.invalid {
+    color: red;
+}
+
+.required{
+    color: red;
+}
+
+@media screen and (max-height: 750px) {
+    .registration-container {
+        height: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
