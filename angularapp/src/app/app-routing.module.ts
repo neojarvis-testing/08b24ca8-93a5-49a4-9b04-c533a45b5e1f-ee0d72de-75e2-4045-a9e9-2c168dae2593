@@ -10,6 +10,7 @@ import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/u
 import { ManagereditsavingsplanComponent } from './components/managereditsavingsplan/managereditsavingsplan.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
+import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
 
 const routes: Routes = [
   //{path:'',component:HomeComponent},
@@ -17,10 +18,11 @@ const routes: Routes = [
   //{path:'',component:UsernavComponent},
   //{path:'',component:ManagernavComponent},
  // {path:'',component:UserviewsavingsplanComponent}
-  {path:'Register', component:RegistrationComponent},
-  {path:'Login', component:LoginComponent},
-  {path: '', redirectTo: '/Login', pathMatch: 'full' },
-  {path: '**', redirectTo: '/error' }
+  // {path:'Register', component:RegistrationComponent},
+  // {path:'Login', component:LoginComponent},
+  // {path: '', redirectTo: '/Login', pathMatch: 'full' },
+  // {path: '**', redirectTo: '/error' }
+  
   
 ];
 

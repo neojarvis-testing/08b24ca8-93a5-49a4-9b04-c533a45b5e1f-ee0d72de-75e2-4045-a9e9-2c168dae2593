@@ -13,8 +13,8 @@ export class ManagercreatesavingsplanComponent implements OnInit {
   newPlan: SavingsPlan = {
     savingPlanId: 0,
     name: '',
-    goalAmount: 0,
-    timeFrame: 0,
+    goalAmount: null,
+    timeFrame: null,
     riskLevel: 'Low',
     description: '',
     status: ''
@@ -58,3 +58,4 @@ export class ManagercreatesavingsplanComponent implements OnInit {
     }
   }
 }
+
