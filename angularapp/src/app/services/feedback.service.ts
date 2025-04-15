@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FeedbackService {
-  public baseUrl = '';
+  public baseUrl = 'https://ide-eaadfdebcbddcfcdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/proxy/8080/api/feedback';
 
   private getAuthHeaders(): HttpHeaders {
     return new HttpHeaders({
