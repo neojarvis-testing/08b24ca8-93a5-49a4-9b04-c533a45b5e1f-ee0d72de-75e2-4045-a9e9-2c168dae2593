@@ -5,13 +5,23 @@
         <thead>
             <tr>
                 <th>Plan Name</th>
+                <th>Goal Amount</th>
+                <th>Time Frame</th>
+                <th>Risk Level</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let plan of viewPlan">
+             <!-- <tr *ngFor="let plan of plans">  -->
+                <tr *ngFor="let plan of filteredPlans">
+               
                 <td>{{ plan.name }}</td>
+                <td>{{plan.goalAmount}}</td>
+                <td>{{plan.timeFrame}}</td>
+                <td>{{plan.riskLevel}}</td>
+                <td>{{plan.description}}</td>
                 <td>{{ plan.status }}</td>
                 <td>
                     <button *ngIf="plan.status === 'Active' && !plan.applied" (click)="applyForPlan(plan)">Apply</button>
@@ -21,4 +31,6 @@
         </tbody>
     </table>
 </div>
+
+
 

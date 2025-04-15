@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
  
     background: linear-gradient(to right, #146c07, rgb(166, 249, 157));
    
@@ -63,4 +63,100 @@
     text-decoration: none;
    
    }
- 
+  */
+  /* navbar.component.css */
+/* navbar.component.css */
+
+/* navbar.component.css */
+.navbar {
+    background: linear-gradient(to right, #146c07, rgb(166, 249, 157));
+    color: rgb(224, 240, 231);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  
+  .nav-links a {
+    color: white;
+    background-color: #bc96b2;
+    text-decoration: none;
+    margin-left: 20px;
+    border-radius: 7px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+  }
+  
+  .nav-links a:hover,
+  .active-link {
+    background-color: #0056b3;
+    text-decoration: none;
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(14px);
+  }
+  
+  body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .navbar {
+    background: linear-gradient(to right, #333, #555);
+  }
+  
+  body.dark-mode .-links a {
+    background-color: #444;
+  }
+  
