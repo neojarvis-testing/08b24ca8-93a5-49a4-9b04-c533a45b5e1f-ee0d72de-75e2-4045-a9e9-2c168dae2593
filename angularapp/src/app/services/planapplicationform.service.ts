@@ -8,7 +8,7 @@ import { PlanApplication } from '../models/planapplication.model';
   providedIn: 'root'
 })
 export class PlanapplicationformService {
-  private apiUrl = 'https://8080-aeddfacaccecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api/planapplications';
+  private apiUrl = 'https://8080-aeddfacaccecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api/planapplication';
 
   constructor(private http: HttpClient) {}
 

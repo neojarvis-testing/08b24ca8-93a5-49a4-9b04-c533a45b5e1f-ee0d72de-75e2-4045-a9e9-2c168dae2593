@@ -21,6 +21,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
+import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
+import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
 
 
 
@@ -44,7 +46,9 @@ import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/u
     LoginComponent,
     RegistrationComponent,
     UserviewsavingsplanComponent,
-    UserplanapplicationformComponent
+    UserplanapplicationformComponent,
+    UserappliedplansComponent,
+    ManagerviewapplicationformComponent
   ],
   
   imports: [
