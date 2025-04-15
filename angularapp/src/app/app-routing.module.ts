@@ -8,6 +8,8 @@ import { ManagerviewfeedbackComponent } from './components/managerviewfeedback/m
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
 import { ManagereditsavingsplanComponent } from './components/managereditsavingsplan/managereditsavingsplan.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   //{path:'',component:HomeComponent},
@@ -15,6 +17,8 @@ const routes: Routes = [
   //{path:'',component:UsernavComponent},
   //{path:'',component:ManagernavComponent},
  // {path:'',component:UserviewsavingsplanComponent}
+  {path:'Register', component:RegistrationComponent},
+  {path:'Login', component:LoginComponent}
 ];
 
 
