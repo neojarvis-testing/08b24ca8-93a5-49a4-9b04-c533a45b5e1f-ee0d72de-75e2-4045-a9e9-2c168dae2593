@@ -42,8 +42,8 @@ export class PlanapplicationformService {
     getAppliedPlans(userId: number): Observable<PlanApplication[]> {
        const url = `${this.apiUrl}/user/${userId}`;
        return this.http.get<PlanApplication[]>(url, { headers: this.getHeaders() })
-          .pipe(
-          catchError(this.handleError)
+          .pipe( 
+            catchError(this.handleError)
           );
      }
 
