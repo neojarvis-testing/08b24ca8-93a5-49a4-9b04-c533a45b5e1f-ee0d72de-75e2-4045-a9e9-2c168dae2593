@@ -17,7 +17,7 @@ import { UsernavComponent } from './components/usernav/usernav.component';
 import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
-
+import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 
 
 @NgModule({
@@ -36,6 +36,7 @@ import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/u
     UserplanapplicationformComponent,
     UserviewfeedbackComponent,
     UserviewsavingsplanComponent
+    UserappliedplansComponent
 
   ],
   imports: [

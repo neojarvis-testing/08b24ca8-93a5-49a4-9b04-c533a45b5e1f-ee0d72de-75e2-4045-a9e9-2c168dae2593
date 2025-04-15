@@ -32,18 +32,19 @@ export class ManagerviewsavingsplanComponent implements OnInit {
     );
   }
 
-  // deleteSavingsPlan(savingsPlanId: number): void {
-  //   this.savingsPlanService.deleteSavingsPlan(savingsPlanId.toString()).subscribe(
-  //     () => {
-  //       this.loadSavingsPlans(); // Reload the list after deletion
-  //     },
-  //     error => {
-  //       console.error('Error deleting savings plan:', error);
-  //     }
-  //   );
-  // }
+  deleteSavingsPlan(savingsPlanId: number): void {
+    this.savingsPlanService.deleteSavingsPlan(savingsPlanId.toString()).subscribe(
+      () => {
+        this.loadSavingsPlans(); // Reload the list after deletion
+      },
+      error => {
+        console.error('Error deleting savings plan:', error);
+      }
+    );
+  }
 
-  // editSavingsPlan(savingsPlanId: number): void {
-  //   this.router.navigate(['/edit-savingsplan', savingsPlanId]);
-  // }
+  editSavingsPlan(savingsPlanId: number): void {
+    this.router.navigate(['/editsavingsplan', savingsPlanId]);
+  }
 }
+
