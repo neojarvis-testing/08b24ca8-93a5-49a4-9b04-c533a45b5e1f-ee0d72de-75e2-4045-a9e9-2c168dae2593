@@ -43,6 +43,17 @@ export class ManagercreatesavingsplanComponent implements OnInit {
     {
       this.savingsPlanService.addSavingsPlan(this.newPlan).subscribe(()=>{
         this.router.navigate([`/savingsplans`]);
+
+        this.newPlan = {
+          savingPlanId: 0,
+          name: '',
+          goalAmount: 0,
+          timeFrame: 0,
+          riskLevel: 'Low',
+          description: '',
+          status: ''
+        }
+        this.formSubmitted=false;
       });
     }
   }
