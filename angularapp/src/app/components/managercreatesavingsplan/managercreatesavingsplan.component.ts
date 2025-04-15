@@ -28,14 +28,22 @@ export class ManagercreatesavingsplanComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.savingsPlanService.addSavingsPlan(this.newPlan).subscribe(
-      response => {
-        this.formSubmitted = true;
-        this.router.navigate(['/savingsplans']); // Navigate to the list of savings plans or another appropriate route
-      },
-      error => {
-        console.error('Error adding savings plan:', error);
-      }
-    );
+    // this.savingsPlanService.addSavingsPlan(this.newPlan).subscribe(
+    //   response => {
+    //     this.formSubmitted = true;
+    //     this.router.navigate(['/savingsplans']); // Navigate to the list of savings plans or another appropriate route
+    //   },
+    //   error => {
+    //     console.error('Error adding savings plan:', error);
+    //   }
+    // );
+
+    this.formSubmitted=true;
+    if(this.newPlan.name && this.newPlan.goalAmount && this.newPlan.timeFrame && this.newPlan.riskLevel && this.newPlan.description && this.newPlan.status)
+    {
+      this.savingsPlanService.addSavingsPlan(this.newPlan).subscribe(()=>{
+        this.router.navigate([`/savingsplans`]);
+      });
+    }
   }
 }

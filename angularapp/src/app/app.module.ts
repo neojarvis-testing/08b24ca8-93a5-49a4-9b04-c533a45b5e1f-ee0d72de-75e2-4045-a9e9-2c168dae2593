@@ -20,6 +20,8 @@ import { PiggyBankLoaderComponent } from './components/piggy-bank-loader/piggy-b
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
+import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 
 
 @NgModule({
@@ -41,8 +43,10 @@ import { RegistrationComponent } from './components/registration/registration.co
     ErrorComponent,
     LoginComponent,
     RegistrationComponent
-
+    UserviewsavingsplanComponent
+    UserappliedplansComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
