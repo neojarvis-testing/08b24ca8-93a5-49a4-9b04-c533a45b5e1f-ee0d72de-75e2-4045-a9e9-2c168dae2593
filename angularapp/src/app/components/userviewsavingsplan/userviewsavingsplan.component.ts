@@ -20,7 +20,9 @@ export class UserviewsavingsplanComponent implements OnInit {
     
   }
   viewPlan():void{
-    this.savingplanservice.getAllSavingsPlans().subscribe(data=>this.plans=data)
+    this.savingplanservice.getAllSavingsPlans().subscribe(data=>
+      this.plans=data
+      )
   }
   filterPlans(): void {
        this.searchTerm = this.plans.filter(plan => 

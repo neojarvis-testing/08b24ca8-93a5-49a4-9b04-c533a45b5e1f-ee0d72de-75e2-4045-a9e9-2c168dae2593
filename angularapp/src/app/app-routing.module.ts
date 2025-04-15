@@ -18,7 +18,10 @@ const routes: Routes = [
   //{path:'',component:ManagernavComponent},
  // {path:'',component:UserviewsavingsplanComponent}
   {path:'Register', component:RegistrationComponent},
-  {path:'Login', component:LoginComponent}
+  {path:'Login', component:LoginComponent},
+  {path: '', redirectTo: '/Login', pathMatch: 'full' },
+  {path: '**', redirectTo: '/error' }
+  
 ];
 
 
@@ -26,4 +29,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
