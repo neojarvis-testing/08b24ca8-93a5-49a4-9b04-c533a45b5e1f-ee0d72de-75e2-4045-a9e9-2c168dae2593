@@ -21,7 +21,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
-import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
+
 
 
 @NgModule({
@@ -42,9 +42,9 @@ import { UserappliedplansComponent } from './components/userappliedplans/userapp
     PiggyBankLoaderComponent,
     ErrorComponent,
     LoginComponent,
-    RegistrationComponent
-    UserviewsavingsplanComponent
-    UserappliedplansComponent
+    RegistrationComponent,
+    UserviewsavingsplanComponent,
+    UserplanapplicationformComponent
   ],
   
   imports: [

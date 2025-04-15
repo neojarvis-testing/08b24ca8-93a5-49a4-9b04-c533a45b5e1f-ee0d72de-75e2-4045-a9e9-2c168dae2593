@@ -1,4 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 import { UserviewsavingsplanComponent } from './userviewsavingsplan.component';
 
@@ -8,7 +12,8 @@ describe('UserviewsavingsplanComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserviewsavingsplanComponent ]
+      declarations: [ UserviewsavingsplanComponent ],
+      imports: [ReactiveFormsModule, RouterTestingModule, HttpClientTestingModule, FormsModule]
     })
     .compileComponents();
   });
@@ -19,7 +24,14 @@ describe('UserviewsavingsplanComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  fit('Frontend_should_create_userviewsavingsplan_component', () => {
     expect(component).toBeTruthy();
-  });
+  }
+  );
+
+  fit('Frontend_should_contain_savings_heading_in_the_userviewsavingsplan_component', () => {
+    const componentHTML = fixture.debugElement.nativeElement.outerHTML;
+    expect(componentHTML).toContain('Savings');
+  }
+  );
 });
