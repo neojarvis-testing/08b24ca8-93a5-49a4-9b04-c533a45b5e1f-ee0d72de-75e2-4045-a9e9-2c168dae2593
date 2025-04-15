@@ -16,11 +16,11 @@
      <tbody>
         <tr *ngFor="let item of planApplications, let i=index">
              <td>{{ i + 1 }}</td>
-             <td >{{savingsplans[item.SavingsPlanId]?.name}}</td>
-             <td>{{item.AppliedAmount}}</td>
-             <td>{{item.ApplicationDate}}</td>
-             <td>{{item.Remarks}}</td>
-             <td>{{item.Status}}</td>
+             <td >{{savingsplans[item.savingsPlanId]?.name}}</td>
+             <td>{{item.appliedAmount}}</td>
+             <td>{{item.applicationDate}}</td>
+             <td>{{item.remarks}}</td>
+             <td>{{item.status}}</td>
              <td>
                 <button id="viewImage" class="view-image-button" (click)="viewImage(item.ProofDocument)">View Image</button>
                <button id="delete" class="delete-button" (click)="deletePlanApplication(item.PlanApplicationId)">Delete</button>

@@ -1,1 +1,69 @@
-<p>managerviewapplicationform works!</p>
+<!-- <div *ngIf="isLoggedIn()"> -->
+    <app-managernav></app-managernav>
+    <div class="background-wrapper">
+      <div class="container">
+        <!-- <h1>Requested Application Forms</h1> -->
+        <table class="table table-striped">
+          <thead>
+            <!-- <tr class="no-border-bottom">
+              <th colspan="8" style="text-align: center;">
+                <input type="text" class="search-bar" placeholder="Search by Plan Name" [(ngModel)]="searchPlanName" (input)="filterApplicationsByPlanName()">
+              </th>
+            </tr> -->
+            <tr>
+              <th>S. No</th>
+              <th>Applicant Name</th>
+              <th>Plan Name</th>
+              <th>Applied Amount
+                <span class="sort-btn-container">
+                  <button class="sort-btn" (click)="sortAmountAscending()">&#9660;</button>
+                  <button class="sort-btn" (click)="sortAmountDescending()">&#9650;</button>
+                </span>
+              </th>
+              <th>Application Date</th>
+              <th>Remarks</th>
+              <th>Status</th>
+              <th>Proof of document</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let planApplication of filteredPlanApplications; let i = index">
+              <td>{{i + 1}}</td>
+              
+              <td>{{planApplication.User?.username}}</td>
+              <td>{{planApplication.SavingsPlan?.name}}</td>
+              <td>{{planApplication.appliedAmount | currency:'INR':'symbol':'1.0-0' }}</td>
+              <td>{{planApplication.applicationDate | date:'dd-MM-yyyy'}}</td>
+              <td>{{planApplication.remarks}}</td>
+              <td>{{planApplication.status}}</td>
+              <td>
+                <div *ngIf="planApplication.status === 'Pending'" class="action-buttons">
+                  <button class="approve-button" (click)="approve(planApplication)">Approve</button>
+                  <button class="reject-button" (click)="reject(planApplication)">Reject</button>
+                </div>
+                <div *ngIf="planApplication.status !== 'Pending'">
+                  <span [ngClass]="{ 'approved-status': planApplication.status === 'Approved', 'rejected-status': planApplication.Status === 'Rejected' }">
+                    {{planApplication.status}}
+                  </span>
+                </div>
+              </td>
+              <td>
+                <button class="view-button" (click)="showPopup = true; popupImageSrc = '../../../' + planApplication.ProofDocument">View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Popup Modal
+    <div class="popup" *ngIf="showPopup">
+      <div class="popup-content">
+        <span class="close" (click)="showPopup = false">×</span>
+        <img [src]="popupImageSrc" alt="Document Proof">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isLoggedIn()">
+    <app-error></app-error>
+  </div> -->

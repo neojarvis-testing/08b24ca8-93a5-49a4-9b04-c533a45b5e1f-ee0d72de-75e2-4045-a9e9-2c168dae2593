@@ -8,7 +8,7 @@ import { PlanApplication } from '../models/planapplication.model';
   providedIn: 'root'
 })
 export class SavingsplanService {
-  public apiUrl = 'https://8080-daabfcebbfcbadecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io';
+  public apiUrl = 'https://8080-aeddfacaccecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io';
   // private planApplicationsUrl = 'https://8080-daabfcebbfcbadecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api/planapplications/user';
 
   constructor(private http: HttpClient) { }

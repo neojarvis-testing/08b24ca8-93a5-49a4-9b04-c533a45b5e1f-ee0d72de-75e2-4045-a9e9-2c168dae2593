@@ -21,7 +21,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Customer,RegionalManager")]
+        // [Authorize(Roles = "Customer,RegionalManager")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
