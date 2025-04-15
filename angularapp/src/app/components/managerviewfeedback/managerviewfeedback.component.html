@@ -1,6 +1,6 @@
 <h1>Feedback Details</h1>
 <hr>
-<table>
+<table *ngIf="feedbacks.length>0;else noData">
     <thead>
         <tr>
             <th>S.No</th>
@@ -10,5 +10,19 @@
             <th>Action</th>
         </tr>
     </thead>
+    <tbody>
+        <tr>
+            <td>{{i+1}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button>Show Profile</button>
+            </td>
+        </tr>
+    </tbody>
     
 </table>
+<ng-template #noData>
+    <p>Oops! No records Found</p>
+</ng-template>

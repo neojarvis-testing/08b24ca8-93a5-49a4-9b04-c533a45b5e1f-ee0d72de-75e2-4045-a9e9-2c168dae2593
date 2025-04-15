@@ -1,13 +1,22 @@
-<h2 class="centered-heading">Add Feedback</h2>
+<app-usernav></app-usernav>
+<div class="add-feedback-container">
+  <h2 class="centered-heading">Add Feedback</h2>
   <div class="form-container">
-    <form #feedbackForm="ngForm" (ngSubmit)="addUserFeedback()">
+    <form #feedbackForm="ngForm" (ngSubmit)="onSubmit(feedbackForm)">
       <div class="form-group">
-        <label for="feedbackText">Feedback<span class="required">*</span></label>
-        <textarea id="feedbackText" [(ngModel)]="newUserFeedback.Comments" name="feedbackText" required></textarea>
-        <div *ngIf="feedbackForm.submitted && !newUserFeedback.Comments" class="validation-message">
+        <label for="Comments">Feedback<span class="required">*</span></label>
+        <textarea id="Comments" [(ngModel)]="feedback.Comments" name="Comments" required></textarea>
+        <div *ngIf="feedbackForm.submitted && !feedback.Comments" class="validation-message">
           Feedback is required.
         </div>
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
     </form>
   </div>
+</div>
+<div *ngIf="showPopup" class="popup">
+  <div class="popup-content">
+    <p>Successfully Added!</p>
+    <button (click)="closePopup()">Ok</button>
+  </div>
+</div>

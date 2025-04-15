@@ -1,1 +1,26 @@
-<p>userviewfeedback works!</p>
+<div>
+    <h2>My Feedback</h2>
+    <table *ngIf="feedbacks.length>0; else noData">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Feedback</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let feedback of feedbacks; let i=index">
+                <td>{{i+1}}</td>
+                <td>{{feedback.Comments}}</td>
+                <td>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    <ng-template #noData>
+        <p>Oops! No records Found</p>
+    </ng-template>
+    
+</div>
