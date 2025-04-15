@@ -1,4 +1,4 @@
-<nav class="navbar">
+<!-- <nav class="navbar">
  
   <h2>Finance Hub</h2>
  
@@ -9,5 +9,28 @@
    <a routerLink="/login">Login</a>
  
   </div>
+  <!-- navbar.component.html -->
+<!-- <div class="navbar">
+  
+    <label class="switch">
+      <input type="checkbox" (change)="toggleDarkMode()">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+
  
- </nav>
+ </nav> -->
+
+ <nav class="navbar">
+  <h2>Finance Hub</h2>
+  <div class="nav-links">
+    <a routerLink="/register">Register</a>
+    <a routerLink="/login">Login</a>
+    <label class="switch">
+      <input type="checkbox" (change)="toggleDarkMode()">
+     
+      <span class="slider round"></span>
+    </label>
+  </div>
+</nav>
