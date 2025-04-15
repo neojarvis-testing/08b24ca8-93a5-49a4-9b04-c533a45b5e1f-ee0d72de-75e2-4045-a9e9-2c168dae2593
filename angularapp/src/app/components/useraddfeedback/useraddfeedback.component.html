@@ -1,1 +1,13 @@
-<p>useraddfeedback works!</p>
+<h2 class="centered-heading">Add Feedback</h2>
+  <div class="form-container">
+    <form #feedbackForm="ngForm" (ngSubmit)="addUserFeedback()">
+      <div class="form-group">
+        <label for="feedbackText">Feedback<span class="required">*</span></label>
+        <textarea id="feedbackText" [(ngModel)]="newUserFeedback.Comments" name="feedbackText" required></textarea>
+        <div *ngIf="feedbackForm.submitted && !newUserFeedback.Comments" class="validation-message">
+          Feedback is required.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
