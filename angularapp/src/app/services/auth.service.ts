@@ -40,6 +40,7 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/login`, loginUser).pipe(
       tap((response) => {
         const token = response.token;
+        
         if (token) {
           // Decode token to extract user details
           const payload = JSON.parse(atob(token.split('.')[1]));
