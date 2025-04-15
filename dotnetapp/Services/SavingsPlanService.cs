@@ -1,74 +1,82 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using dotnetapp.Data;
-using dotnetapp.Models;
-using dotnetapp.Exceptions;
 
+using dotnetapp.Exceptions;
+using dotnetapp.Models;
+using dotnetapp.Data;
 namespace dotnetapp.Services
 {
     public class SavingsPlanService : ISavingsPlanService
     {
-        private readonly ApplicationDbContext db;
+        private readonly ApplicationDbContext _context;
 
-        public SavingsPlanService(ApplicationDbContext db1)
+        public SavingsPlanService(ApplicationDbContext context)
         {
-            db = db1;
+            _context = context;
         }
 
         public async Task<IEnumerable<SavingsPlan>> GetAllSavingsPlans()
         {
-            return await db.SavingsPlans.ToListAsync();
+            return await _context.SavingsPlans.ToListAsync();
         }
 
         public async Task<SavingsPlan> GetSavingsPlanById(int savingsPlanId)
         {
-            return await db.SavingsPlans.FindAsync(savingsPlanId);
+            return await _context.SavingsPlans.FindAsync(savingsPlanId);
         }
 
         public async Task<bool> AddSavingsPlan(SavingsPlan savingsPlan)
         {
-            if (db.SavingsPlans.Any(sp => sp.Name == savingsPlan.Name))
+            if (_context.SavingsPlans.Any(s => s.Name == savingsPlan.Name))
             {
                 throw new PlanAlreadyExistsException("Plan with the same name already exists");
             }
 
-            db.SavingsPlans.Add(savingsPlan);
-            await db.SaveChangesAsync();
+            _context.SavingsPlans.Add(savingsPlan);
+            await _context.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> UpdateSavingsPlan(SavingsPlan savingsPlan)
         {
-            var existingPlan = await db.SavingsPlans.FindAsync(savingsPlan.SavingsPlanId);
+            var existingPlan = await _context.SavingsPlans.FindAsync(savingsPlan.SavingsPlanId);
             if (existingPlan == null)
             {
                 return false;
             }
 
-            if (existingPlan.Name != savingsPlan.Name && db.SavingsPlans.Any(sp => sp.Name == savingsPlan.Name))
+            if (existingPlan.Name != savingsPlan.Name && _context.SavingsPlans.Any(sp => sp.Name == savingsPlan.Name))
             {
-                throw new PlanAlreadyExistsException ("Plan with the same name already exists");
+                throw new PlanAlreadyExistsException("Plan with the same name already exists");
             }
 
             existingPlan.Name = savingsPlan.Name;
+            existingPlan.GoalAmount = savingsPlan.GoalAmount;
+            existingPlan.TimeFrame = savingsPlan.TimeFrame;
+            existingPlan.RiskLevel = savingsPlan.RiskLevel;
             existingPlan.Description = savingsPlan.Description;
-            await db.SaveChangesAsync();
+            existingPlan.Status = savingsPlan.Status;
+
+
+            await _context.SaveChangesAsync();
             return true;
         }
 
         public async Task<bool> DeleteSavingsPlan(int savingsPlanId)
         {
-            var savingsPlan = await db.SavingsPlans.FindAsync(savingsPlanId);
+            var savingsPlan = await _context.SavingsPlans.FindAsync(savingsPlanId);
             if (savingsPlan == null)
             {
                 return false;
             }
 
-            db.SavingsPlans.Remove(savingsPlan);
-            await db.SaveChangesAsync();
+            _context.SavingsPlans.Remove(savingsPlan);
+            await _context.SaveChangesAsync();
             return true;
         }
     }
+
 }
