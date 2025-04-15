@@ -1,0 +1,44 @@
+
+.savings-plan-container {
+     padding: 20px;
+     background-color: #f9f9f9;
+     border-radius: 10px;
+    }
+    
+    .savings-plan-container h2 {
+     text-align: center;
+    }
+    
+    .savings-plan-container input {
+     display: block;
+     margin: 0 auto 20px;
+     padding: 10px;
+     width: 80%;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+    }
+    
+    .savings-plan-container table {
+     width: 100%;
+     border-collapse: collapse;
+    }
+    
+    .savings-plan-container th, .savings-plan-container td {
+     padding: 10px;
+     text-align: left;
+     border-bottom: 1px solid #ddd;
+    }
+    
+    .savings-plan-container button {
+     padding: 10px 20px;
+     background-color: #007BFF;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+    }
+    
+    .savings-plan-container button:hover {
+     background-color: #0056b3;
+    }
+    

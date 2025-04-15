@@ -38,9 +38,60 @@ p{
     font-size: 18px; 
 
 }  
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffcccc; /* Light red background for contrast */
+    margin: 0;
+    padding: 0;
+}
 
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: #007BFF;
+    color: white;
+}
 
+.chit-plans {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
 
+.plan-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+    margin: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 
+.plan-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
 
+.plan-card h2 {
+    color: #ff6600;
+}
 
+.plan-card p {
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.plan-card button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.plan-card button:hover {
+    background-color: #0056b3;
+}
