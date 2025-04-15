@@ -16,8 +16,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernavComponent } from './components/usernav/usernav.component';
 import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
-
 
 
 @NgModule({
@@ -35,6 +35,7 @@ import { UserappliedplansComponent } from './components/userappliedplans/userapp
     UsernavComponent,
     UserplanapplicationformComponent,
     UserviewfeedbackComponent,
+    UserviewsavingsplanComponent
     UserappliedplansComponent
 
   ],
