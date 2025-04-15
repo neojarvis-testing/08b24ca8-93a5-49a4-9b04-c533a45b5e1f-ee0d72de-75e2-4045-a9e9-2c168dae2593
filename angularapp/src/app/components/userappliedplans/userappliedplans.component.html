@@ -1,0 +1,30 @@
+<button >Sort Amount Ascending</button>
+<button >Sort Amount Descending</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>S.No</th>            
+            <th>Plan Name</th>            
+            <th>Applied Amount</th>            
+            <th>Application Date</th>            
+            <th>Remarks</th>            
+            <th>Status</th>            
+            <th>Proof Document</th>            
+        </tr>
+     </thead>
+     <tbody>
+        <tr *ngFor="let item of planApplications, let i=index">
+             <td>{{ i + 1 }}</td>
+             <td >{{savingsplans[item.SavingsPlanId]?.name}}</td>
+             <td>{{item.AppliedAmount}}</td>
+             <td>{{item.ApplicationDate}}</td>
+             <td>{{item.Remarks}}</td>
+             <td>{{item.Status}}</td>
+             <td>
+                <button id="viewImage" class="view-image-button" (click)="viewImage(item.ProofDocument)">View Image</button>
+               <button id="delete" class="delete-button" (click)="deletePlanApplication(item.PlanApplicationId)">Delete</button>
+             </td>
+        </tr>
+     </tbody>
+</table>
