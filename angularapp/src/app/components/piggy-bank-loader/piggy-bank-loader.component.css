@@ -1,0 +1,128 @@
+/* Loader Container */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    background: linear-gradient(135deg, #f0f4ff, #d7e9f7);
+    overflow: hidden;
+  }
+  
+  /* Rupee Coin */
+  .coin {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, #ffd700, #f9a825);
+    border-radius: 50%;
+    animation: dropCoin 2s infinite ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .coin-symbol {
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+    text-align: center;
+    line-height: 60px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Piggy Bank */
+  .piggy-bank {
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+    animation: piggyBounce 2s infinite ease-in-out;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Glow Effect around Piggy Bank */
+  .piggy-bank svg {
+    filter: drop-shadow(0 0 15px rgba(255, 111, 97, 0.5));
+  }
+  
+  /* Sparkles */
+  .sparkles {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    animation: sparkles 2s infinite ease-in-out;
+    z-index: 1;
+  }
+  
+  /* Quote */
+  .quote {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: fadeInScale 2s ease-in-out forwards;
+    opacity: 0;
+  }
+  
+  /* Keyframes for Coin Drop */
+  @keyframes dropCoin {
+    0% {
+      top: -80px;
+      opacity: 1;
+      transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+      top: 120px;
+      opacity: 1;
+      transform: translateX(-50%) rotate(180deg);
+    }
+    100% {
+      top: 200px;
+      opacity: 0;
+      transform: translateX(-50%) rotate(360deg) scale(0.7);
+    }
+  }
+  
+  /* Keyframes for Piggy Bank Bounce */
+  @keyframes piggyBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Keyframes for Sparkles */
+  @keyframes sparkles {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 1;
+    }
+  }
+  
+  /* Keyframes for Quote Fade-In and Scale */
+  @keyframes fadeInScale {
+    0% {
+      transform: scale(0.7);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }

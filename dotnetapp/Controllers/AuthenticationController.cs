@@ -38,16 +38,16 @@ namespace dotnetapp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid payload");
+                return BadRequest(new { status = "error", message = "Invalid payload" });
             }
 
             var (status, result) = await _authService.Registration(model, model.UserRole);
             if (status == 0)
             {
-                return BadRequest(result);
+                return BadRequest(new { status = "error", message = result });
             }
 
-            return Ok(result);
+            return Ok(new { status = "success", message = result });
         }
     }
 }

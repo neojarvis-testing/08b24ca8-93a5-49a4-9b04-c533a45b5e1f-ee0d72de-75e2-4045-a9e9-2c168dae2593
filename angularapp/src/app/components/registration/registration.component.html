@@ -1,0 +1,76 @@
+<div class="registration-container">
+    <h1>Registration</h1>
+    <form #registrationForm="ngForm" (ngSubmit)="register(registrationForm)">
+        <label for="username">Username<span class="required">*</span></label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required [ngModelOptions]="{standalone : true}" #usernameNgModel="ngModel">
+        <div class="error-message" *ngIf="usernameNgModel.invalid && (usernameNgModel.dirty || usernameNgModel.touched)">
+            Username is required
+        </div>
+
+        <!-- Email Field -->
+        <div>
+            <label for="email">Email<span class="required">*</span></label>
+            <input type="email" id="email" name="email" [(ngModel)]="email" required email [ngModelOptions]="{standalone : true}" #emailNgModel="ngModel">
+            <div class="error-message" *ngIf="emailNgModel.invalid && (emailNgModel.dirty || emailNgModel.touched)">
+                <p *ngIf="emailNgModel.errors?.required">Email is required</p>
+                <p *ngIf="emailNgModel.errors?.email">Invalid email format</p>
+            </div>
+        </div>
+
+        <!-- Password Field -->
+        <div>
+            <label for="password">Password<span class="required">*</span></label>
+            <input type="password" id="password" name="password" [(ngModel)]="password" required 
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" [ngModelOptions]="{standalone : true}" #passwordNgModel="ngModel">
+            <div class="error-message" *ngIf="passwordNgModel.invalid && (passwordNgModel.dirty || passwordNgModel.touched)">
+                <p>Password must include at least:</p>
+                <ul class="password-requirements">
+                    <li [class.valid]="checkLowercase()">✔ One lowercase letter</li>
+                    <li [class.valid]="checkUppercase()">✔ One uppercase letter</li>
+                    <li [class.valid]="checkDigit()">✔ One digit</li>
+                    <li [class.valid]="checkSpecialChar()">✔ One special character</li>
+                    <li [class.valid]="checkMinLength()">✔ At least 8 characters</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div>
+            <label for="confirmPassword">Confirm Password<span class="required">*</span></label>
+            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required [ngModelOptions]="{standalone : true}" #confirmPasswordNgModel="ngModel">
+            <div class="error-message" *ngIf="confirmPasswordNgModel.invalid && (confirmPasswordNgModel.dirty || confirmPasswordNgModel.touched)">
+                Confirm Password is required
+            </div>
+            <div class="error-message" *ngIf="(confirmPasswordNgModel && checkpassword())">
+                Passwords do not match
+            </div>
+        </div>
+
+        <!-- Mobile Number Field -->
+        <div>
+            <label for="mobile">Mobile Number<span class="required">*</span></label>
+            <input type="tel" id="mobile" name="mobile" [(ngModel)]="mobile" required pattern="^[0-9]{10}$" [ngModelOptions]="{standalone : true}" 
+                #mobileNgModel="ngModel">
+            <div class="error-message" *ngIf="mobileNgModel.invalid && (mobileNgModel.dirty || mobileNgModel.touched)">
+                <p *ngIf="mobileNgModel.errors?.required">Mobile number is required</p>
+                <p *ngIf="mobileNgModel.errors?.pattern">Mobile number must be 10 digits</p>
+            </div>
+        </div>
+
+        <!-- Role Field -->
+        <div>
+            <label for="role">Role<span class="required">*</span></label>
+            <select id="role" name="role" [(ngModel)]="role" required #roleNgModel="ngModel">
+                <option value="" disabled selected>Select Role</option>
+                <option value="RegionalManager">Regional Manager</option>
+                <option value="Customer">Customer</option>
+            </select>
+            <div class="error-message" *ngIf="roleNgModel.invalid && (roleNgModel.dirty || roleNgModel.touched)">
+                Role is required
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submit" type="submit" [disabled]="!registrationForm.valid">Register</button>
+    </form>
+</div>

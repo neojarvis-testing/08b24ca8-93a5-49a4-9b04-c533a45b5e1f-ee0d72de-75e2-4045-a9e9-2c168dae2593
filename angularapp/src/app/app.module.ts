@@ -16,6 +16,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsernavComponent } from './components/usernav/usernav.component';
 import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { PiggyBankLoaderComponent } from './components/piggy-bank-loader/piggy-bank-loader.component';
+import { ErrorComponent } from './components/error/error.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
 import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 
@@ -35,10 +39,14 @@ import { UserappliedplansComponent } from './components/userappliedplans/userapp
     UsernavComponent,
     UserplanapplicationformComponent,
     UserviewfeedbackComponent,
+    PiggyBankLoaderComponent,
+    ErrorComponent,
+    LoginComponent,
+    RegistrationComponent
     UserviewsavingsplanComponent
     UserappliedplansComponent
-
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
