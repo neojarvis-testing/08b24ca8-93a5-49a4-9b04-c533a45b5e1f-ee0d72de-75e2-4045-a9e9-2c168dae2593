@@ -6,5 +6,4 @@ export interface SavingsPlan{
     RiskLevel:'Low'|'Medium'|'High';
     Description:string;
     Status:string;
-
 }

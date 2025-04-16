@@ -11,27 +11,27 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class UseraddfeedbackComponent implements OnInit {
   feedback: Feedback = {
-    UserId: 2,
+    UserId: 0,
     Comments: '',
     DateProvided: new Date()
   }
+  CurrentUser: any;
   showPopup:boolean=false;
 
-  constructor(private router:Router, private service:FeedbackService,private authService:AuthService) { }
+  constructor(private router:Router, private feedbackservice:FeedbackService,private authService:AuthService) { }
 
   ngOnInit(): void {
-    // const userId = this.authService.getUserIdFromToken(this.authService.getToken()!);
-    // if (userId) {
-    //   this.feedback.UserId = parseInt(userId, 10);
-    // }
-
+    this.feedback.UserId = this.authService.getUserId();
   }
+
   onSubmit(feedbackForm: any): void {
     if (!this.feedback.Comments) {
       feedbackForm.form.markAllAsTouched(); // Mark all fields as touched to show validation messages
       return;
     }
-    this.service.sendFeedback(this.feedback).subscribe(() => {
+    console.log(this.feedback);
+    this.feedbackservice.sendFeedback(this.feedback).subscribe(() => {
+      console.log(this.feedback);
       this.showPopup = true;
     });
   }

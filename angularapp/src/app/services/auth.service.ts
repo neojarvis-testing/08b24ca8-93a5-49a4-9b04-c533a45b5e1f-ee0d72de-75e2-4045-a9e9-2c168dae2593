@@ -24,7 +24,6 @@ export class AuthService {
       JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
-
     this.updateRole(); // Initialize role on service load
   }
 
@@ -58,7 +57,7 @@ export class AuthService {
 
           // localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('jwtToken', token);
-          this.currentUserSubject.next(user);
+                    this.currentUserSubject.next(user);
 
           // Update role after login
           this.updateRole();
@@ -83,6 +82,7 @@ export class AuthService {
     return payload.exp > currentTime;
   }
 
+
   // Update the current role
   updateRole(): void {
     const token = localStorage.getItem('jwtToken');
@@ -90,12 +90,21 @@ export class AuthService {
       this.roleSubject.next('navbar'); // Default to 'navbar' when no token exists
       return;
     }
-
     const decodedToken: any = jwtDecode(token);
     const role = decodedToken.role || 'navbar';
     this.roleSubject.next(role); // Emit the current role
   }
 
+  getUserId(): number | null {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+      return null; // Return null if no token exists
+    }
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.userId || null; // Return UserId or null if not found
+  }
+
+  
   isRegionalManager(): boolean {
     const token = localStorage.getItem('jwtToken');
     if (!token) return false; // Handle missing token

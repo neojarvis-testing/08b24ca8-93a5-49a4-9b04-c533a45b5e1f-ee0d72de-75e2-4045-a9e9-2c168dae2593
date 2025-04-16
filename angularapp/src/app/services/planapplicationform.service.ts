@@ -52,14 +52,14 @@ export class PlanapplicationformService {
 
      
       getAllPlanApplications(): Observable<PlanApplication[]> {
-       return this.http.get<PlanApplication[]>(this.baseUrl, { headers: this.getHeaders() })
+       return this.http.get<PlanApplication[]>(`${this.baseUrl}/PlanApplication`, { headers: this.getHeaders() })
        .pipe(
          catchError(this.handleError)
          );
      }
      
-updatePlanApplication(planId: number, updatedData: PlanApplication): Observable<PlanApplication> {
-      const url = `${this.baseUrl}/${planId}`;
+      updatePlanApplication(planId: number, updatedData: PlanApplication): Observable<PlanApplication> {
+      const url = `${this.baseUrl}/PlanApplication/${planId}`;
       return this.http.put<PlanApplication>(url, updatedData, { headers: this.getHeaders() })
        .pipe(
         catchError(this.handleError)
