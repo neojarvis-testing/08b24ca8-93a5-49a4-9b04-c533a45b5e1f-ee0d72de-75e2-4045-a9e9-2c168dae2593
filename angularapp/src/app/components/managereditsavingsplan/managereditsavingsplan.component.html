@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="timeFrame">Time Frame (months) *</label>
+      <label for="timeFrame">Time Frame (years) *</label>
       <input type="number" id="timeFrame" class="form-control" [(ngModel)]="savingsPlan.TimeFrame" name="timeFrame" required min="1" max="600" #timeFrame="ngModel">
       <div *ngIf="timeFrame.invalid && (timeFrame.dirty || timeFrame.touched)" class="text-danger">
         Time frame must be between 1 and 50 years.

@@ -45,10 +45,10 @@ export class ManagereditsavingsplanComponent implements OnInit {
       next: (data) => {
         this.savingsPlan = data;
 
-        // Ensure savingPlanId is set
+        
         this.savingsPlan.SavingPlanId = data.SavingPlanId || savingPlanId;
 
-        console.log(this.savingsPlan); // Debugging
+        console.log(this.savingsPlan); 
       },
       error: () => {
         this.errorMessage = 'Error fetching savings plan details';
