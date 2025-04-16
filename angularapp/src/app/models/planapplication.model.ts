@@ -3,7 +3,7 @@ import { SavingsPlan } from "./savingsplan.model";
 export interface PlanApplication{
     PlanApplicationId?:number;
     AppliedAmount:number;
-    status:string;
+    Status:string;
     ApplicationDate:string;
     Remarks:string;
     ProofDocument:string;
