@@ -1,103 +1,135 @@
 .usernav {
- 
-    background: linear-gradient(to right, #146c07, rgb(166,249,157));
-   
-    color: rgb(224, 240, 231);
-   
-    padding: 15px 30px;
-   
-    display: flex;
-   
-    justify-content: space-between;
-   
-    align-items: center;
-   
-    border-radius: 4px;
-   
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-   
-   }
-   body{
-   margin-top: 5px; 
+  background: linear-gradient(to right, #0d47a1, #1976d2);
+  color: rgb(224, 240, 231);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
 
-   padding: 20px; 
-   /* background-image: url("/assets/Screenshot 2025-04-14 110128.png"); */
-   background-image: url("/assets/savings2.jpg"); 
-   
+.usernav-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
 
-   background-size: cover;
-   background-position: center;
-   background-repeat: no-repeat;
-   min-height: 100vh;
-   padding: 2px; 
-   color:white;
-   }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
 
+.nav-link {
+  color: white;
+  background-color: #42a5f5;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-   .title {
-   
-    margin: 0;
-   
-    font-size: 20px;
-   
-    font-weight: bold;
-   
-    letter-spacing: 1px;
-   
-   }
-   .customer-btn{
-    background-color: #4d91ff;
-    border:none;
-    padding: 6px 12px;
-    color:white;
-    border-radius:4px;
-    margin-left: 20px;
-    cursor:pointer;
+.nav-link:hover {
+  background-color: #1e88e5;
+  color: #e3f2fd;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
 
-   }
-   .customer-btn:hover{
-    background-color: #cc0000;
-   }
- 
-   .nav-links a {
-   
-    color: white;
-    background-color: #bc96b2; 
-   
-    text-decoration: none;
-   
-    margin-left: 20px;
-    
-    border-radius: 7px; 
-    
-    transition: background-color 0.3s ease; 
+.active-link {
+  background-color: #146c07;
+  color: white;
+}
 
-    font-weight: bold;
-   
-   }
-   
-   
-   
-   .nav-links a:hover,
-   
-   .active-link {
-   
-    background-color: #0056b3; 
-   
-    text-decoration: none;
-   
-   }
-   .logout-btn{
-    background-color: #4d91ff;
-    border:none;
-    padding: 6px 12px;
-    color:white;
-    border-radius:4px;
-    margin-left: 20px;
-    cursor:pointer;
+.customer-btn,
+.logout-btn {
+  background-color: #4d91ff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
 
-   }
-   .logout-btn:hover{
-    background-color: #cc0000;
-   }
- 
+.customer-btn:hover,
+.logout-btn:hover {
+  background-color: #ff5252;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(255, 82, 82, 0.5);
+}
+
+.customer-btn:active,
+.logout-btn:active {
+  background-color: #d32f2f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  transform: scale(0.95);
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #bff5f5; /* Aqua blue background */
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content .dropdown-item {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content .dropdown-item:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown .nav-link:focus + .dropdown-content,
+.dropdown .nav-link:active + .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .usernav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .nav-link,
+  .customer-btn,
+  .logout-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

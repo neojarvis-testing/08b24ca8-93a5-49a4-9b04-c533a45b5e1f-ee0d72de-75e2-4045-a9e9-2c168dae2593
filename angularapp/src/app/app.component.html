@@ -1,6 +1,5 @@
-<app-navbar></app-navbar>
-<app-managernav></app-managernav>
-<app-usernav></app-usernav>
-<app-useraddfeedback></app-useraddfeedback>
-<app-userviewfeedback></app-userviewfeedback>
+<app-navbar *ngIf="currentRole === 'navbar'"></app-navbar>
+<app-managernav *ngIf="currentRole === 'RegionalManager'"></app-managernav>
+<app-usernav *ngIf="currentRole === 'Customer'"></app-usernav>
+
 <router-outlet></router-outlet>

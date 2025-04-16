@@ -1,17 +1,41 @@
-<nav class="managernav">
+<!-- <nav class="managernav">
     <h2 class="managernav-title">Finance Hub</h2>
   
-    <div class="manager-nav-links">
+    <div class="manager-nav-links"> -->
       <!-- Button for User/Regional Manager -->
-      <button class="manager-btn">User/RegionalManager</button>
+      <!-- <button class="manager-btn">User/RegionalManager</button> -->
   
-      <!-- Navigation Links -->
+      <!-- Navigation Links
       <a routerLink="/Home" class="manager-nav-link">Home</a>
       <a routerLink="/Manager/SavingPlans" class="manager-nav-link">Saving Plan</a>
       <a routerLink="/Manager/ApplicationForms" class="manager-nav-link">Application Forms</a>
       <a routerLink="/Feedback" class="manager-nav-link">Feedback</a>
-  
+   -->
       <!-- Logout Button -->
+      <!-- <button class="logout-btn">Logout</button>
+    </div>
+  </nav> -->
+
+
+
+
+
+
+  <nav class="managernav">
+    <h2 class="managernav-title">Finance Hub</h2>
+    <div class="manager-nav-links">
+      <button class="manager-btn">User/Regional Manager</button>
+      <a routerLink="/Home" class="manager-nav-link">Home</a>
+      <div class="dropdown">
+        <a class="manager-nav-link">Saving Plan</a>
+        <div class="dropdown-content">
+          <a routerLink="/Manager/CreateSavingPlan" class="dropdown-item">Add Saving Plan</a>
+          <a routerLink="/Manager/ViewSavingPlan" class="dropdown-item">View Saving Plan</a>
+        </div>
+      </div>
+      <a routerLink="/Manager/ApplicationForms" class="manager-nav-link">Application Forms</a>
+      <a routerLink="/Feedback" class="manager-nav-link">Feedback</a>
       <button class="logout-btn">Logout</button>
     </div>
   </nav>
+  

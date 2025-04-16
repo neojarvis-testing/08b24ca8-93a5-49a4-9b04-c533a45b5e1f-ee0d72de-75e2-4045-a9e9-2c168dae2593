@@ -8,9 +8,14 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'angularapp';
+  currentRole: string = 'navbar'; // Default
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    }
+    // Subscribe to role changes
+    this.authService.role$.subscribe(role => {
+      this.currentRole = role;
+    });
+  }
 }

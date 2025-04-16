@@ -8,7 +8,7 @@
 //   providedIn: 'root'
 // })
 // export class SavingsplanService {
-//   public apiUrl = 'https://8080-daabfcebbfcbadecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io';
+//   public baseUrl = 'https://8080-daabfcebbfcbadecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io';
 //   // private planApplicationsUrl = 'https://8080-daabfcebbfcbadecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api/planapplications/user';
 
 //   constructor(private http: HttpClient) { }
@@ -21,7 +21,7 @@
 //   }
 
 //   getAllSavingsPlans(): Observable<SavingsPlan[]> {
-//     return this.http.get<SavingsPlan[]>(`${this.apiUrl}/api/SavingsPlans`);
+//     return this.http.get<SavingsPlan[]>(`${this.baseUrl}/api/SavingsPlans`);
 //   }
 
 //   // getAppliedPlans(userId: string): Observable<PlanApplication[]> {
@@ -30,27 +30,27 @@
 //   // }
 
 //   deleteSavingsPlan(savingsPlanId: string): Observable<void> {
-//     const url = `${this.apiUrl}/api/SavingsPlans/${savingsPlanId}`;
+//     const url = `${this.baseUrl}/api/SavingsPlans/${savingsPlanId}`;
 //     return this.http.delete<void>(url, { headers: this.getAuthHeaders() });
 //   }
 
 //   getSavingsPlanById(id: string): Observable<SavingsPlan> {
-//     const url = `${this.apiUrl}/api/SavingsPlans/${id}`;
+//     const url = `${this.baseUrl}/api/SavingsPlans/${id}`;
 //     return this.http.get<SavingsPlan>(url, { headers: this.getAuthHeaders() });
 //   }
 
 //   // addSavingsPlan(requestObject: SavingsPlan): Observable<SavingsPlan> {
-//   //   return this.http.post<SavingsPlan>(this.apiUrl, requestObject, { headers: this.getAuthHeaders() });
+//   //   return this.http.post<SavingsPlan>(this.baseUrl, requestObject, { headers: this.getAuthHeaders() });
 //   // }
 
 //   addSavingsPlan(requestObject: SavingsPlan): Observable<SavingsPlan> {
-//     return this.http.post<SavingsPlan>(`${this.apiUrl}/api/SavingsPlans`, requestObject, {
+//     return this.http.post<SavingsPlan>(`${this.baseUrl}/api/SavingsPlans`, requestObject, {
 //         headers: this.getAuthHeaders()
 //     });
 // }
 
 //   updateSavingsPlan(id: string, requestObject: SavingsPlan): Observable<SavingsPlan> {
-//     const url = `${this.apiUrl}/api/SavingsPlans/${id}`;
+//     const url = `${this.baseUrl}/api/SavingsPlans/${id}`;
 //     return this.http.put<SavingsPlan>(url, requestObject, { headers: this.getAuthHeaders() });
 //   }
 // }
@@ -65,7 +65,8 @@ import { PlanApplication } from '../models/planapplication.model';
   providedIn: 'root'
 })
 export class SavingsplanService {
-  public apiUrl: string = 'https://8080-daabfcebbfcbadecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io';
+
+  public baseUrl = environment.apiUrl;
 
 
   constructor(private httpClient: HttpClient) {}
@@ -79,26 +80,26 @@ export class SavingsplanService {
   }
 
   public addSavingsPlan(requestObject: SavingsPlan): Observable<SavingsPlan> {
-    return this.httpClient.post<SavingsPlan>(this.apiUrl + "/api/savingsplan", requestObject, { headers: this.getHeaders() });
+    return this.httpClient.post<SavingsPlan>(this.baseUrl + "/savingsplan", requestObject, { headers: this.getHeaders() });
   }
  
   public getAllSavingsPlans(): Observable<SavingsPlan[]> {
-    return this.httpClient.get<SavingsPlan[]>(this.apiUrl + "/api/savingsplan", { headers: this.getHeaders() });
+    return this.httpClient.get<SavingsPlan[]>(this.baseUrl + "/savingsplan", { headers: this.getHeaders() });
   }
  
   public deleteSavingsPlan(savingsPlanId: number): Observable<void> {
-    return this.httpClient.delete<void>(this.apiUrl + "/api/savingsplan/" + savingsPlanId, { headers: this.getHeaders() });
+    return this.httpClient.delete<void>(this.baseUrl + "/savingsplan/" + savingsPlanId, { headers: this.getHeaders() });
   }
  
   public getSavingsPlanById(id: number): Observable<SavingsPlan> {
-    return this.httpClient.get<SavingsPlan>(this.apiUrl + "/api/savingsplan/" + id, { headers: this.getHeaders() });
+    return this.httpClient.get<SavingsPlan>(this.baseUrl + "/savingsplan/" + id, { headers: this.getHeaders() });
   }
  
   public updateSavingsPlan(id: number, requestObject: SavingsPlan): Observable<SavingsPlan> {
-    return this.httpClient.put<SavingsPlan>(this.apiUrl + "/api/savingsplan/" + id, requestObject, { headers: this.getHeaders() });
+    return this.httpClient.put<SavingsPlan>(this.baseUrl + "/savingsplan/" + id, requestObject, { headers: this.getHeaders() });
   }
  
   public getAppliedPlans(userId: number): Observable<PlanApplication[]> {
-    return this.httpClient.get<PlanApplication[]>(this.apiUrl + "/api/planapplications/user/" + userId, { headers: this.getHeaders() });
+    return this.httpClient.get<PlanApplication[]>(this.baseUrl + "/planapplications/user/" + userId, { headers: this.getHeaders() });
   }
 }

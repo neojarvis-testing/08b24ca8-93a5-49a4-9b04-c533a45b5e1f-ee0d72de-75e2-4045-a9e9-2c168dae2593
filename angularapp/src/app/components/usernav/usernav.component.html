@@ -1,20 +1,17 @@
 <nav class="usernav">
- 
-    <h2>Finance Hub</h2>
-   
-    <div class="nav-links">
-    
-    <button class="customer-btn">User/Customer</button> 
-   
-     <a routerLink="/Home">Home</a>
-   
-     <a routerLink="/User/SavingPlans">SavingPlan</a>
-
-     <a routerLink="/User/AppliedPlans">ApplicationPlan</a>
-
-    <a routerLink="/Feedback">Feedback</a>
-
-    <button class="logout-btn">Logout</button> 
+  <h2>Finance Hub</h2>
+  <div class="nav-links">
+    <button class="customer-btn">User/Customer</button>
+    <a routerLink="/Home" class="nav-link">Home</a>
+    <a routerLink="/User/SavingPlans" class="nav-link">Saving Plan</a>
+    <a routerLink="/User/AppliedPlans" class="nav-link">Application Plan</a>
+    <div class="dropdown">
+      <a class="nav-link">Feedback</a>
+      <div class="dropdown-content">
+        <a routerLink="/PostFeedback" class="dropdown-item">Post Feedback</a>
+        <a routerLink="/MyFeedbacks" class="dropdown-item">My Feedbacks</a>
+      </div>
     </div>
-   
-   </nav>
+    <button class="logout-btn">Logout</button>
+  </div>
+</nav>
