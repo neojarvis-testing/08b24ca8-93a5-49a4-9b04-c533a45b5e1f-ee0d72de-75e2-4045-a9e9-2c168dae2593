@@ -13,7 +13,6 @@ export class ManagerviewapplicationformComponent implements OnInit {
   planApplications: PlanApplication[] = [];
   filteredPlanApplications: PlanApplication[] = [];
   searchPlanName: string = '';
-  newStatus: string = '';
   popupImageSrc: string = '';
   showPopup: boolean = false;
 
@@ -25,10 +24,8 @@ export class ManagerviewapplicationformComponent implements OnInit {
 
   getAllPlanApplications() {
     this.planApplicationformService.getAllPlanApplications().subscribe((data) => {
-      this.planApplications = data.map(application => ({
-        ...application,
-        SavingsPlan: application.SavingsPlan || {} as SavingsPlan
-      }));
+      // Map API response to match the PlanApplication interface
+      this.planApplications = data;
       this.filteredPlanApplications = [...this.planApplications];
     });
   }
@@ -52,21 +49,18 @@ export class ManagerviewapplicationformComponent implements OnInit {
   }
 
   approve(planApplication: PlanApplication) {
-    console.log(planApplication)
-    console.log(planApplication.PlanApplicationId)
-    if (planApplication.status === 'Pending') {
-      planApplication.status = 'Approved';
-      console.log(planApplication);
-      this.planApplicationformService.updatePlanApplication(planApplication.PlanApplicationId, planApplication).subscribe(() => {
+    if (planApplication.Status === 'Pending') {
+      const updatedApplication = { ...planApplication, Status: 'Approved' }; // Update the status
+      this.planApplicationformService.updatePlanApplication(updatedApplication.PlanApplicationId, updatedApplication).subscribe(() => {
         this.getAllPlanApplications();
       });
     }
   }
 
   reject(planApplication: PlanApplication) {
-    if (planApplication.status === 'Pending') {
-      planApplication.status = 'Rejected';
-      this.planApplicationformService.updatePlanApplication(planApplication.PlanApplicationId, planApplication).subscribe(() => {
+    if (planApplication.Status === 'Pending') {
+      const updatedApplication = { ...planApplication, Status: 'Rejected' }; // Update the status
+      this.planApplicationformService.updatePlanApplication(updatedApplication.PlanApplicationId, updatedApplication).subscribe(() => {
         this.getAllPlanApplications();
       });
     }

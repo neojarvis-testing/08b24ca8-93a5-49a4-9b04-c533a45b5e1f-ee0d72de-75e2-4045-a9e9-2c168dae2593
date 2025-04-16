@@ -59,7 +59,7 @@ export class PlanapplicationformService {
      }
      
       updatePlanApplication(planId: number, updatedData: PlanApplication): Observable<PlanApplication> {
-      const url = `${this.baseUrl}/api/PlanApplication/${planId}`;
+      const url = `${this.baseUrl}/PlanApplication/${planId}`;
       return this.http.put<PlanApplication>(url, updatedData, { headers: this.getHeaders() })
        .pipe(
         catchError(this.handleError)

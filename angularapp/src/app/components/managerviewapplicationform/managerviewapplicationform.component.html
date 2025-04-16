@@ -30,22 +30,21 @@
       <tbody>
         <tr *ngFor="let planApplication of filteredPlanApplications; let i = index">
           <td>{{i + 1}}</td>
-          <td>{{planApplication.user?.username}}</td>
-          <td>{{planApplication.savingsPlan?.name}}</td>
-          <td>{{planApplication.appliedAmount | currency:'INR':'symbol':'1.0-0'}}</td>
-          <td>{{planApplication.applicationDate | date:'dd-MM-yyyy'}}</td>
-          <td>{{planApplication.remarks}}</td>
+          <td>{{planApplication.User?.Username}}</td>
+          <td>{{planApplication.SavingsPlan?.Name}}</td>
+          <td>{{planApplication.AppliedAmount | currency:'INR':'symbol':'1.0-0'}}</td>
+          <td>{{planApplication.ApplicationDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{planApplication.Remarks}}</td>
           <td>
-            <div *ngIf="planApplication.status === 'Pending'" class="action-buttons">
+            <div *ngIf="planApplication.Status === 'Pending'" class="action-buttons">
               <button class="approve-button" (click)="approve(planApplication)">Approve</button>
               <button class="reject-button" (click)="reject(planApplication)">Reject</button>
             </div>
             <div *ngIf="planApplication.status !== 'Pending'">
               <span [ngClass]="{ 
-                'approved-status': planApplication.status === 'Approved', 
-                'rejected-status': planApplication.status === 'Rejected' 
+                'approved-status': planApplication.Status === 'Approved', 
+                'rejected-status': planApplication.Status === 'Rejected' 
               }">
-                {{planApplication.status}}
               </span>
             </div>
           </td>
