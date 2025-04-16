@@ -11,7 +11,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class UseraddfeedbackComponent implements OnInit {
   feedback: Feedback = {
-    UserId: 0,
+    UserId: 2,
     Comments: '',
     DateProvided: new Date()
   }
