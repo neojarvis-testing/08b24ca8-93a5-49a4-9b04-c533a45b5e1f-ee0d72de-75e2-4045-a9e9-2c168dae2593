@@ -9,20 +9,38 @@ import { FeedbackService } from 'src/app/services/feedback.service';
   styleUrls: ['./userviewfeedback.component.css']
 })
 export class UserviewfeedbackComponent implements OnInit {
-  feedbacks:Feedback[]=[];
+  feedbacks: Feedback[] = [];
 
-  constructor(private router:Router, private service:FeedbackService) { }
+  feedbackId: string;
+  userId: string;
+  delPopup: boolean = false;
+  feedbackToDel: Feedback | null ;
+
+  constructor(private router: Router, private service: FeedbackService) { }
 
   ngOnInit(): void {
     this.loadFeedbacks();
   }
-  loadFeedbacks(){
-    this.service.getFeedbacks().subscribe(data=>{
-      this.feedbacks=data;
+  loadFeedbacks() {
+    this.service.getFeedbacks().subscribe(data => {
+      this.feedbacks = data;
     });
   }
-  confirmDelete(id:number):void{
-    
+  public deleteFeedback(): void {
+    if (this.feedbackToDel) {
+      this.service.deleteFeedback(String(this.feedbackToDel.FeedbackId)).subscribe(() => {
+        this.getFeedbacksByUserId(this.userId);
+        this.delPopup = false;
+      });
+    }
+  }
+  public getFeedbacksByUserId(userId: string): void {
+    this.service.getAllFeedbacksByUserId(userId).subscribe((data: Feedback[]) => {
+      this.feedbacks = data;
+    });
+  }
+  public closeDel(): void {
+    this.delPopup = false;
   }
 
 }

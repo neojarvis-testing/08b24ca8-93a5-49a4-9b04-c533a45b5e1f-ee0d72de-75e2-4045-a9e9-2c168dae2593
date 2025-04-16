@@ -1,5 +1,5 @@
 export class Feedback{
-    FeedbakId?:number;
+    FeedbackId?:number;
     UserId:number;
     Comments:string;
     DateProvided:Date;

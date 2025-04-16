@@ -20,23 +20,22 @@ export class FeedbackService {
 
   }
 
-
   constructor(private http: HttpClient) { }
 
   sendFeedback(feedback: Feedback): Observable<Feedback> {
-    return this.http.post<Feedback>(`${this.baseUrl}`, feedback, {
+    return this.http.post<Feedback>(`${this.baseUrl}/feedback`, {
       headers: this.getAuthHeaders()
     });
 
   }
-  getAllFeedbackByUserId(userId: string): Observable<Feedback[]> {
-    return this.http.get<Feedback[]>(`${this.baseUrl}/user/${userId}`, {
+  getAllFeedbacksByUserId(userId: string): Observable<Feedback[]> {
+    return this.http.get<Feedback[]>(`${this.baseUrl}/feedback/user/${userId}`, {
       headers: this.getAuthHeaders()
     });
 
   }
   deleteFeedback(feedbackId: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${feedbackId}`, {
+    return this.http.delete<void>(`${this.baseUrl}/feedback/${feedbackId}`, {
       headers: this.getAuthHeaders()
     });
   }
