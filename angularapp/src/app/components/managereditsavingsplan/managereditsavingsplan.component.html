@@ -59,7 +59,7 @@
 
 
 <div class="container">
-  <h2>Update Plan</h2>
+  <h2>Edit Savings Plan</h2>
   <form (ngSubmit)="onSubmit()" #updatePlanForm="ngForm">
     <div class="form-group">
       <label for="name">Name *</label>
@@ -111,6 +111,7 @@
       </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="updatePlanForm.form.invalid">Update</button>
+    
   </form>
   <div *ngIf="formSubmitted" class="alert alert-success mt-3">
     Saving Plan Successfully Updated
