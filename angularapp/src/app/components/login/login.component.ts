@@ -37,13 +37,11 @@ export class LoginComponent implements OnInit {
     if (loginUser.Email && loginUser.Password) {
       this.authService.login(loginUser).subscribe({
         next: () => {
-          // Navigate based on user role
+          console.log(this.authService.isRegionalManager());
           if (this.authService.isRegionalManager()) {
-            this.router.navigate(['/regional-manager']);
+            this.router.navigate(['/RegionalManager']);
           } else if (this.authService.isCustomer()) {
-            this.router.navigate(['/customer']);
-          } else {
-            alert('Unknown user role. Please contact support.');
+            this.router.navigate(['/Customer']);
           }
         },
         error: (error: any) => {
@@ -66,6 +64,11 @@ export class LoginComponent implements OnInit {
     } else {
       alert('Please enter both email and password.');
     }
+  }
+
+  // Navigation to Register Page
+  navigateToRegister(): void {
+    this.router.navigate(['/Register']);
   }
 
   // Validation checks for password requirements

@@ -122,6 +122,25 @@ label {
     cursor: not-allowed;
 }
 
+/* Register Section Styling */
+.register-container {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #444444;
+}
+
+.register-link {
+    color: #2575fc;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.register-link:hover {
+    color: #6a11cb;
+}
+
 /* Animation */
 @keyframes fadeIn {
     from {

@@ -13,7 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
- 
+
 const routes: Routes = [
   {path:'Register', component:RegistrationComponent},
   {path:'Login', component:LoginComponent},
