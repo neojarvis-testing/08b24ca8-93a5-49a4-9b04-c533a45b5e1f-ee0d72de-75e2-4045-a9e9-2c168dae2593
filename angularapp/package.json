@@ -25,7 +25,7 @@
     "puppeteer": "^19.7.5",
     "rxjs": "~6.6.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.18.0",
+    "sweetalert2": "^11.19.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
