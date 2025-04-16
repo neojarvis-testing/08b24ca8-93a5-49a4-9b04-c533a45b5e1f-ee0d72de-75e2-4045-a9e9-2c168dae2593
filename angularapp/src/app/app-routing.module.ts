@@ -26,13 +26,13 @@ const routes: Routes = [
   {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
   {path:'User/AppliedPlans', component:UserappliedplansComponent},
   {path: '**', redirectTo: '/error' }
-  
+ 
 ];
-
-
+ 
+ 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-
+ 
 export class AppRoutingModule { }

@@ -7,7 +7,7 @@ using dotnetapp.Exceptions;
 using dotnetapp.Models;
 using Microsoft.AspNetCore.Authorization;
 using dotnetapp.Services;
- 
+
 namespace dotnetapp.Controllers
 {
     //[Authorize]
@@ -16,12 +16,12 @@ namespace dotnetapp.Controllers
     public class SavingsPlanController : ControllerBase
     {
         private readonly ISavingsPlanService _savingsPlanService;
- 
+
         public SavingsPlanController(ISavingsPlanService savingsPlanService)
         {
             _savingsPlanService = savingsPlanService;
         }
- 
+
         [HttpGet]
         // [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
@@ -29,7 +29,7 @@ namespace dotnetapp.Controllers
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
             return Ok(savingsPlans);
         }
- 
+
         [HttpGet("{savingsPlanId}")]
         // [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult<SavingsPlan>> GetSavingsPlanById(int savingsPlanId)
@@ -41,7 +41,7 @@ namespace dotnetapp.Controllers
             }
             return Ok(savingsPlan);
         }
- 
+
         [HttpPost]
         // [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult> AddSavingsPlan([FromBody] SavingsPlan savingsPlan)
@@ -60,7 +60,7 @@ namespace dotnetapp.Controllers
                 return StatusCode(500, new { Message = $"An error occurred while adding the savings plan: {ex.Message}" });
             }
         }
- 
+
         [HttpPut("{savingsPlanId}")]
         // [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult> UpdateSavingsPlan(int savingsPlanId, [FromBody] SavingsPlan savingsPlan)
@@ -69,7 +69,7 @@ namespace dotnetapp.Controllers
             {
                 return BadRequest(new { Message = "SavingsPlanId mismatch" });
             }
- 
+
             try
             {
                 var result = await _savingsPlanService.UpdateSavingsPlan(savingsPlan);
@@ -88,7 +88,7 @@ namespace dotnetapp.Controllers
                 return StatusCode(500, new { Message = $"An error occurred while updating the savings plan: {ex.Message}" });
             }
         }
- 
+
         [HttpDelete("{savingsPlanId}")]
         // [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult> DeleteSavingsPlan(int savingsPlanId)

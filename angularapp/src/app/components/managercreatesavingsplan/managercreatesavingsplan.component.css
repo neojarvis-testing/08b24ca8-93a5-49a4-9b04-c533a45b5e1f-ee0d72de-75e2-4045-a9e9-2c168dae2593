@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    background: linear-gradient(135deg, rgba(69, 186, 237, 0.1), rgba(252, 255, 61, 0.1));
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.background-wrapper {
+    background: linear-gradient(135deg, rgba(69, 186, 237, 0.15), rgba(252, 255, 61, 0.15));
+    padding: 20px;
+    border-radius: 8px;
+}
+
+form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: black; /* Change heading color to black */
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s, padding 0.3s;
+    background: none;
+    color: #555;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-bottom-color: #007bff;
+    outline: none;
+    padding-top: 25px;
+}
+
+input:focus + label, input:not(:placeholder-shown) + label,
+select:focus + label, select:not(:placeholder-shown) + label,
+textarea:focus + label, textarea:not(:placeholder-shown) + label {
+    transform: translateY(-25px);
+    font-size: 15px;
+    color: #45baed; /* Blue color from the gradient */
+}
+
+input::placeholder, select::placeholder, textarea::placeholder {
+    color: transparent;
+}
+
+label {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    pointer-events: none;
+    transition: transform 0.3s, font-size 0.3s;
+    color: #aaa;
+}
+
+/* Workaround for styling select placeholders */
+select option:first-child {
+    color: #aaa; /* Lighten the text color */
+}
+
+select:invalid {
+    color: #aaa; /* Lighten the text color */
+}
+
+/* Ensure other options have normal text color */
+select option:not(:first-child) {
+    color: #555; /* Normal text color */
+}
+
+button {
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #45baed, #fcff3d);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+}
+
+button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
