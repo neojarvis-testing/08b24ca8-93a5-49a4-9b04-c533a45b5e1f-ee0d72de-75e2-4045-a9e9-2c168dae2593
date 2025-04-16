@@ -121,7 +121,7 @@ export class UserplanapplicationformComponent implements OnInit {
       this.planApplicationformService.addPlanApplication(this.planApplicationForm).subscribe(
         () => {
           Swal.fire('Success!', 'Your application has been submitted.', 'success').then(() => {
-            this.router.navigate(['/userappliedplans']);
+            this.router.navigate(['/User/AppliedPlans']);
           });
         },
         () => {
