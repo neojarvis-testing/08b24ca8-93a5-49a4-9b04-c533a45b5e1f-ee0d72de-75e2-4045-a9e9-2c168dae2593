@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  userRole: string = null;
+
   constructor(public authService:AuthService,private router:Router ) { }
   // logout(): void {
   //   this.authService.logout();
@@ -24,10 +26,9 @@ darkMode: boolean = false;
 
 
 
-
-
-
   ngOnInit(): void {
+    
   }
+  
 
 }

@@ -4,6 +4,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -50,7 +51,7 @@ export class AuthService {
             role: payload.role,
           };
 
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          //localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('jwtToken', token);
           this.currentUserSubject.next(user);
         }
@@ -69,7 +70,6 @@ export class AuthService {
     if (!token) {
       return false;
     }
-
     // Check token expiration
     const payload = JSON.parse(atob(token.split('.')[1]));
     const currentTime = Math.floor(new Date().getTime() / 1000); // Current time in seconds
@@ -78,19 +78,20 @@ export class AuthService {
 
   // Check if user is Customer
   isCustomer(): boolean {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    return user && user.role === 'Customer';
+    const token = localStorage.getItem('jwtToken');
+    const decodedToken:any = jwtDecode(token);
+    return decodedToken.role === 'Customer';
   }
 
   // Check if user is RegionalManager
   isRegionalManager(): boolean {
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    return user && user.role === 'RegionalManager';
+    const token = localStorage.getItem('jwtToken');
+    const decodedToken:any = jwtDecode(token);
+    return decodedToken.role === 'RegionalManager';
   }
 
   // Logout user
   logout(): void {
-    localStorage.removeItem('currentUser');
     localStorage.removeItem('jwtToken');
     this.currentUserSubject.next(null);
   }
