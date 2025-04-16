@@ -12,7 +12,7 @@ namespace dotnetapp.Controllers
 {
     //[Authorize]
     [ApiController]
-    [Route("api/savingsplans")]
+    [Route("api/SavingsPlan")]
     public class SavingsPlanController : ControllerBase
     {
         private readonly ISavingsPlanService _savingsPlanService;
@@ -23,7 +23,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "RegionalManager, Customer")]
+        //[Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
