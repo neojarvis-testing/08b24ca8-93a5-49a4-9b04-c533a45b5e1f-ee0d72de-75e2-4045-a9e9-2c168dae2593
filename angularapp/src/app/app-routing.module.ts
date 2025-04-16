@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:'Customer', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'Manager/SavingPlans', component:ManagerviewsavingsplanComponent},
   {path:'Manager/AddSavingPlan',component:ManagercreatesavingsplanComponent},
-  {path:'Manager/EditSavingPlan', component:ManagereditsavingsplanComponent},
+  {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent},
   {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent},
   {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
   {path:'User/PlanApplication', component:UserplanapplicationformComponent},

@@ -11,16 +11,16 @@ import { SavingsplanService } from '../../services/savingsplan.service';
 export class ManagereditsavingsplanComponent implements OnInit {
   
   savingsPlan: SavingsPlan = {
-    savingPlanId: 0,
-    name: '',
-    goalAmount: null,
-    timeFrame: null,
-    riskLevel: 'Low',
-    description: '',
-    status: ''
+    SavingPlanId: 0,
+    Name: '',
+    GoalAmount: null,
+    TimeFrame: null,
+    RiskLevel: 'Low',
+    Description: '',
+    Status: ''
   };
 
-  savingPlanId: any = {};
+  savingPlanId: number = 0;
   formSubmitted = false;
   errorMessage = '';
 
@@ -32,7 +32,7 @@ export class ManagereditsavingsplanComponent implements OnInit {
 
   ngOnInit(): void {
     // Retrieve the savingsPlanId from the route parameters
-    this.savingPlanId = +this.route.snapshot.paramMap.get('savingsPlanId')!;
+    this.savingPlanId = +this.route.snapshot.paramMap.get('id');
     if (this.savingPlanId) {
       this.getSavingsPlan(this.savingPlanId);
     } else {
@@ -44,6 +44,11 @@ export class ManagereditsavingsplanComponent implements OnInit {
     this.savingsPlanService.getSavingsPlanById(savingPlanId).subscribe({
       next: (data) => {
         this.savingsPlan = data;
+
+        
+        this.savingsPlan.SavingPlanId = data.SavingPlanId || savingPlanId;
+
+        console.log(this.savingsPlan); 
       },
       error: () => {
         this.errorMessage = 'Error fetching savings plan details';
@@ -52,20 +57,26 @@ export class ManagereditsavingsplanComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log(this.savingsPlan); // Debugging
     this.formSubmitted = true;
 
     if (
-      this.savingsPlan.name &&
-      this.savingsPlan.goalAmount > 0 &&
-      this.savingsPlan.timeFrame > 0 &&
-      this.savingsPlan.riskLevel &&
-      this.savingsPlan.description &&
-      this.savingsPlan.status
+      this.savingsPlan.Name &&
+      this.savingsPlan.GoalAmount > 0 &&
+      this.savingsPlan.TimeFrame > 0 &&
+      this.savingsPlan.RiskLevel &&
+      this.savingsPlan.Description &&
+      this.savingsPlan.Status
     ) {
-      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.savingPlanId, this.savingsPlan).subscribe({
+      if (!this.savingsPlan.SavingPlanId) {
+        this.errorMessage = 'Invalid savingPlanId. Cannot update the savings plan.';
+        return;
+      }
+
+      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.SavingPlanId, this.savingsPlan).subscribe({
         next: () => {
           this.formSubmitted = true;
-          setTimeout(() => this.router.navigate(['/savingsplans']), 2000);
+          setTimeout(() => this.router.navigate(['/Manager/SavingPlans']), 2000);
         },
         error: () => {
           this.errorMessage = 'Error updating savings plan';

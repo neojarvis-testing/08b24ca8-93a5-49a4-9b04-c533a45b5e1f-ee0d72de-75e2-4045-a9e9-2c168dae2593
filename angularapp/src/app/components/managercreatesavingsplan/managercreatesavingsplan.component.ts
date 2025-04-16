@@ -63,13 +63,13 @@ import { SavingsPlan } from '../../models/savingsplan.model';
 export class ManagercreatesavingsplanComponent implements OnInit {
 
   newPlan: SavingsPlan = {
-    savingPlanId: 0,
-    name: '',
-    goalAmount: null,
-    timeFrame: null,
-    riskLevel: 'Low',
-    description: '',
-    status: ''
+    SavingPlanId: 0,
+    Name: '',
+    GoalAmount: null,
+    TimeFrame: null,
+    RiskLevel: 'Low',
+    Description: '',
+    Status: ''
   };
  as:boolean= false;
   formSubmitted = false;
@@ -81,17 +81,17 @@ export class ManagercreatesavingsplanComponent implements OnInit {
 
   onSubmit(): void {
     this.formSubmitted = true;
-    if (this.newPlan.name && this.newPlan.goalAmount >= 1000 && this.newPlan.goalAmount <= 10000000 && this.newPlan.timeFrame >= 1 && this.newPlan.timeFrame <= 50 && this.newPlan.riskLevel && this.newPlan.description && this.newPlan.status) {
+    if (this.newPlan.Name && this.newPlan.GoalAmount >= 1000 && this.newPlan.GoalAmount <= 10000000 && this.newPlan.TimeFrame >= 1 && this.newPlan.TimeFrame <= 50 && this.newPlan.RiskLevel && this.newPlan.Description && this.newPlan.Status) {
       this.savingsPlanService.addSavingsPlan(this.newPlan).subscribe(
         () => {
           this.newPlan = {
-            savingPlanId: 0,
-            name: '',
-            goalAmount: 0,
-            timeFrame: 0,
-            riskLevel: 'Low',
-            description: '',
-            status: ''
+            SavingPlanId: 0,
+            Name: '',
+            GoalAmount: 0,
+            TimeFrame: 0,
+            RiskLevel: 'Low',
+            Description: '',
+            Status: ''
           };
           this.formSubmitted = false;
         },

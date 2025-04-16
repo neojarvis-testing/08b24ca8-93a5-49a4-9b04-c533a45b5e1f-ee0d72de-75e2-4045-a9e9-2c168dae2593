@@ -50,15 +50,15 @@
       <tbody>
         <tr *ngFor="let plan of savingsPlans; let i = index">
           <td>{{i+1}}</td>
-          <td>{{ plan.name }}</td>
-          <td>{{ plan.goalAmount }}</td>
-          <td>{{ plan.timeFrame }}</td>
-          <td>{{ plan.riskLevel }}</td>
-          <td>{{ plan.description }}</td>
-          <td>{{ plan.status }}</td>
+          <td>{{ plan.Name }}</td>
+          <td>{{ plan.GoalAmount }}</td>
+          <td>{{ plan.TimeFrame }}</td>
+          <td>{{ plan.RiskLevel }}</td>
+          <td>{{ plan.Description }}</td>
+          <td>{{ plan.Status }}</td>
           <td>
-            <button class="btn btn-primary" (click)="editSavingsPlan(plan.savingsPlanId)">Edit</button>
-            <button class="btn btn-danger" (click)="deleteSavingsPlan(plan.savingsPlanId)">Delete</button>
+            <button class="btn btn-primary" (click)="editSavingsPlan(plan.SavingsPlanId)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteSavingsPlan(plan.SavingsPlanId)">Delete</button>
           </td>
         </tr>
       </tbody>
