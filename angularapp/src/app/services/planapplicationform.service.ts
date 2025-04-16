@@ -3,12 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { PlanApplication } from '../models/planapplication.model';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanapplicationformService {
-  private apiUrl = 'https://8080-aeddfacaccecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api/planapplication';
+
+  public baseUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -21,7 +24,7 @@ export class PlanapplicationformService {
   }
 
   addPlanApplication(data: PlanApplication): Observable<PlanApplication> {
-    return this.http.post<PlanApplication>(this.apiUrl, data, { headers: this.getHeaders() })
+    return this.http.post<PlanApplication>(this.baseUrl, data, { headers: this.getHeaders() })
       .pipe(
         catchError(this.handleError)
       );
@@ -29,7 +32,7 @@ export class PlanapplicationformService {
     
     deletePlanApplication(planId: number): Observable<void> {
   
-       const url = `${this.apiUrl}/${planId}`;
+       const url = `${this.baseUrl}/${planId}`;
   
        return this.http.delete<void>(url, { headers: this.getHeaders() })
 
@@ -40,7 +43,7 @@ export class PlanapplicationformService {
 
       
     getAppliedPlans(userId: number): Observable<PlanApplication[]> {
-       const url = `${this.apiUrl}/user/${userId}`;
+       const url = `${this.baseUrl}/user/${userId}`;
        return this.http.get<PlanApplication[]>(url, { headers: this.getHeaders() })
           .pipe( 
             catchError(this.handleError)
@@ -49,26 +52,20 @@ export class PlanapplicationformService {
 
      
       getAllPlanApplications(): Observable<PlanApplication[]> {
-       return this.http.get<PlanApplication[]>(this.apiUrl, { headers: this.getHeaders() })
+       return this.http.get<PlanApplication[]>(this.baseUrl, { headers: this.getHeaders() })
        .pipe(
          catchError(this.handleError)
          );
      }
-
      
 updatePlanApplication(planId: number, updatedData: PlanApplication): Observable<PlanApplication> {
-      const url = `${this.apiUrl}/${planId}`;
+      const url = `${this.baseUrl}/${planId}`;
       return this.http.put<PlanApplication>(url, updatedData, { headers: this.getHeaders() })
        .pipe(
         catchError(this.handleError)
         );
        }
   
-
-  
-  
-  
-
   private handleError(error: any): Observable<never> {
     console.error('An error occurred:', error);
     return throwError('Something went wrong; please try again later.');
