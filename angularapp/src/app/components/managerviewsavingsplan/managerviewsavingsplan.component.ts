@@ -43,8 +43,8 @@ export class ManagerviewsavingsplanComponent implements OnInit {
     );
   }
 
-  editSavingsPlan(savingsPlanId: number): void {
-    this.router.navigate(['/editsavingsplan', savingsPlanId]);
+  editSavingsPlan(id: number): void {
+    this.router.navigate([`/Manager/EditSavingPlan/${id}`])
   }
 }
 

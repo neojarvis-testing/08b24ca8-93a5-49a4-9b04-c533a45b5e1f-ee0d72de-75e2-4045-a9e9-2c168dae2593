@@ -92,7 +92,7 @@ export class UserviewsavingsplanComponent implements OnInit {
   
   filterPlans(): void {
     this.filteredPlans = this.plans.filter(plan => 
-      plan.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      plan.Name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
   applyForPlan(plan: any): void {
