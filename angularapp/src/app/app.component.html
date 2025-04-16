@@ -1,9 +1,6 @@
-<!-- <app-navbar></app-navbar>
-<app-managernav></app-managernav>
-<app-usernav></app-usernav> -->
 
-<app-managerviewapplicationform></app-managerviewapplicationform>
-<!-- <app-userappliedplans></app-userappliedplans>
-<app-userplanapplicationform></app-userplanapplicationform> -->
+<app-navbar *ngIf="currentRole === 'navbar'"></app-navbar>
+<app-managernav *ngIf="currentRole === 'RegionalManager'"></app-managernav>
+<app-usernav *ngIf="currentRole === 'Customer'"></app-usernav>
 
 <router-outlet></router-outlet>
