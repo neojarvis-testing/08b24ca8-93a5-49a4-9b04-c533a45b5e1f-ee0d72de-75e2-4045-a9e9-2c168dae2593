@@ -41,7 +41,7 @@ export class ManagerviewapplicationformComponent implements OnInit {
   filterApplicationsByPlanName() {
     if (this.searchPlanName.trim()) {
       this.filteredPlanApplications = this.planApplications.filter(app => 
-        app.SavingsPlan?.name?.toLowerCase().includes(this.searchPlanName.toLowerCase())
+        app.SavingsPlan?.Name?.toLowerCase().includes(this.searchPlanName.toLowerCase())
       );
     } else {
       this.filteredPlanApplications = [...this.planApplications];
