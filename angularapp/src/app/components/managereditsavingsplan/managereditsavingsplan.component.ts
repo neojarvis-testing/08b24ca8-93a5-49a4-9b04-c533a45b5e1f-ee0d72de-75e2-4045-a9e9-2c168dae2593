@@ -34,14 +34,14 @@ export class ManagereditsavingsplanComponent implements OnInit {
     // Retrieve the savingsPlanId from the route parameters
     this.savingPlanId = +this.route.snapshot.paramMap.get('savingsPlanId')!;
     if (this.savingPlanId) {
-      this.getSavingsPlan();
+      this.getSavingsPlan(this.savingPlanId);
     } else {
       this.errorMessage = 'Invalid savings plan ID';
     }
   }
 
   getSavingsPlan(savingPlanId: number): void {
-    this.savingsPlanService.getSavingsPlanById(savingPlanId.toString()).subscribe({
+    this.savingsPlanService.getSavingsPlanById(savingPlanId).subscribe({
       next: (data) => {
         this.savingsPlan = data;
       },
@@ -62,7 +62,7 @@ export class ManagereditsavingsplanComponent implements OnInit {
       this.savingsPlan.description &&
       this.savingsPlan.status
     ) {
-      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.savingPlanId.toString(), this.savingsPlan).subscribe({
+      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.savingPlanId, this.savingsPlan).subscribe({
         next: () => {
           this.formSubmitted = true;
           setTimeout(() => this.router.navigate(['/savingsplans']), 2000);

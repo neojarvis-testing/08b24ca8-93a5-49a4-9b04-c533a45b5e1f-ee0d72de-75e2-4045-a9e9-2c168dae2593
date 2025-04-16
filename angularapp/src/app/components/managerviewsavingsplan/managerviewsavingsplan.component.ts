@@ -33,7 +33,7 @@ export class ManagerviewsavingsplanComponent implements OnInit {
   }
 
   deleteSavingsPlan(savingsPlanId: number): void {
-    this.savingsPlanService.deleteSavingsPlan(savingsPlanId.toString()).subscribe(
+    this.savingsPlanService.deleteSavingsPlan(savingsPlanId).subscribe(
       () => {
         this.loadSavingsPlans(); // Reload the list after deletion
       },
