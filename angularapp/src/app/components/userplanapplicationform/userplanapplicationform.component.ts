@@ -13,7 +13,7 @@ export class UserplanapplicationformComponent implements OnInit {
 
   newPlanApplication: PlanApplication = {
     AppliedAmount: 0,
-    Status: '',
+    status: '',
     ApplicationDate: '',
     Remarks: '',
     ProofDocument: '',
