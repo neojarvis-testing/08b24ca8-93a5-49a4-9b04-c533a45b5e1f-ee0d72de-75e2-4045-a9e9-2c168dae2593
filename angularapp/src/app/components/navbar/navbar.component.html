@@ -23,13 +23,19 @@
  </nav> -->
 
  <nav class="navbar">
-  <h2>Finance Hub</h2>
+  <!-- Logo or Title -->
+  <div class="navbar-title">
+    <h2>Finance Hub</h2>
+  </div>
+
+  <!-- Navigation Links -->
   <div class="nav-links">
-    <a routerLink="/register">Register</a>
-    <a routerLink="/login">Login</a>
+    <a routerLink="/Register" class="nav-link">Register</a>
+    <a routerLink="/Login" class="nav-link">Login</a>
+
+    <!-- Dark Mode Toggle -->
     <label class="switch">
       <input type="checkbox" (change)="toggleDarkMode()">
-     
       <span class="slider round"></span>
     </label>
   </div>
