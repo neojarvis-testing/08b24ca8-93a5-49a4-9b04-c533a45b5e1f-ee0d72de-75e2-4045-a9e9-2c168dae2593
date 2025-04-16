@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
     this.authService.register(newUser).subscribe({
       next: () => {
         alert('Registration successful!');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/Login']);
       },
       error: (error: any) => {
         // Directly display the backend error message
