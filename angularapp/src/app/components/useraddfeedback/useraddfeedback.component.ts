@@ -21,7 +21,7 @@ export class UseraddfeedbackComponent implements OnInit {
   constructor(private router:Router, private feedbackservice:FeedbackService,private authService:AuthService) { }
 
   ngOnInit(): void {
-    this.feedback.UserId = this.authService.getUserId();
+    this.feedback.UserId = Number(this.authService.getUserId());
   }
 
   onSubmit(feedbackForm: any): void {
