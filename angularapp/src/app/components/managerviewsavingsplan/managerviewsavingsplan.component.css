@@ -1,4 +1,4 @@
-/* Container Styling */
+Container Styling
 .container {
   max-width: 100%;
   margin: 0 auto;
@@ -66,13 +66,13 @@ h2 {
 }
 
 .btn-primary {
-  background-color: #0056b3;
-  color: #ffffff;
+  background-color: #ffc107;
+  color: #000; 
 }
 
 .btn-primary:hover {
-  background-color: #004080;
-  transform: scale(1.03);
+  background-color: #e0a800; 
+  transform: scale(1.03); 
 }
 
 .btn-danger {
