@@ -1,40 +1,63 @@
-<div class="controls">
-    <button class="btn sort-button" (click)="sortAmountAscending()">Sort Amount Ascending</button>
-    <button class="btn sort-button" (click)="sortAmountDescending()">Sort Amount Descending</button>
+<h1 class="page-heading">My Applied Plans</h1>
+
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>
+        Plan Name
+        <button class="sort-button" (click)="sortPlanName()">
+          <span *ngIf="sortPlanNameOrder === 'asc'">&#9650;</span>
+          <span *ngIf="sortPlanNameOrder === 'desc'">&#9660;</span>
+          <span *ngIf="!sortPlanNameOrder">&#x21C5;</span>
+        </button>
+      </th>
+      <th>
+        Applied Amount
+        <button class="sort-button" (click)="sortAppliedAmount()">
+          <span *ngIf="sortAppliedAmountOrder === 'asc'">&#9650;</span>
+          <span *ngIf="sortAppliedAmountOrder === 'desc'">&#9660;</span>
+          <span *ngIf="!sortAppliedAmountOrder">&#x21C5;</span>
+        </button>
+      </th>
+      <th>
+        Application Date
+        <button class="sort-button" (click)="sortApplicationDate()">
+          <span *ngIf="sortApplicationDateOrder === 'asc'">&#9650;</span>
+          <span *ngIf="sortApplicationDateOrder === 'desc'">&#9660;</span>
+          <span *ngIf="!sortApplicationDateOrder">&#x21C5;</span>
+        </button>
+      </th>
+      <th>
+        Status
+        <button class="sort-button" (click)="sortStatus()">
+          <span *ngIf="sortStatusOrder === 'asc'">&#9650;</span>
+          <span *ngIf="sortStatusOrder === 'desc'">&#9660;</span>
+          <span *ngIf="!sortStatusOrder">&#x21C5;</span>
+        </button>
+      </th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of planApplications; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ savingsplans[item.SavingsPlanId]?.Name }}</td>
+      <td>{{ item.AppliedAmount }}</td>
+      <td>{{ item.ApplicationDate }}</td>
+      <td>{{ item.Status }}</td>
+      <td>
+        <button class="btn view-button" (click)="viewImage(item.ProofDocument)">View</button>
+        <button class="btn delete-button" (click)="deletePlanApplication(item.PlanApplicationId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Modal for Viewing Image -->
+<div class="modal" *ngIf="selectedImage">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img [src]="selectedImage" alt="Proof Document" class="modal-image" />
   </div>
-  
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>S.No</th>
-        <th>Plan Name</th>
-        <th>Applied Amount</th>
-        <th>Application Date</th>
-        <th>Remarks</th>
-        <th>Status</th>
-        <th>Proof Document</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of planApplications; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ savingsplans[item.SavingsPlanId]?.Name}}</td>
-        <td>{{ item.AppliedAmount }}</td>
-        <td>{{ item.ApplicationDate }}</td>
-        <td>{{ item.Remarks }}</td>
-        <td>{{ item.Status }}</td>
-        <td>
-          <button class="btn view-button" (click)="viewImage(item.ProofDocument)">View Image</button>
-          <button class="btn delete-button" (click)="deletePlanApplication(item.PlanApplicationId)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <!-- Modal for Viewing Image -->
-  <div class="modal" *ngIf="selectedImage">
-    <div class="modal-content">
-      <span class="close" (click)="closeModal()">&times;</span>
-      <img [src]="selectedImage" alt="Proof Document" class="modal-image" />
-    </div>
-  </div>
+</div>
