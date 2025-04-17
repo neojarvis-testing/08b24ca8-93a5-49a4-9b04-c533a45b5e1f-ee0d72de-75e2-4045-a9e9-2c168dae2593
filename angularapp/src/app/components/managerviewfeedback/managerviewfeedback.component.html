@@ -1,6 +1,6 @@
 <h1>Feedback Details</h1>
 <hr>
-<table *ngIf="feedbacks.length>0;else noData">
+<table *ngIf="feedbacks.length > 0; else noData">
     <thead>
         <tr>
             <th>S.No</th>
@@ -11,18 +11,29 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let feedback of feedbacks, index as i">
-            <td>{{i+1}}</td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let feedback of feedbacks; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ feedback.UserName }}</td>
+            <td>{{ feedback.Comments }}</td>
+            <td>{{ feedback.DateProvided | date: 'mediumDate' }}</td>
             <td>
-                <button>Show Profile</button>
+                <button class="btn btn-primary" (click)="showDetails(feedback)">Show Details</button>
             </td>
         </tr>
     </tbody>
-    
 </table>
+
 <ng-template #noData>
-    <p>Oops! No records Found</p>
+    <p class="no-data">Oops! No records Found</p>
 </ng-template>
+
+<!-- Details Popup -->
+<div *ngIf="showDetailsPopup" class="modal">
+  <div class="modal-content">
+    <h3>View Details</h3>
+    <p><strong>Email:</strong> {{ selectedUserDetails.email }}</p>
+    <p><strong>Username:</strong> {{ selectedUserDetails.username }}</p>
+    <p><strong>Mobile Number:</strong> {{ selectedUserDetails.mobile }}</p>
+    <button class="btn btn-secondary" (click)="closeDetailsPopup()">Close</button>
+  </div>
+</div>

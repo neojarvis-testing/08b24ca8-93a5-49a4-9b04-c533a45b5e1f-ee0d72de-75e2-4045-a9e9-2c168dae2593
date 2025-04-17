@@ -9,10 +9,11 @@
           Feedback is required.
         </div>
       </div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="isSubmitting">Submit</button>
     </form>
   </div>
 </div>
+
 <div *ngIf="showPopup" class="popup">
   <div class="popup-content">
     <p>Successfully Added!</p>
