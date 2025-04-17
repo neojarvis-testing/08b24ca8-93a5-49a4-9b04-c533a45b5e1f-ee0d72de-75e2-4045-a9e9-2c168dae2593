@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PlanApplication } from 'src/app/models/planapplication.model';
@@ -15,9 +14,16 @@ import Swal from 'sweetalert2';
 })
 export class UserappliedplansComponent implements OnInit {
   planApplications: PlanApplication[] = [];
-  savingsplans: SavingsPlan[]= [];
+  savingsplans: SavingsPlan[] = [];
+  originalPlanApplications: PlanApplication[] = []; // Keep a copy of the original order
   selectedImage: string | null = null;
   userID: number = 0;
+
+  // Sort orders for different columns
+  sortPlanNameOrder: 'asc' | 'desc' | null = null;
+  sortAppliedAmountOrder: 'asc' | 'desc' | null = null;
+  sortApplicationDateOrder: 'asc' | 'desc' | null = null;
+  sortStatusOrder: 'asc' | 'desc' | null = null;
 
   constructor(
     private planApplicationService: PlanapplicationformService,
@@ -34,19 +40,84 @@ export class UserappliedplansComponent implements OnInit {
   loadAppliedPlans(): void {
     this.planApplicationService.getAppliedPlans(this.userID).subscribe(data => {
       this.planApplications = data;
+      this.originalPlanApplications = [...data]; // Keep a copy of the original order
     });
 
     this.savingsPlanService.getAllSavingsPlans().subscribe(data => {
-        this.savingsplans = data;
+      this.savingsplans = data;
     });
   }
 
-  sortAmountAscending(): void {
-    this.planApplications.sort((a, b) => a.AppliedAmount - b.AppliedAmount);
+  // Sorting for Plan Name column
+  sortPlanName(): void {
+    if (this.sortPlanNameOrder === 'asc') {
+      this.planApplications.sort((a, b) =>
+        this.savingsplans[b.SavingsPlanId]?.Name.localeCompare(this.savingsplans[a.SavingsPlanId]?.Name)
+      );
+      this.sortPlanNameOrder = 'desc';
+    } else if (this.sortPlanNameOrder === 'desc') {
+      this.resetSorting();
+    } else {
+      this.planApplications.sort((a, b) =>
+        this.savingsplans[a.SavingsPlanId]?.Name.localeCompare(this.savingsplans[b.SavingsPlanId]?.Name)
+      );
+      this.sortPlanNameOrder = 'asc';
+    }
   }
 
-  sortAmountDescending(): void {
-    this.planApplications.sort((a, b) => b.AppliedAmount - a.AppliedAmount);
+  // Sorting for Applied Amount column
+  sortAppliedAmount(): void {
+    if (this.sortAppliedAmountOrder === 'asc') {
+      this.planApplications.sort((a, b) => b.AppliedAmount - a.AppliedAmount);
+      this.sortAppliedAmountOrder = 'desc';
+    } else if (this.sortAppliedAmountOrder === 'desc') {
+      this.resetSorting();
+    } else {
+      this.planApplications.sort((a, b) => a.AppliedAmount - b.AppliedAmount);
+      this.sortAppliedAmountOrder = 'asc';
+    }
+  }
+
+  // Sorting for Application Date column
+  sortApplicationDate(): void {
+    if (this.sortApplicationDateOrder === 'asc') {
+      this.planApplications.sort((a, b) =>
+        new Date(b.ApplicationDate).getTime() - new Date(a.ApplicationDate).getTime()
+      );
+      this.sortApplicationDateOrder = 'desc';
+    } else if (this.sortApplicationDateOrder === 'desc') {
+      this.resetSorting();
+    } else {
+      this.planApplications.sort((a, b) =>
+        new Date(a.ApplicationDate).getTime() - new Date(b.ApplicationDate).getTime()
+      );
+      this.sortApplicationDateOrder = 'asc';
+    }
+  }
+
+  // Sorting for Status column
+  sortStatus(): void {
+    if (this.sortStatusOrder === 'asc') {
+      this.planApplications.sort((a, b) =>
+        b.Status.localeCompare(a.Status)
+      );
+      this.sortStatusOrder = 'desc';
+    } else if (this.sortStatusOrder === 'desc') {
+      this.resetSorting();
+    } else {
+      this.planApplications.sort((a, b) =>
+        a.Status.localeCompare(b.Status)
+      );
+      this.sortStatusOrder = 'asc';
+    }
+  }
+
+  resetSorting(): void {
+    this.planApplications = [...this.originalPlanApplications];
+    this.sortPlanNameOrder = null;
+    this.sortAppliedAmountOrder = null;
+    this.sortApplicationDateOrder = null;
+    this.sortStatusOrder = null;
   }
 
   deletePlanApplication(planApplicationId: number): void {
@@ -62,6 +133,9 @@ export class UserappliedplansComponent implements OnInit {
         this.planApplicationService.deletePlanApplication(planApplicationId).subscribe(() => {
           Swal.fire('Deleted!', 'Plan application has been deleted.', 'success');
           this.planApplications = this.planApplications.filter(
+            app => app.PlanApplicationId !== planApplicationId
+          );
+          this.originalPlanApplications = this.originalPlanApplications.filter(
             app => app.PlanApplicationId !== planApplicationId
           );
         });

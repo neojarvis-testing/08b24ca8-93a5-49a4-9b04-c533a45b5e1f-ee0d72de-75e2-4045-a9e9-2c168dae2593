@@ -78,7 +78,7 @@ export class UserplanapplicationformComponent implements OnInit {
   validateAmount(): void {
     if (this.planApplicationForm.AppliedAmount > this.maxGoalAmount) {
       this.amountError = 'Applied Amount must be less than or equal to the goal amount.';
-      Swal.fire('Error', this.amountError, 'error');
+      this.showErrorPopup(this.amountError);
     } else {
       this.amountError = '';
     }
@@ -95,6 +95,7 @@ export class UserplanapplicationformComponent implements OnInit {
         this.fileError = 'Only .jpg, .jpeg, and .png files are allowed.';
         this.selectedFile = null;
         (event.target as HTMLInputElement).value = '';
+        this.showErrorPopup(this.fileError);
       }
     } else {
       this.fileError = 'Proof Document is required.';
@@ -108,6 +109,7 @@ export class UserplanapplicationformComponent implements OnInit {
     };
     reader.onerror = () => {
       this.fileError = 'Error converting file to Base64.';
+      this.showErrorPopup(this.fileError);
     };
     reader.readAsDataURL(file);
   }
@@ -117,26 +119,38 @@ export class UserplanapplicationformComponent implements OnInit {
     if (form.invalid || this.amountError || this.fileError || !this.planApplicationForm.ProofDocument) {
       if (!this.planApplicationForm.ProofDocument) {
         this.fileError = 'Proof Document is required.';
+        this.showErrorPopup(this.fileError);
       }
-      Swal.fire('Error!', this.fileError || 'Form validation failed.', 'error');
       return;
     }
     this.submitApplication();
   }
 
   submitApplication(): void {
-    console.log(this.planApplicationForm)
-    //this.planApplicationForm.ApplicationDate = new Date().toISOString(); // Set current date
     this.planApplicationformService.addPlanApplication(this.planApplicationForm).subscribe(
       () => {
-        Swal.fire('Success!', 'Your application has been submitted.', 'success').then(() => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Application Submitted',
+          text: 'Your application has been successfully submitted.',
+          confirmButtonColor: '#007bff'
+        }).then(() => {
           this.router.navigate(['/User/AppliedPlans']);
         });
       },
       (error) => {
-        Swal.fire('Error!', 'An error occurred while submitting the application.', 'error');
+        this.showErrorPopup('An error occurred while submitting the application.');
         console.error(error);
       }
     );
+  }
+
+  showErrorPopup(message: string): void {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error!',
+      text: message,
+      confirmButtonColor: '#e74c3c'
+    });
   }
 }
