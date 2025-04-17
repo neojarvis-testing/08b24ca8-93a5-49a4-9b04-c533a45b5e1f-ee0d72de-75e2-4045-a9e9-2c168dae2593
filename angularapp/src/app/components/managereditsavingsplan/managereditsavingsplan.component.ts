@@ -15,7 +15,7 @@ export class ManagereditsavingsplanComponent implements OnInit {
     Name: '',
     GoalAmount: null,
     TimeFrame: null,
-    RiskLevel: 'Low',
+    RiskLevel: null,
     Description: '',
     Status: ''
   };
