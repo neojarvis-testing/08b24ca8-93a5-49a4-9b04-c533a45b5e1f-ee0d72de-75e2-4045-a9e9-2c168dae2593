@@ -10,7 +10,7 @@ import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/u
 import { ManagereditsavingsplanComponent } from './components/managereditsavingsplan/managereditsavingsplan.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
-import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
+
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -19,6 +19,7 @@ import { ManagercreatesavingsplanComponent } from './components/managercreatesav
 import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
 import { Feedback } from './models/feedback.model';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
 
 const routes: Routes = [
   {path:'Home',component:HomeComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path:'Manager/AddSavingPlan',component:ManagercreatesavingsplanComponent},
   {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent},
   {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent},
+  {path:'Manager/ViewSavings', component:ManagerviewsavingsplanComponent},
   {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
   {path:'User/PlanApplication/:id', component:UserplanapplicationformComponent},
   {path:'User/AppliedPlans', component:UserappliedplansComponent},
