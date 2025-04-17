@@ -70,7 +70,12 @@ textarea:focus {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.btn-success:hover {
+.btn-success:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.btn-success:hover:enabled {
   background-color: rgb(30, 72, 157);
   transform: scale(1.05);
 }
@@ -90,13 +95,26 @@ textarea:focus {
   animation: popupFadeIn 0.4s ease-out, popupScaleIn 0.4s ease-out;
 }
 
-/* Popup Fade-In and Scale-In Animation */
+.popup.fade-out {
+  animation: popupFadeOut 0.4s ease-in forwards;
+}
+
+/* Popup Fade-In, Fade-Out, and Scale-In Animation */
 @keyframes popupFadeIn {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes popupFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 

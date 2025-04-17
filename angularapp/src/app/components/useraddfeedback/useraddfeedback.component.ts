@@ -14,37 +14,68 @@ export class UseraddfeedbackComponent implements OnInit {
     UserId: 0,
     Comments: '',
     DateProvided: new Date()
-  }
+  };
   CurrentUser: any;
-  showPopup:boolean=false;
+  showPopup: boolean = false;
+  isSubmitting: boolean = false; // Prevent multiple submissions
 
-  constructor(private router:Router, private feedbackservice:FeedbackService,private authService:AuthService) { }
+  constructor(
+    private router: Router,
+    private feedbackService: FeedbackService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
+    // Initialize UserId from AuthService
     this.feedback.UserId = Number(this.authService.getUserId());
   }
 
+  /**
+   * Handles form submission to send feedback.
+   */
   onSubmit(feedbackForm: any): void {
     if (!this.feedback.Comments) {
-      feedbackForm.form.markAllAsTouched(); // Mark all fields as touched to show validation messages
+      feedbackForm.form.markAllAsTouched(); // Display validation messages
       return;
     }
-    console.log(this.feedback);
-    this.feedbackservice.sendFeedback(this.feedback).subscribe(() => {
-      console.log(this.feedback);
-      this.showPopup = true;
+
+    if (this.isSubmitting) {
+      return; // Prevent multiple submissions
+    }
+
+    this.isSubmitting = true; // Lock submission
+    console.log('Submitting feedback:', this.feedback);
+
+    this.feedbackService.sendFeedback(this.feedback).subscribe({
+      next: () => {
+        console.log('Feedback submitted successfully:', this.feedback);
+        this.showPopup = true; // Show confirmation popup
+        this.isSubmitting = false; // Unlock submission
+      },
+      error: (error) => {
+        console.error('Error submitting feedback:', error);
+        this.isSubmitting = false; // Unlock submission
+      }
     });
   }
+
+  /**
+   * Closes the popup and resets the form.
+   */
   closePopup(): void {
-    this.showPopup = false;
-    this.feedback = {
-      UserId: Number(this.authService.getUserId()),
-      Comments: '',
-      DateProvided: new Date()
-    };
-  
-    this.router.navigate(['/User/AddFeedback']); 
+    const modalElement = document.querySelector('.popup');
+    if (modalElement) {
+      modalElement.classList.add('fade-out'); // Add fade-out animation
+      setTimeout(() => {
+        this.showPopup = false; // Hide popup after animation
+        // Reset feedback form
+        this.feedback = {
+          UserId: Number(this.authService.getUserId()),
+          Comments: '',
+          DateProvided: new Date()
+        };
+        this.router.navigate(['/User/AddFeedback']); // Navigate to AddFeedback
+      }, 400); // Match fade-out animation duration
+    }
   }
-
-
 }

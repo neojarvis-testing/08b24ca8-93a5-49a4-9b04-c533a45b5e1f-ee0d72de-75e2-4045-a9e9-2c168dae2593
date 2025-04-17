@@ -9,18 +9,32 @@ import { FeedbackService } from 'src/app/services/feedback.service';
   styleUrls: ['./managerviewfeedback.component.css']
 })
 export class ManagerviewfeedbackComponent implements OnInit {
-  feedbacks:Feedback[]=[];
+  feedbacks: Feedback[] = [];
+  showDetailsPopup: boolean = false; // Controls the visibility of the popup
+  selectedUserDetails: any = {}; // Holds the details of the selected user
 
-  constructor(private router:Router, private service:FeedbackService) { }
+  constructor(private router: Router, private service: FeedbackService) {}
 
   ngOnInit(): void {
     this.loadFeedbacks();
   }
-  loadFeedbacks(){
-    this.service.getFeedbacks().subscribe(data=>{
-      this.feedbacks=data;
-    });
 
+  
+  loadFeedbacks(): void {
+    this.service.getFeedbacks().subscribe((data: Feedback[]) => {
+      this.feedbacks = data;
+    });
   }
 
+  
+  showDetails(): void {
+    this.showDetailsPopup=true;
+    
+  }
+
+  
+  closeDetailsPopup(): void {
+    this.showDetailsPopup = false; // Hide the popup
+    this.selectedUserDetails = {}; // Clear the details
+  }
 }
