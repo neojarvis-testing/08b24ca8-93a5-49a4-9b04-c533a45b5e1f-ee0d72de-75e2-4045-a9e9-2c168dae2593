@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using dotnetapp.Models;
 using dotnetapp.Services;
-using Microsoft.EntityFrameworkCore;
 
 namespace dotnetapp.Controllers
 {
@@ -15,15 +12,12 @@ namespace dotnetapp.Controllers
     public class FeedbackController : ControllerBase
     {
         private readonly IFeedbackService _feedbackService;
-        
 
         public FeedbackController(IFeedbackService feedbackService)
         {
             _feedbackService = feedbackService;
-            
         }
 
-        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Feedback>>> GetAllFeedbacks()
         {
@@ -34,12 +28,10 @@ namespace dotnetapp.Controllers
             }
             catch (Exception ex)
             {
-                
                 return StatusCode(500, "An error occurred while retrieving feedbacks.");
             }
         }
 
-        
         [HttpGet("user/{userId}")]
         public async Task<ActionResult<IEnumerable<Feedback>>> GetFeedbacksByUserId(int userId)
         {
@@ -50,34 +42,30 @@ namespace dotnetapp.Controllers
             }
             catch (Exception ex)
             {
-                
                 return StatusCode(500, "An error occurred while retrieving feedbacks.");
             }
         }
 
-        
         [HttpPost]
         public async Task<ActionResult> AddFeedback([FromBody] Feedback feedback)
         {
             try
             {
                 if (feedback == null)
-                    return BadRequest("Feedback data is required.");
+                    return BadRequest(new { message = "Feedback data is required." });
 
                 bool success = await _feedbackService.AddFeedback(feedback);
                 if (success)
-                    return Ok("Feedback added successfully.");
+                    return Ok(new { message = "Feedback added successfully." });
 
-                return StatusCode(500, "Failed to add feedback.");
+                return StatusCode(500, new { message = "Failed to add feedback." });
             }
             catch (Exception ex)
             {
-                
-                return StatusCode(500, "An error occurred while adding feedback.");
+                return StatusCode(500, new { message = "An error occurred while adding feedback." });
             }
         }
 
-        
         [HttpDelete("{feedbackId}")]
         public async Task<ActionResult> DeleteFeedback(int feedbackId)
         {
@@ -85,14 +73,13 @@ namespace dotnetapp.Controllers
             {
                 bool success = await _feedbackService.DeleteFeedback(feedbackId);
                 if (success)
-                    return Ok("Feedback deleted successfully.");
+                    return Ok(new { message = "Feedback deleted successfully." });
 
-                return NotFound("Cannot find any feedback.");
+                return NotFound(new { message = "Cannot find any feedback." });
             }
             catch (Exception ex)
             {
-                
-                return StatusCode(500, "An error occurred while deleting feedback.");
+                return StatusCode(500, new { message = "An error occurred while deleting feedback." });
             }
         }
     }
