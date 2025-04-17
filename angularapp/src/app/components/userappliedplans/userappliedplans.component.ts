@@ -17,6 +17,7 @@ export class UserappliedplansComponent implements OnInit {
   savingsplans: SavingsPlan[]= [];
   originalPlanApplications: PlanApplication[] = []; // Keep a copy of the original order
   selectedImage: string | null = null;
+  currentUser: any = null;
   userID: number = 0;
 
   // Sort orders for different columns
@@ -33,7 +34,8 @@ export class UserappliedplansComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userID = this.authService.getUserId();
+    this.currentUser = this.authService.getUser();
+    this.userID = this.currentUser.userId;
     this.loadAppliedPlans();
   }
 

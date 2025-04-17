@@ -13,11 +13,11 @@ import { Login } from 'src/app/models/login.model';
 export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
+  currentUser: any = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // Clear any existing session or token on the login page load
     this.authService.logout();
   }
 
@@ -37,10 +37,10 @@ export class LoginComponent implements OnInit {
     if (loginUser.Email && loginUser.Password) {
       this.authService.login(loginUser).subscribe({
         next: () => {
-          console.log(this.authService.getUser());
-          if (this.authService.isRegionalManager()) {
+          this.currentUser = this.authService.getUser();
+          if (this.currentUser.role == "RegionalManager") {
             this.router.navigate(['/RegionalManager']);
-          } else if (this.authService.isCustomer()) {
+          } else if (this.currentUser.role == "Customer") {
             this.router.navigate(['/Customer']);
           }
         },

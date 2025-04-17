@@ -16,10 +16,10 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     // Check if the user is logged in
     if (this.authService.isLoggedIn()) {
-      const currentUser = this.authService.currentUserValue;
+      const currentUser = this.authService.getUser();
       if (!currentUser) {
         // If currentUser is null, redirect to login
-        this.router.navigate(['/Login']); // Removed queryParams
+        this.router.navigate(['/Login']);
         return false;
       }
 
@@ -36,7 +36,7 @@ export class AuthGuard implements CanActivate {
     else
     {
     // Not logged in, redirect to login page
-    this.router.navigate(['/Login']); // Removed queryParams
+    this.router.navigate(['/Login']);
     return false;
     }
   }

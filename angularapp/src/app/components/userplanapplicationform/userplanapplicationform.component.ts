@@ -40,6 +40,7 @@ export class UserplanapplicationformComponent implements OnInit {
   maxGoalAmount: number;
   amountError: string = '';
   fileError: string = '';
+  currentUser: any = null;
 
   constructor(
     private savingsPlanService: SavingsplanService,
@@ -51,12 +52,13 @@ export class UserplanapplicationformComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.loadData();
   }
 
   loadData(): void {
     this.id = +this.activateRoute.snapshot.params['id'];
-    this.planApplicationForm.UserId = this.authService.getUserId();
+    this.planApplicationForm.UserId = this.currentUser.userId;
     this.planApplicationForm.SavingsPlanId = this.id;
 
     this.savingsPlanService.getSavingsPlanById(this.id).subscribe(res => {

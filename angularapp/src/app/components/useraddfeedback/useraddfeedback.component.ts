@@ -27,7 +27,8 @@ export class UseraddfeedbackComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize UserId from AuthService
-    this.feedback.UserId = Number(this.authService.getUserId());
+    this.CurrentUser = this.authService.getUser();
+    this.feedback.UserId = Number(this.CurrentUser.userId);
   }
 
   /**
@@ -70,7 +71,7 @@ export class UseraddfeedbackComponent implements OnInit {
         this.showPopup = false; // Hide popup after animation
         // Reset feedback form
         this.feedback = {
-          UserId: Number(this.authService.getUserId()),
+          UserId: Number(this.CurrentUser.userId),
           Comments: '',
           DateProvided: new Date()
         };
