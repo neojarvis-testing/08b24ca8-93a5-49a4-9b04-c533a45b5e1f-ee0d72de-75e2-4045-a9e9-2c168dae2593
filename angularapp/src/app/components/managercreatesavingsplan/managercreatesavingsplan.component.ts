@@ -184,7 +184,7 @@ export class ManagercreatesavingsplanComponent implements OnInit {
   closeModal() {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('successModal'));
     myModal.hide();
-    this.router.navigate([`/Manager/ViewSavings`]);
+    this.router.navigate([`/Manager/SavingPlans`]);
   }
 
   // Method to trigger the animation for the "Edit" button

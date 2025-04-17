@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class UserappliedplansComponent implements OnInit {
   planApplications: PlanApplication[] = [];
-  savingsplans: SavingsPlan[] = [];
+  savingsplans: SavingsPlan[]= [];
   originalPlanApplications: PlanApplication[] = []; // Keep a copy of the original order
   selectedImage: string | null = null;
   userID: number = 0;
@@ -40,7 +40,7 @@ export class UserappliedplansComponent implements OnInit {
   loadAppliedPlans(): void {
     this.planApplicationService.getAppliedPlans(this.userID).subscribe(data => {
       this.planApplications = data;
-      this.originalPlanApplications = [...data]; // Keep a copy of the original order
+      this.originalPlanApplications = [...data];
     });
 
     this.savingsPlanService.getAllSavingsPlans().subscribe(data => {
