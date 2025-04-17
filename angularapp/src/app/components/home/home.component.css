@@ -1,189 +1,206 @@
 /* General Styles */
 body {
-    font-family: 'Futura-PT', sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    color: #333;
+  font-family: 'Futura-PT', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+header {
+  background: linear-gradient(to right, #0a74da, #5ca9f7);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+header .cta-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+header .cta-button:hover {
+  background-color: #ff8b7d;
+}
+
+/* Chit Plans Section */
+.chit-plans-wrapper {
+  width: 100%;
+  overflow-x: hidden; /* Hide overflow outside container */
+}
+
+.chit-plans {
+  display: flex;
+  gap: 20px; /* Space between cards */
+  animation: scroll 20s linear infinite; /* Smooth scrolling effect */
+}
+
+.plan-card {
+  flex: 0 0 auto; /* Prevent shrinking or stretching */
+  width: 300px;
+  height: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(16, 16, 16, 0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan-card:hover {
+  transform: scale(1.05); /* Slight scale for hover */
+  box-shadow: 0px 8px 12px rgba(16, 16, 16, 0.3);
+}
+
+.plan-card h2 {
+  color: #1266ba;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.plan-card p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.plan-card button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #1266ba;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.plan-card button:hover {
+  background-color: #4593e8;
+}
+
+/* Keyframes for Moving Effect */
+@keyframes scroll {
+  0% {
+    transform: translateX(100%); /* Start from right */
   }
-  
-  .container {
-    text-align: center;
-    padding: 20px;
+  100% {
+    transform: translateX(-100%); /* Move to left */
   }
-  
-  header {
-    background: linear-gradient(to right, #1266ba, #4593e8);
-    color: white;
-    padding: 40px 20px;
-    border-radius: 10px;
-  }
-  
+}
+
+/* Testimonials Section */
+.testimonials {
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+  margin: 20px 0;
+}
+
+.testimonials h2 {
+  margin-bottom: 20px;
+}
+
+.testimonial {
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Call-to-Action Section */
+.cta {
+  background: linear-gradient(to right, #ff6f61, #ff8b7d);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+.cta h2 {
+  margin-bottom: 20px;
+}
+
+.cta .cta-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ff6f61;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta .cta-button:hover {
+  background-color: #f2f2f2;
+  color: #ff8b7d;
+}
+
+/* Footer Section */
+footer {
+  background: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer .social-icons img {
+  width: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+footer .social-icons img:hover {
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   header h1 {
-    font-size: 36px;
-    margin: 0;
+    font-size: 28px;
   }
-  
+
   header p {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  header .cta-button {
-    padding: 10px 20px;
     font-size: 16px;
-    color: white;
-    background-color: #ff6f61;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
   }
-  
-  header .cta-button:hover {
-    background-color: #ff8b7d;
-  }
-  
-  /* Chit Plans Section */
-  .chit-plans {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-    overflow-x: auto;
-    animation: moveCards 30s linear infinite;
-  }
-  
-  .chit-plans.animation-paused {
-    animation-play-state: paused;
-  }
-  
+
   .plan-card {
-    width: 250px;
-    height: 300px;
-    background: linear-gradient(to bottom, white 50%, blue 50%);
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(16, 16, 16, 0.1);
-    padding: 0;
-    text-align: center;
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    width: 90%; /* Adjust card width for mobile */
   }
-  
-  .plan-card:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 8px 12px rgba(16, 16, 16, 0.3);
+
+  .chit-plans {
+    flex-direction: column; /* Stack cards vertically on smaller screens */
+    animation: none; /* Disable animation for better readability */
   }
-  
-  .plan-card.zoomed {
-    transform: scale(1.2);
-    z-index: 2;
-    border: 2px solid blue;
-  }
-  
-  .plan-card h2 {
-    background: white;
-    color: black;
-    padding: 10px;
-    margin: 0;
-  }
-  
-  .plan-card p {
-    background: blue;
-    color: white;
-    padding: 10px;
-    margin: 0;
-  }
-  
-  .plan-card button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #1266ba;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .plan-card button:hover {
-    background-color: #4593e8;
-  }
-  
-  /* Testimonials Section */
-  .testimonials {
-    background-color: #f8f9fa;
-    padding: 40px 20px;
-    margin: 20px 0;
-  }
-  
-  .testimonials h2 {
-    margin-bottom: 20px;
-  }
-  
-  .testimonial {
-    margin: 10px 0;
-    font-style: italic;
-  }
-  
-  .testimonial span {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  
-  /* Call-to-Action Section */
-  .cta {
-    background: linear-gradient(to right, #ff6f61, #ff8b7d);
-    color: white;
-    padding: 40px 20px;
-    border-radius: 10px;
-  }
-  
-  .cta h2 {
-    margin-bottom: 20px;
-  }
-  
-  .cta .cta-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: #ff6f61;
-    background-color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .cta .cta-button:hover {
-    background-color: #f2f2f2;
-  }
-  
-  /* Footer Section */
-  footer {
-    background: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  footer .social-icons img {
-    width: 24px;
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  
-  footer .social-icons img:hover {
-    opacity: 0.8;
-  }
-  
-  /* Keyframes */
-  @keyframes moveCards {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
+}

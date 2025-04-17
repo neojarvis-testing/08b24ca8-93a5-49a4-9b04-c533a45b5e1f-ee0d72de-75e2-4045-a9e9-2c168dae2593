@@ -1,47 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SavingsplanService } from 'src/app/services/savingsplan.service'; // Import the service
+import { SavingsPlan } from 'src/app/models/savingsplan.model'; // Import the model
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-  cards = [
-    {
-      title: 'chota Save',
-      description:
-        '3 Lakhs ChitPlan<br>Save ₹2,000 / month<br>Duration: 15 months',
-    },
-    {
-      title: 'bada Save',
-      description:
-        '5 Lakhs ChitPlan<br>Save ₹3,000 / month<br>Duration: 15 months',
-    },
-    {
-      title: 'zyada Save',
-      description:
-        '10 Lakhs ChitPlan<br>Save ₹5,000 / month<br>Duration: 15 months',
-    },
-    {
-      title: 'mini Save',
-      description:
-        '1 Lakh ChitPlan<br>Save ₹1,000 / month<br>Duration: 10 months',
-    },
-    {
-      title: 'mega Save',
-      description:
-        '8 Lakhs ChitPlan<br>Save ₹8,000 / month<br>Duration: 5 months',
-    },
-    {
-      title: 'super Save',
-      description:
-        '12 Lakhs ChitPlan<br>Save ₹12,000 / month<br>Duration: 4 months',
-    },
-  ];
-
+export class HomeComponent implements OnInit {
+  cards: SavingsPlan[] = []; // Array to hold saving plans fetched from the backend
   zoomStates = Array(this.cards.length).fill(false); // To track zoom states of cards
   isHovered = false; // Track if a card is hovered
   isZoomed = false; // Track if any card is zoomed
+
+  constructor(private savingsPlan:SavingsplanService) {}
+
+  ngOnInit(): void {
+    this.fetchSavingPlans(); // Fetch saving plans on component initialization
+  }
+
+  // Fetch saving plans from the service
+  fetchSavingPlans(): void {
+    this.savingsPlan.getAllSavingsPlans().subscribe(
+      (data: SavingsPlan[]) => {
+        this.cards = data; // Assign fetched data to the `cards` array
+        this.zoomStates = Array(this.cards.length).fill(false); // Reset zoomStates based on data length
+      },
+      (error) => {
+        console.error('Error fetching saving plans:', error);
+      }
+    );
+  }
 
   toggleZoom(index: number) {
     if (this.zoomStates[index]) {
