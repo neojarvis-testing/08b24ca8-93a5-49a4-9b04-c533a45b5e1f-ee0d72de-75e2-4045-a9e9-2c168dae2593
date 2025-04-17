@@ -30,113 +30,77 @@ body {
     color: white;
 } */
 
+
+
+
+
+
+
+
+
 .chit-plans {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  overflow: hidden; /* Ensure the cards don't overflow the container */
+  animation: moveCards 20s linear infinite; /* Adjust animation duration for smoother movement */
 }
 
 .plan-card {
-    background-color: rgb(17, 131, 131)(55, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(226, 103, 103, 0.1);
-    padding: 20px;
-    text-align: center;
-    width: 250px;
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.plan-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, white 50%, blue 50%);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(16, 16, 16, 0.1);
+  padding: 0;
+  text-align: center;
+  width: 250px; /* Set width */
+  height: 250px; /* Set height to match width */
+  margin: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .plan-card h2 {
-    color: #ff6600;
+  color: black;
+  background: white;
+  padding: 10px; /* Adjust padding */
+  margin: 0;
 }
 
 .plan-card p {
-    font-size: 0.9em;
-    line-height: 1.5;
+  color: white;
+  background: blue;
+  padding: 10px; /* Adjust padding */
+  margin: 0;
+  flex-grow: 1; /* Ensure the paragraph takes up available space */
 }
 
 .plan-card button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  padding: 5px 10px; /* Adjust padding */
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0; /* Adjust margin */
 }
 
 .plan-card button:hover {
-    background-color: #0056b3;
-} 
+  background-color: #0056b3;
+}
 
+.plan-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
+}
 
-
-
-
-   /* .fade {
-    animation: fade 5s infinite;
+@keyframes moveCards {
+  0% {
+      transform: translateX(100%);
   }
-  
-  @keyframes fade {
-    0%, 100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-  } 
-
-   */
-
-   .color-change {
-    animation: color-change 5s infinite;
+  100% {
+      transform: translateX(-100%);
   }
-  
-  @keyframes color-change {
-    0% {
-      color: #ff6600;
-    }
-    25% {
-      color: #ff0066;
-    }
-    50% {
-      color: #6600ff;
-    }
-    75% {
-      color: #00ff66;
-    }
-    100% {
-      color: #ff6600;
-    }
-  }
-
-  @keyframes fadeInOut {
-    0%, 100% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.3;
-    }
-  }
-  
-  .background-logo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px; /* Adjust the width as needed */
-    height: 700px; /* Adjust the height as needed */
-    background-image: url('/assets/zap-removebg-preview.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 50%;
-    animation: fadeInOut 3s infinite; /* 5s for the duration, adjust as needed */
-  }
-
-
-  
+}
