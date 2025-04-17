@@ -40,7 +40,7 @@ const routes: Routes = [
   {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AddFeedback', component:UseraddfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'error', component:ErrorComponent},
-  {path: '', redirectTo: '/Login', pathMatch: 'full' },
+  {path: '', redirectTo: '/Home', pathMatch: 'full' },
   //{path: '**', redirectTo: '/error' }
 ];
  
