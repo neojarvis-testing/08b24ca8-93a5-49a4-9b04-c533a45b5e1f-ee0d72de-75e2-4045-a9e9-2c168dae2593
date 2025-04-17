@@ -25,7 +25,16 @@ export class UserplanapplicationformComponent implements OnInit {
     UserId: 0,
     SavingsPlanId: 0
   };
-  savingsPlan: SavingsPlan;
+  savingsPlan: SavingsPlan = 
+  {
+    SavingPlanId: 0,
+    Name: '',
+    GoalAmount: 0,
+    TimeFrame: 0,
+    RiskLevel:'Low',
+    Description: '',
+    Status: ''
+  };
   selectedFile: File | null = null;
   minDate: string;
   maxGoalAmount: number;

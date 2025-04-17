@@ -10,7 +10,7 @@ import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/u
 import { ManagereditsavingsplanComponent } from './components/managereditsavingsplan/managereditsavingsplan.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
-import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
+
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
 import { ErrorComponent } from './components/error/error.component';
@@ -19,23 +19,26 @@ import { ManagercreatesavingsplanComponent } from './components/managercreatesav
 import { UserplanapplicationformComponent } from './components/userplanapplicationform/userplanapplicationform.component';
 import { Feedback } from './models/feedback.model';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
 
 const routes: Routes = [
   {path:'Home',component:HomeComponent},
   {path:'Register', component:RegistrationComponent},
   {path:'Login', component:LoginComponent},
+  
   {path:'RegionalManager', component:ManagerviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/SavingPlans', component:ManagerviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/AddSavingPlan',component:ManagercreatesavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/Feedback', component:ManagerviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+
   {path:'Customer', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
-  {path:'Manager/SavingPlans', component:ManagerviewsavingsplanComponent},
-  {path:'Manager/AddSavingPlan',component:ManagercreatesavingsplanComponent},
-  {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent},
-  {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent},
-  {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
-  {path:'User/PlanApplication/:id', component:UserplanapplicationformComponent},
-  {path:'User/AppliedPlans', component:UserappliedplansComponent},
-  {path:'User/Feedbacks',component:UserviewfeedbackComponent},
-  {path:'User/AddFeedback', component:UseraddfeedbackComponent},
-  {path:'Manager/Feedback', component:ManagerviewfeedbackComponent},
+  {path:'User/SavingPlans', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  {path:'User/PlanApplication/:id', component:UserplanapplicationformComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  {path:'User/AppliedPlans', component:UserappliedplansComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  {path:'User/AddFeedback', component:UseraddfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'error', component:ErrorComponent},
   {path: '', redirectTo: '/Login', pathMatch: 'full' },
   {path: '**', redirectTo: '/error' }
