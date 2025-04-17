@@ -1,62 +1,67 @@
-<div class="container"> 
+<div class="container">
+    <marquee class="marquee color-change">Welcome to Finance Hub!!!</marquee>
+  
     <header>
-    <h1>Finance Hub :Your trusted Financial Platform</h1> 
-</header>
-    
-<!-- <div class="marquee">
- <p>Welcome to Finance Hub!!!</p>
- </div> -->
- <marquee class="marquee color-change">Welcome to Finance Hub!!!</marquee>
- <div class="background-logo"></div>
-
-
-
-
-
-    
-    <p>Welcome to Finance Hub—your go-to platform for all things finance! Whether you're managing personal budgets, exploring investment opportunities, or staying updated with market trends, we've got you covered. Our expert insights, tools, and resources empower you to make informed financial decisions with confidence. Secure, reliable, and user-friendly—Finance Hub is your trusted partner in financial growth. Start your journey towards financial success today!
-    </p> 
-    <!-- <section class="chit-plans"> -->
-    
-
-        <div class="chit-plans">
-            <div class="plan-card">
-                <h2>chota Save</h2>
-                <p>3 Lakhs Chit Plan<br>Save ₹2,000 / month<br>Duration: 15 months</p>
-                <button>View Details</button>
-            </div>
-            <div class="plan-card">
-                <h2>bada Save</h2>
-                <p>5 Lakhs Chit Plan<br>Save ₹3,000 / month<br>Duration: 15 months</p>
-                <button>View Details</button>
-            </div>
-            <div class="plan-card">
-                <h2>zyada Save</h2>
-                <p>10 Lakhs Chit Plan<br>Save ₹5,000 / month<br>Duration: 15 months</p>
-                <button>View Details</button>
-            </div>
-            <div class="plan-card">
-                <h2>mini Save</h2>
-                <p>1 Lakh Chit Plan<br>Save ₹1,000 / month<br>Duration: 10 months</p>
-                <button>View Details</button>
-            </div>
-            <div class="plan-card">
-                <h2>mega Save</h2>
-                <p>8 Lakhs Chit Plan<br>Save ₹8,000 / month<br>Duration: 5 months</p>
-                <button>View Details</button>
-            </div>
-            <div class="plan-card">
-                <h2>super Save</h2>
-                <p>12 Lakhs Chit Plan<br>Save ₹12,000 / month<br>Duration: 4 months</p>
-                <button>View Details</button>
-            </div>
-        </div>
-        
-        
-        
-    <!-- </section> -->
-        
-        
-       
-</div>
-
+      <h1>Finance Hub: Empower Your Financial Journey</h1>
+      <p>Your one-stop solution for financial growth and investment opportunities.</p>
+      <button class="cta-button">Get Started</button>
+    </header>
+  
+  
+  
+    <section class="intro">
+      <p>
+        Welcome to Finance Hub—your platform for smart savings and investments! With tailored plans, expert insights, and tools, we empower you to make
+        confident financial decisions. Explore our plans and start your journey toward financial success today!
+      </p>
+    </section>
+  
+    <!-- Chit Plans Section -->
+    <section
+      class="chit-plans"
+      [ngClass]="{ 'animation-paused': isHovered || isZoomed }"
+    >
+      <div
+        class="plan-card"
+        *ngFor="let card of cards; let i = index"
+        [ngClass]="{ zoomed: zoomStates[i] }"
+        (mouseenter)="pauseAnimation()"
+        (mouseleave)="resumeAnimation()"
+        (click)="toggleZoom(i)"
+      >
+        <h2>{{ card.title }}</h2>
+        <p [innerHTML]="card.description"></p>
+        <button>View Details</button>
+      </div>
+    </section>
+  
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial">
+        <p>"Finance Hub helped me save in ways I never thought possible. Highly recommended!"</p>
+        <span>— Rahul, Entrepreneur</span>
+      </div>
+      <div class="testimonial">
+        <p>"The plans are flexible and suit my needs perfectly. Great platform!"</p>
+        <span>— Priya, Designer</span>
+      </div>
+    </section>
+  
+    <!-- Call-to-Action Section -->
+    <section class="cta">
+      <h2>Ready to Start Your Financial Journey?</h2>
+      <button class="cta-button">Sign Up Today</button>
+    </section>
+  
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2025 Finance Hub. All rights reserved.</p>
+      <p>Follow us on:</p>
+      <div class="social-icons">
+        <a href="#"><img src="assets/icons/facebook.svg" alt="Facebook"></a>
+        <a href="#"><img src="assets/icons/twitter.svg" alt="Twitter"></a>
+        <a href="#"><img src="assets/icons/linkedin.svg" alt="LinkedIn"></a>
+      </div>
+    </footer>
+  </div>

@@ -17,12 +17,6 @@ export class NavbarComponent implements OnInit {
   //   this.router.navigate(['/login']);
   // }
   
-darkMode: boolean = false;
-
- toggleDarkMode(): void {
- this.darkMode = !this.darkMode;
- document.body.classList.toggle('dark-mode');
- }
 
 
 
