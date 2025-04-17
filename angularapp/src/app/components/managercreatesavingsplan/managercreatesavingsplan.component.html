@@ -94,6 +94,7 @@
     <div class="form-group">
       <label for="riskLevel">Risk Level *</label>
       <select id="riskLevel" class="form-control" [(ngModel)]="newPlan.RiskLevel" name="riskLevel" required #riskLevel="ngModel">
+        <option value="" disabled selected>Select Risk Level</option>
         <option value="Low">Low</option>
         <option value="Medium">Medium</option>
         <option value="High">High</option>

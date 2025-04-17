@@ -161,7 +161,7 @@ export class ManagercreatesavingsplanComponent implements OnInit {
             Name: '',
             GoalAmount: null,
             TimeFrame: null,
-            RiskLevel: 'Low',
+            RiskLevel: null,
             Description: '',
             Status: ''
           };

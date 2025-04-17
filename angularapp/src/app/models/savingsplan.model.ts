@@ -3,7 +3,7 @@ export interface SavingsPlan{
     Name:string;
     GoalAmount:number;
     TimeFrame:number;
-    RiskLevel:'Low'|'Medium'|'High';
+    RiskLevel?:'Low'|'Medium'|'High';
     Description:string;
     Status:string;
 }
