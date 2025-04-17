@@ -37,7 +37,7 @@ export class UseraddfeedbackComponent implements OnInit {
   }
   closePopup(): void {
     this.showPopup = false;
-    this.router.navigate(['/userviewfeedback']); // Redirect to userviewfeedback component
+    this.router.navigate(['/User/Feedbacks']); // Redirect to userviewfeedback component
   }
 
 
