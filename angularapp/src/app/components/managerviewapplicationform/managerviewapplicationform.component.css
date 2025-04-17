@@ -81,10 +81,12 @@
 /* Sort Buttons */
 .sort-btn-container {
   margin-left: 10px;
+  display: inline-flex; /* Ensures buttons are displayed side-by-side */
+  gap: 5px; /* Adds a gap between the sort buttons */
 }
 
 .sort-btn {
-  background-color: rgb(128, 124, 124); /* Sorting button color changed to black */
+  background-color: black; /* Sorting button color changed to black */
   color: white;
   border: none;
   cursor: pointer;
