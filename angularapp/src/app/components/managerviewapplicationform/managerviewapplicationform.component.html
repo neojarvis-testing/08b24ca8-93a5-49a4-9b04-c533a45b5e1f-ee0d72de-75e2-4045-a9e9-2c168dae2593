@@ -31,8 +31,8 @@
       <tbody>
         <tr *ngFor="let planApplication of filteredPlanApplications; let i = index">
           <td>{{i + 1}}</td>
-          <td>{{planApplication.User?.Username || 'Loading...'}}</td>
-          <td>{{planApplication.SavingsPlan?.Name || 'Loading...'}}</td>
+          <td>{{planApplication.User?.Username}}</td>
+          <td>{{planApplication.SavingsPlan?.Name}}</td>
           <td>{{planApplication.AppliedAmount | currency:'INR':'symbol':'1.0-0'}}</td>
           <td>{{planApplication.ApplicationDate | date:'dd-MM-yyyy'}}</td>
           <td>{{planApplication.Remarks}}</td>

@@ -58,6 +58,13 @@ namespace dotnetapp.Services
             return (1, token);
         }
 
+        public async Task<User> GetUserById(int UserId)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == UserId);
+        }
+
+
+
         private string GenerateToken(User user)
         {
             // Retrieve secret key and validate
@@ -87,6 +94,7 @@ namespace dotnetapp.Services
             var claims = new List<Claim>
             {
                 new Claim("userId", user.UserId.ToString()), // Custom claim for userId
+                new Claim("userName", user.Username),        // Custom claim for username
                 new Claim("email", user.Email),             // Custom claim for email
                 new Claim("role", user.UserRole)            // Custom claim for role
             };
@@ -113,5 +121,7 @@ namespace dotnetapp.Services
                 return Convert.ToBase64String(hash);
             }
         }
+
+    
     }
 }

@@ -11,5 +11,6 @@ namespace dotnetapp.Services
     {
         Task< (int, string)> Registration (User model, string role);
         Task< (int, string)> Login (LoginModel model);
+        Task<User> GetUserById(int UserId);
     }
 }
