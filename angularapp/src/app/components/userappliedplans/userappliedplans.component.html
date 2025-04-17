@@ -20,7 +20,7 @@
         <td>{{ i + 1 }}</td>
         <td>{{ savingsplans[item.SavingsPlanId]?.Name}}</td>
         <td>{{ item.AppliedAmount }}</td>
-        <td>{{ item.ApplicationDate }}</td>
+        <td>{{ item.ApplicationDate | date: 'yyyy-MM-dd'}}</td>
         <td>{{ item.Remarks }}</td>
         <td>{{ item.Status }}</td>
         <td>

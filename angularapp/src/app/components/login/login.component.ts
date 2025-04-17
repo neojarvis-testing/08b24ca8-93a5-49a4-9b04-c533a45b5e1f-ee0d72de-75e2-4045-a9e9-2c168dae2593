@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     if (loginUser.Email && loginUser.Password) {
       this.authService.login(loginUser).subscribe({
         next: () => {
-          console.log(this.authService.isRegionalManager());
+          console.log(this.authService.getUser());
           if (this.authService.isRegionalManager()) {
             this.router.navigate(['/RegionalManager']);
           } else if (this.authService.isCustomer()) {
