@@ -24,7 +24,7 @@ export class PlanapplicationformService {
   }
 
   addPlanApplication(data: PlanApplication): Observable<PlanApplication> {
-    return this.http.post<PlanApplication>(this.baseUrl, data, { headers: this.getHeaders() })
+    return this.http.post<PlanApplication>(`${this.baseUrl}/PlanApplication`, data, { headers: this.getHeaders(), responseType: 'text' as 'json' })
       .pipe(
         catchError(this.handleError)
       );
@@ -32,7 +32,7 @@ export class PlanapplicationformService {
     
     deletePlanApplication(planId: number): Observable<void> {
   
-       const url = `${this.baseUrl}/${planId}`;
+       const url = `${this.baseUrl}/PlanApplication/${planId}`;
   
        return this.http.delete<void>(url, { headers: this.getHeaders() })
 
@@ -41,9 +41,8 @@ export class PlanapplicationformService {
           );
       }
 
-      
     getAppliedPlans(userId: number): Observable<PlanApplication[]> {
-       const url = `${this.baseUrl}/user/${userId}`;
+       const url = `${this.baseUrl}/PlanApplication/user/${userId}`;
        return this.http.get<PlanApplication[]>(url, { headers: this.getHeaders() })
           .pipe( 
             catchError(this.handleError)

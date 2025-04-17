@@ -15,7 +15,8 @@
           <th>S. No</th>
           <th>Applicant Name</th>
           <th>Plan Name</th>
-          <th>Applied Amount
+          <th>
+            Applied Amount
             <span class="sort-btn-container">
               <button class="sort-btn" (click)="sortAmountAscending()">&#9650;</button>
               <button class="sort-btn" (click)="sortAmountDescending()">&#9660;</button>
@@ -30,8 +31,8 @@
       <tbody>
         <tr *ngFor="let planApplication of filteredPlanApplications; let i = index">
           <td>{{i + 1}}</td>
-          <td>{{planApplication.User?.Username}}</td>
-          <td>{{planApplication.SavingsPlan?.Name}}</td>
+          <td>{{planApplication.User?.Username || 'Loading...'}}</td>
+          <td>{{planApplication.SavingsPlan?.Name || 'Loading...'}}</td>
           <td>{{planApplication.AppliedAmount | currency:'INR':'symbol':'1.0-0'}}</td>
           <td>{{planApplication.ApplicationDate | date:'dd-MM-yyyy'}}</td>
           <td>{{planApplication.Remarks}}</td>
@@ -40,11 +41,12 @@
               <button class="approve-button" (click)="approve(planApplication)">Approve</button>
               <button class="reject-button" (click)="reject(planApplication)">Reject</button>
             </div>
-            <div *ngIf="planApplication.status !== 'Pending'">
+            <div *ngIf="planApplication.Status !== 'Pending'">
               <span [ngClass]="{ 
                 'approved-status': planApplication.Status === 'Approved', 
                 'rejected-status': planApplication.Status === 'Rejected' 
               }">
+                {{planApplication.Status}}
               </span>
             </div>
           </td>
