@@ -31,7 +31,7 @@ export class UserplanapplicationformComponent implements OnInit {
     Name: '',
     GoalAmount: 0,
     TimeFrame: 0,
-    RiskLevel:'Low',
+    RiskLevel:null,
     Description: '',
     Status: ''
   };
