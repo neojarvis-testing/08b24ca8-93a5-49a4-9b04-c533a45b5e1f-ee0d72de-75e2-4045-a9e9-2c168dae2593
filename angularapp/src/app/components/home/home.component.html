@@ -15,14 +15,21 @@
   </section>
 
   <!-- Smoothly Moving Chit Plans Section -->
-  <div class="chit-plans-wrapper">
+  <div class="chit-plans-wrapper" [ngClass]="{ 'animation-paused': isHovered || isZoomed }">
     <div class="chit-plans">
-      <div class="plan-card" *ngFor="let card of cards">
+      <div
+        class="plan-card"
+        *ngFor="let card of cards; let i = index"
+        [ngClass]="{ 'zoomed': zoomStates[i] }"
+        (mouseenter)="pauseAnimation()"
+        (mouseleave)="resumeAnimation()"
+        (click)="toggleZoom(i)"
+      >
         <h2>{{ card.Name }}</h2> <!-- Plan title -->
         <p><strong>Goal Amount:</strong> {{ card.GoalAmount | currency }}</p> <!-- Goal amount -->
         <p><strong>Time Frame:</strong> {{ card.TimeFrame }} months</p> <!-- Time frame -->
         <p><strong>Risk Level:</strong> {{ card.RiskLevel }}</p> <!-- Risk level -->
-        <p><strong>Description:</strong> {{ card.Description }}</p> <!-- Plan description -->
+
         <button>View Details</button>
       </div>
     </div>

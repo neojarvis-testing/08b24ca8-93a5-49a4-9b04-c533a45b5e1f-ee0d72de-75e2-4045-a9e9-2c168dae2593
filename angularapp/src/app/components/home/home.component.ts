@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SavingsplanService } from 'src/app/services/savingsplan.service'; // Import the service
-import { SavingsPlan } from 'src/app/models/savingsplan.model'; // Import the model
+import { SavingsplanService } from 'src/app/services/savingsplan.service';
+import { SavingsPlan } from 'src/app/models/savingsplan.model';
 
 @Component({
   selector: 'app-home',
@@ -8,23 +8,23 @@ import { SavingsPlan } from 'src/app/models/savingsplan.model'; // Import the mo
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  cards: SavingsPlan[] = []; // Array to hold saving plans fetched from the backend
-  zoomStates = Array(this.cards.length).fill(false); // To track zoom states of cards
-  isHovered = false; // Track if a card is hovered
-  isZoomed = false; // Track if any card is zoomed
+  cards: any[] = []; // Holds the plans
+  zoomStates: boolean[] = []; // To track zoom status of each card
+  isHovered: boolean = false; // Track if any card is hovered
+  isZoomed: boolean = false; // Track if any card is zoomed
 
-  constructor(private savingsPlan:SavingsplanService) {}
+  constructor(private savingPlanService: SavingsplanService) {}
 
   ngOnInit(): void {
-    this.fetchSavingPlans(); // Fetch saving plans on component initialization
+    this.fetchSavingPlans();
   }
 
-  // Fetch saving plans from the service
   fetchSavingPlans(): void {
-    this.savingsPlan.getAllSavingsPlans().subscribe(
-      (data: SavingsPlan[]) => {
-        this.cards = data; // Assign fetched data to the `cards` array
-        this.zoomStates = Array(this.cards.length).fill(false); // Reset zoomStates based on data length
+    this.savingPlanService.getAllSavingsPlans().subscribe(
+      (data) => {
+        console.log('Fetched Plans:', data); // Debug fetched data
+        this.cards = data; // Assign data to cards
+        this.zoomStates = Array(this.cards.length).fill(false); // Initialize zoom states
       },
       (error) => {
         console.error('Error fetching saving plans:', error);
@@ -32,23 +32,23 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  toggleZoom(index: number) {
+  toggleZoom(index: number): void {
     if (this.zoomStates[index]) {
-      this.zoomStates[index] = false;
+      this.zoomStates[index] = false; // Reset zoom state
       this.isZoomed = false;
     } else {
-      this.zoomStates = this.zoomStates.map((_, i) => i === index);
+      this.zoomStates = this.zoomStates.map((_, i) => i === index); // Only zoom the clicked card
       this.isZoomed = true;
     }
   }
 
-  pauseAnimation() {
-    this.isHovered = true; // Pause animation for all cards
+  pauseAnimation(): void {
+    this.isHovered = true; // Pause the moving animation
   }
 
-  resumeAnimation() {
+  resumeAnimation(): void {
     if (!this.isZoomed) {
-      this.isHovered = false; // Resume animation for all cards
+      this.isHovered = false; // Resume the moving animation
     }
   }
 }
