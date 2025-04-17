@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent},
   {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent},
   {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
-  {path:'User/PlanApplication', component:UserplanapplicationformComponent},
+  {path:'User/PlanApplication/:id', component:UserplanapplicationformComponent},
   {path:'User/AppliedPlans', component:UserappliedplansComponent},
   {path:'User/Feedbacks',component:UserviewfeedbackComponent},
   {path:'User/AddFeedback', component:UseraddfeedbackComponent},

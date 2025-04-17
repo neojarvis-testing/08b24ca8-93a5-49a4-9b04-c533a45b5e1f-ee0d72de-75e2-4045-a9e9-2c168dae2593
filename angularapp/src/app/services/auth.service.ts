@@ -101,7 +101,7 @@ export class AuthService {
       return null; // Return null if no token exists
     }
       const decodedToken: any = jwtDecode(token);
-      return decodedToken.userId || null; // Return UserId or null if not found
+      return Number(decodedToken.userId) || null; // Return UserId or null if not found
   }
 
   

@@ -66,6 +66,7 @@ import { SavingsplanService } from 'src/app/services/savingsplan.service';
 import { Router } from '@angular/router';
 import { SavingsPlan } from 'src/app/models/savingsplan.model';
 import { PlanapplicationformService } from 'src/app/services/planapplicationform.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-userviewsavingsplan',
@@ -78,6 +79,7 @@ export class UserviewsavingsplanComponent implements OnInit {
   filteredPlans: SavingsPlan[] = [];
   searchTerm: string = '';
 
+
   constructor(private savingPlanService: SavingsplanService, private router: Router) { }
 
   ngOnInit(): void {
@@ -87,7 +89,6 @@ export class UserviewsavingsplanComponent implements OnInit {
   viewPlan(): void {
     this.savingPlanService.getAllSavingsPlans().subscribe(data => {
       this.plans = data;
-      console.log(this.plans);
       this.filteredPlans = data; // Initialize filteredPlans with all plans
     });
   }
@@ -99,7 +100,8 @@ export class UserviewsavingsplanComponent implements OnInit {
   }
   applyForPlan(plan: any): void {
         plan.Applied = true;
-        this.router.navigate(['/User/PlanApplication']);
+        console.log(plan.SavingsPlanId);
+        this.router.navigate([`/User/PlanApplication/${plan.SavingsPlanId}`]);
        }
        }
 
