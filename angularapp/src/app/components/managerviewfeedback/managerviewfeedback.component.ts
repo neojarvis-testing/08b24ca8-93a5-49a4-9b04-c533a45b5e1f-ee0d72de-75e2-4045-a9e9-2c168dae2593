@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { Feedback } from 'src/app/models/feedback.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
 
 @Component({
@@ -13,26 +15,39 @@ export class ManagerviewfeedbackComponent implements OnInit {
   showDetailsPopup: boolean = false; // Controls the visibility of the popup
   selectedUserDetails: any = {}; // Holds the details of the selected user
 
-  constructor(private router: Router, private service: FeedbackService) {}
+  constructor(private router: Router, private feedbackService: FeedbackService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadFeedbacks();
   }
 
-  
   loadFeedbacks(): void {
-    this.service.getFeedbacks().subscribe((data: Feedback[]) => {
-      this.feedbacks = data;
+    this.feedbackService.getFeedbacks().subscribe((feedbacks: Feedback[]) => {
+      const userRequests = feedbacks.map((feedback) =>
+        this.authService.getUserById(feedback.UserId)
+      );
+
+      // Fetch users in parallel using forkJoin
+      forkJoin(userRequests).subscribe((users) => {
+        feedbacks.forEach((feedback, index) => {
+          feedback.User = users[index];
+        });
+
+        this.feedbacks = feedbacks;
+        console.log(this.feedbacks);
+      });
     });
   }
 
-  
-  showDetails(): void {
-    this.showDetailsPopup=true;
-    
+  showDetails(feedback: Feedback): void {
+    this.selectedUserDetails = {
+      username: feedback.User.UserName,
+      email: feedback.User.Email,
+      mobile: feedback.User.MobileNumber
+    };
+    this.showDetailsPopup = true;
   }
 
-  
   closeDetailsPopup(): void {
     this.showDetailsPopup = false; // Hide the popup
     this.selectedUserDetails = {}; // Clear the details
