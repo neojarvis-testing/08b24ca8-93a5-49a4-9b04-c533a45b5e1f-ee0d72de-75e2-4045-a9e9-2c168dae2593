@@ -160,15 +160,12 @@
 //   }
 // }
 
-
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { PlanApplication } from 'src/app/models/planapplication.model';
 import { PlanapplicationformService } from 'src/app/services/planapplicationform.service';
 import { SavingsplanService } from 'src/app/services/savingsplan.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user.model';
-import { SavingsPlan } from 'src/app/models/savingsplan.model';
 
 @Component({
   selector: 'app-managerviewapplicationform',
@@ -182,6 +179,15 @@ export class ManagerviewapplicationformComponent implements OnInit {
   searchPlanName: string = '';
   popupImageSrc: string = '';
   showPopup: boolean = false;
+
+  // Sorting state for each column
+  sortOrder: { [key: string]: 'asc' | 'desc' | '' } = {
+    ApplicantName: '',
+    PlanName: '',
+    AppliedAmount: '',
+    ApplicationDate: '',
+    Status: ''
+  };
 
   constructor(
     private planApplicationformService: PlanapplicationformService,
@@ -203,7 +209,6 @@ export class ManagerviewapplicationformComponent implements OnInit {
         this.savingsPlanService.getSavingsPlanById(application.SavingsPlanId)
       );
 
-      // Fetch users and plans in parallel using forkJoin
       forkJoin([forkJoin(userRequests), forkJoin(planRequests)]).subscribe(([users, plans]) => {
         applications.forEach((application, index) => {
           application.User = users[index];
@@ -216,14 +221,59 @@ export class ManagerviewapplicationformComponent implements OnInit {
     });
   }
 
-  // Sort applications by applied amount in ascending order
-  sortAmountAscending() {
-    this.filteredPlanApplications = [...this.filteredPlanApplications.sort((a, b) => a.AppliedAmount - b.AppliedAmount)];
+  // Generic sorting method for columns
+  sortColumn(column: string) {
+    // Toggle sort order: asc -> desc -> reset
+    if (this.sortOrder[column] === 'asc') {
+      this.sortOrder[column] = 'desc';
+    } else if (this.sortOrder[column] === 'desc') {
+      this.sortOrder[column] = '';
+    } else {
+      this.sortOrder[column] = 'asc';
+    }
+
+    // Clear sorting on other columns
+    Object.keys(this.sortOrder).forEach(key => {
+      if (key !== column) {
+        this.sortOrder[key] = '';
+      }
+    });
+
+    // Perform sorting
+    this.filteredPlanApplications = [...this.planApplications]; // Reset to default order
+    if (this.sortOrder[column] === 'asc') {
+      this.filteredPlanApplications.sort((a, b) => this.compareValues(a, b, column, 'asc'));
+    } else if (this.sortOrder[column] === 'desc') {
+      this.filteredPlanApplications.sort((a, b) => this.compareValues(a, b, column, 'desc'));
+    }
   }
 
-  // Sort applications by applied amount in descending order
-  sortAmountDescending() {
-    this.filteredPlanApplications = [...this.filteredPlanApplications.sort((a, b) => b.AppliedAmount - a.AppliedAmount)];
+  // Helper to compare values for sorting
+  compareValues(a: PlanApplication, b: PlanApplication, column: string, order: 'asc' | 'desc'): number {
+    const valueA = this.getColumnValue(a, column);
+    const valueB = this.getColumnValue(b, column);
+
+    if (valueA < valueB) return order === 'asc' ? -1 : 1;
+    if (valueA > valueB) return order === 'asc' ? 1 : -1;
+    return 0;
+  }
+
+  // Helper to retrieve column value
+  getColumnValue(application: PlanApplication, column: string): any {
+    switch (column) {
+      case 'ApplicantName':
+        return application.User?.Username || '';
+      case 'PlanName':
+        return application.SavingsPlan?.Name || '';
+      case 'AppliedAmount':
+        return application.AppliedAmount || 0;
+      case 'ApplicationDate':
+        return application.ApplicationDate || '';
+      case 'Status':
+        return application.Status || '';
+      default:
+        return '';
+    }
   }
 
   // Filter applications by plan name
