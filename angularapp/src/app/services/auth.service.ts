@@ -55,11 +55,9 @@ export class AuthService {
               email: payload.email,
               role: payload.role,
             };
-
             // localStorage.setItem('currentUser', JSON.stringify(user));
             localStorage.setItem('jwtToken', token);
                       this.currentUserSubject.next(user);
-
             // Update role after login
             this.updateRole();
           }
@@ -82,13 +80,13 @@ export class AuthService {
 
     // Check if user is logged in
     isLoggedIn(): boolean {
-    
       const token = localStorage.getItem('jwtToken');
       if (!token) {
         return false;
       }
       const payload = JSON.parse(atob(token.split('.')[1]));
       const currentTime = Math.floor(new Date().getTime() / 1000);
+      console.log( "Time Error: ", payload.exp>currentTime);
       return payload.exp > currentTime;
     }
 
