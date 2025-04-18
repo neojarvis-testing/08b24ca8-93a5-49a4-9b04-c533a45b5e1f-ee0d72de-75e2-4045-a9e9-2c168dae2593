@@ -12,8 +12,8 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class ManagerviewfeedbackComponent implements OnInit {
   feedbacks: Feedback[] = [];
-  showDetailsPopup: boolean = false; // Controls the visibility of the popup
-  selectedUserDetails: any = {}; // Holds the details of the selected user
+  showDetailsPopup: boolean = false; 
+  selectedUserDetails: any = {}; 
 
   constructor(private router: Router, private feedbackService: FeedbackService, private authService: AuthService) {}
 
@@ -27,7 +27,6 @@ export class ManagerviewfeedbackComponent implements OnInit {
         this.authService.getUserById(feedback.UserId)
       );
 
-      // Fetch users in parallel using forkJoin
       forkJoin(userRequests).subscribe((users) => {
         feedbacks.forEach((feedback, index) => {
           feedback.User = users[index];
@@ -41,15 +40,15 @@ export class ManagerviewfeedbackComponent implements OnInit {
 
   showDetails(feedback: Feedback): void {
     this.selectedUserDetails = {
-      username: feedback.User.UserName,
-      email: feedback.User.Email,
-      mobile: feedback.User.MobileNumber
+      username: feedback.User?.Username,
+      email: feedback.User?.Email,
+      mobile: feedback.User?.MobileNumber
     };
-    this.showDetailsPopup = true;
+    this.showDetailsPopup = true; 
   }
 
   closeDetailsPopup(): void {
-    this.showDetailsPopup = false; // Hide the popup
-    this.selectedUserDetails = {}; // Clear the details
+    this.showDetailsPopup = false; 
+    this.selectedUserDetails = {}; 
   }
 }

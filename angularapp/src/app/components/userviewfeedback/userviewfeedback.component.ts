@@ -15,11 +15,13 @@ export class UserviewfeedbackComponent implements OnInit {
   userId: string;
   delPopup: boolean = false;
   feedbackToDel: Feedback | null;
+  currentUser: any = null;
 
   constructor(private router: Router, private service: FeedbackService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.userId = String(this.authService.getUserId());
+    this.currentUser = this.authService.getUser();
+    this.userId = String(this.currentUser.userId);
     //this.loadFeedbacks();
     this.getFeedbacksByUserId(this.userId);
   }
