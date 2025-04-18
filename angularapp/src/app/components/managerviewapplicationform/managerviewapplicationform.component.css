@@ -2,43 +2,55 @@
 .background-wrapper {
   background-color: #f3f8ff;
   padding: 20px;
+  min-height: 100vh; /* Ensure full-height background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Container Card */
+/* Royal Blue Gradient Styled Container Card */
 .container {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #1e3a8a, #2563eb); /* Royal blue gradient */
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), inset 0 -3px 10px rgba(255, 255, 255, 0.15); /* Outer and inner shadows for glossy effect */
+  color: white; /* Ensures text is readable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-10px); /* Slight lift on hover */
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.3), inset 0 -5px 15px rgba(255, 255, 255, 0.2); /* Stronger shadow and lift effect */
 }
 
 /* Page Heading */
 .page-heading {
   text-align: center;
   font-family: 'Merriweather', serif;
-  font-size: 2.5rem;
-  color: #1d3557;
-  margin-bottom: 20px;
+  font-size: 3rem; /* Slightly larger heading for better readability */
+  color: #ffffff; /* Bright white text for contrast */
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3); /* Subtle text shadow for better visibility */
 }
 
 /* Search Bar */
 .search-bar-wrapper {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .search-bar {
   width: 50%;
   padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid #003580; /* Matches royal blue theme */
+  border-radius: 12px;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
   font-size: 16px;
 }
 
 .search-bar:focus {
   box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
-  border-color: #007bff;
+  border-color: #2563eb; /* Royal blue focus color */
 }
 
 /* Table Styling */
@@ -47,29 +59,33 @@
   margin-top: 20px;
   font-size: 16px;
   border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table thead tr {
-  background: linear-gradient(90deg, #1d3557, #007bff); /* Royal blue gradient */
-  color: white; /* White text for contrast */
+  background: linear-gradient(90deg, #4169e1, #1e90ff); /* Royal blue gradient */
+  color: white;
   text-align: center;
 }
 
 .table th {
   padding: 12px;
-  text-align: center; /* Center-align all column headers */
+  text-align: center;
   vertical-align: middle;
   font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .table th, .table td {
   border-bottom: 1px solid #e0e0e0;
-  text-align: center; /* Center-align all cells */
+  text-align: center;
   vertical-align: middle;
   padding: 12px;
 }
 
-/* Alternating Row Colors */
 .table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
@@ -78,9 +94,8 @@
   background-color: #ffffff;
 }
 
-/* Hover Effect for Rows */
 .table tbody tr:hover {
-  background-color: #e3f2fd;
+  background-color: #d1e7ff; /* Light royal blue for hover */
   transform: scale(1.02);
   transition: all 0.2s ease-in-out;
 }
@@ -91,7 +106,7 @@
   border: none;
   cursor: pointer;
   font-size: 17px;
-  color: #353333; /* White color for icons */
+  color: #353333;
   margin-left: 5px;
   transition: transform 0.2s ease;
 }
@@ -100,7 +115,13 @@
   transform: scale(1.1);
 }
 
-/* Buttons */
+/* Approve and Reject Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 .action-buttons .approve-button {
   background: linear-gradient(90deg, #4caf50, #388e3c);
   color: white;
@@ -108,7 +129,6 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  margin-right: 5px;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
 
@@ -134,6 +154,18 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Status Text Styling */
+.approved-status {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.rejected-status {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* View Button */
 .view-button {
   background: linear-gradient(90deg, #007bff, #0056b3);
   color: white;
@@ -165,17 +197,21 @@
 
 .popup-content {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 30px;
   border-radius: 12px;
-  max-width: 60%;
+  max-width: 80%;
+  max-height: 80%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   position: relative;
   animation: scaleIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .popup-content img {
   max-width: 100%;
-  max-height: 50vh;
+  max-height: 70vh;
   border-radius: 8px;
 }
 
@@ -185,6 +221,7 @@
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+  color: #333;
 }
 
 /* Animation for Popup */
@@ -197,4 +234,39 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px; /* Adds spacing between buttons */
+}
+
+.pagination button {
+  margin: 0 2px;
+  padding: 8px 12px;
+  border: 1px solid #0A3A7Aff;
+  background-color: #FEFEFEff;
+  color: #0A3A7Aff;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 17px; /* Reduced font size for button content (including icons) */
+}
+
+.pagination button.active,
+.pagination button:hover {
+  background-color: rgb(17, 83, 169);
+  color: #FEFEFEff;
+}
+
+.pagination button i {
+  font-size: 12px; /* Adjust this value as needed for the desired icon size */
+}
+
+.pagination button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
 }
