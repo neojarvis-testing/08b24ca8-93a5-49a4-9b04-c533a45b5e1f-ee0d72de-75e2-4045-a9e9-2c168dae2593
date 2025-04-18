@@ -8,8 +8,8 @@ import { SavingsPlan } from 'src/app/models/savingsplan.model';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  cards: any[] = []; // Holds the plans
-  activeCards: any[] = [];
+  cards: SavingsPlan[] = []; // Holds all plans
+  activeCards: SavingsPlan[] = []; // Holds only active plans
   zoomStates: boolean[] = []; // To track zoom status of each card
   isHovered: boolean = false; // Track if any card is hovered
   isZoomed: boolean = false; // Track if any card is zoomed
@@ -22,15 +22,20 @@ export class HomeComponent implements OnInit {
 
   fetchSavingPlans(): void {
     this.savingPlanService.getAllSavingsPlans().subscribe(
-      (data) => {
+      (data: SavingsPlan[]) => {
         console.log('Fetched Plans:', data); // Debug fetched data
-        this.cards = data; // Assign data to cards
+        this.cards = data; // Assign all fetched plans
         console.log(this.cards);
-        this.activeCards = this.cards.filter(data=>data.Status == "Active");
-        this.zoomStates = Array(this.cards.length).fill(false); // Initialize zoom states
+        // Filter only active plans
+        this.activeCards = this.cards.filter(
+          (plan) => plan.Status?.toLowerCase() === 'active'
+        );
+        console.log('Active Plans:', this.activeCards); // Debug active plans
+        // Initialize zoom states based on active plans
+        this.zoomStates = Array(this.activeCards.length).fill(false);
       },
       (error) => {
-        console.error('Error fetching saving plans:', error);
+        console.error('Error fetching saving plans:', error); // Log errors
       }
     );
   }
