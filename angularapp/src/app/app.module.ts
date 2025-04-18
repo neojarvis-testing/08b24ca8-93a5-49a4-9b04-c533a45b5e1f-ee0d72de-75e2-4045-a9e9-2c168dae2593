@@ -23,6 +23,9 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/userviewsavingsplan.component';
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+//import { LandingPageComponent } from './components/landingpage/landingpage.component';
 
 
 
@@ -49,7 +52,10 @@ import { ManagerviewapplicationformComponent } from './components/managerviewapp
     UserviewsavingsplanComponent,
     UserplanapplicationformComponent,
     UserappliedplansComponent,
-    ManagerviewapplicationformComponent
+    ManagerviewapplicationformComponent,
+    LandingPageComponent,
+    DashboardComponent,
+   
   ],
   
   imports: [
