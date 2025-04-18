@@ -262,7 +262,7 @@ export class ManagerviewapplicationformComponent implements OnInit {
   getColumnValue(application: PlanApplication, column: string): any {
     switch (column) {
       case 'ApplicantName':
-        return application.User?.Username || '';
+        return application.User?.UserName || '';
       case 'PlanName':
         return application.SavingsPlan?.Name || '';
       case 'AppliedAmount':
