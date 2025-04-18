@@ -44,6 +44,7 @@
     <div class="form-group">
       <label for="status">Status *</label>
       <select id="status" class="form-control" [(ngModel)]="newPlan.Status" name="status" required #status="ngModel">
+        <option value="">Select Status</option>
         <option value="Active">Active</option>
         <option value="Inactive">Inactive</option>
       </select>
@@ -51,7 +52,7 @@
         Status is required.
       </div>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="savingsPlanForm.form.invalid">Submit</button>
+    <button type="submit" class="btn btn-primary" (mouseenter)="moveButton($event)" #submitBtn [disabled]="savingsPlanForm.form.invalid">Submit</button>
   </form>
 </div>
 
