@@ -8,11 +8,11 @@ import { SavingsPlan } from 'src/app/models/savingsplan.model';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  cards: SavingsPlan[] = []; // Holds all plans
-  activeCards: SavingsPlan[] = []; // Holds only active plans
-  zoomStates: boolean[] = []; // To track zoom status of each card
-  isHovered: boolean = false; // Track if any card is hovered
-  isZoomed: boolean = false; // Track if any card is zoomed
+  cards: SavingsPlan[] = [];
+  activeCards: SavingsPlan[] = [];
+  zoomStates: boolean[] = [];
+  isHovered: boolean = false;
+  isZoomed: boolean = false;
 
   constructor(private savingPlanService: SavingsplanService) {}
 
@@ -23,40 +23,35 @@ export class HomeComponent implements OnInit {
   fetchSavingPlans(): void {
     this.savingPlanService.getAllSavingsPlans().subscribe(
       (data: SavingsPlan[]) => {
-        console.log('Fetched Plans:', data); // Debug fetched data
-        this.cards = data; // Assign all fetched plans
-        console.log(this.cards);
-        // Filter only active plans
+        this.cards = data;
         this.activeCards = this.cards.filter(
           (plan) => plan.Status?.toLowerCase() === 'active'
         );
-        console.log('Active Plans:', this.activeCards); // Debug active plans
-        // Initialize zoom states based on active plans
         this.zoomStates = Array(this.activeCards.length).fill(false);
       },
       (error) => {
-        console.error('Error fetching saving plans:', error); // Log errors
+        console.error('Error fetching saving plans:', error);
       }
     );
   }
 
   toggleZoom(index: number): void {
     if (this.zoomStates[index]) {
-      this.zoomStates[index] = false; // Reset zoom state
+      this.zoomStates[index] = false;
       this.isZoomed = false;
     } else {
-      this.zoomStates = this.zoomStates.map((_, i) => i === index); // Only zoom the clicked card
+      this.zoomStates = this.zoomStates.map((_, i) => i === index);
       this.isZoomed = true;
     }
   }
 
   pauseAnimation(): void {
-    this.isHovered = true; // Pause the moving animation
+    this.isHovered = true;
   }
 
   resumeAnimation(): void {
     if (!this.isZoomed) {
-      this.isHovered = false; // Resume the moving animation
+      this.isHovered = false;
     }
   }
 }

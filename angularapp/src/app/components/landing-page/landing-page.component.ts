@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SavingsplanService } from 'src/app/services/savingsplan.service';
+import { SavingsPlan } from 'src/app/models/savingsplan.model';
 
 @Component({
   selector: 'app-landing-page',
@@ -6,19 +8,51 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css'],
 })
 export class LandingPageComponent implements OnInit {
-  activeCards: any[] = []; // Holds only active savings plans
+  
+  cards: SavingsPlan[] = [];
+  activeCards: SavingsPlan[] = [];
+  zoomStates: boolean[] = [];
+  isHovered: boolean = false;
+  isZoomed: boolean = false;
 
-  constructor() {}
+  constructor(private savingPlanService: SavingsplanService) {}
 
   ngOnInit(): void {
-    this.fetchActiveSavingsPlans();
+    this.fetchSavingPlans();
   }
 
-  fetchActiveSavingsPlans(): void {
-    // Mock active savings plans (replace this with API call)
-    this.activeCards = [
-      { Name: 'Plan 1', GoalAmount: 10000, TimeFrame: 12, RiskLevel: 'Low' },
-      { Name: 'Plan 2', GoalAmount: 20000, TimeFrame: 24, RiskLevel: 'Medium' },
-    ];
+  fetchSavingPlans(): void {
+    this.savingPlanService.getAllSavingsPlans().subscribe(
+      (data: SavingsPlan[]) => {
+        this.cards = data;
+        this.activeCards = this.cards.filter(
+          (plan) => plan.Status?.toLowerCase() === 'active'
+        );
+        this.zoomStates = Array(this.activeCards.length).fill(false);
+      },
+      (error) => {
+        console.error('Error fetching saving plans:', error);
+      }
+    );
+  }
+
+  toggleZoom(index: number): void {
+    if (this.zoomStates[index]) {
+      this.zoomStates[index] = false;
+      this.isZoomed = false;
+    } else {
+      this.zoomStates = this.zoomStates.map((_, i) => i === index);
+      this.isZoomed = true;
+    }
+  }
+
+  pauseAnimation(): void {
+    this.isHovered = true;
+  }
+
+  resumeAnimation(): void {
+    if (!this.isZoomed) {
+      this.isHovered = false;
+    }
   }
 }
