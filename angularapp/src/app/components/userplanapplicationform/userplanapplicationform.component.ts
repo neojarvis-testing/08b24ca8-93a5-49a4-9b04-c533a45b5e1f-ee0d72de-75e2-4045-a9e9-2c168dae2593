@@ -53,6 +53,7 @@ export class UserplanapplicationformComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = this.authService.getUser();
+    console.log(this.currentUser);
     this.loadData();
   }
 

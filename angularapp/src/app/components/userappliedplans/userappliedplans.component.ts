@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { PlanApplication } from 'src/app/models/planapplication.model';
 import { SavingsPlan } from 'src/app/models/savingsplan.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -40,15 +41,21 @@ export class UserappliedplansComponent implements OnInit {
   }
 
   loadAppliedPlans(): void {
-    this.planApplicationService.getAppliedPlans(this.userID).subscribe(data => {
-      this.planApplications = data;
-      this.originalPlanApplications = [...data];
-    });
+    this.planApplicationService.getAppliedPlans(this.userID).subscribe((applications: PlanApplication[]) => {
+        const planRequests = applications.map((application) =>
+            this.savingsPlanService.getSavingsPlanById(application.SavingsPlanId)
+        );
+        
+        forkJoin([ forkJoin(planRequests)]).subscribe(([plans]) => {
+            applications.forEach((application, index) => {
+                application.SavingsPlan = plans[index];
+            });
 
-    this.savingsPlanService.getAllSavingsPlans().subscribe(data => {
-      this.savingsplans = data;
+            this.planApplications = applications;
+            this.originalPlanApplications = [...this.planApplications];
+        });
     });
-  }
+}
 
   // Sorting for Plan Name column
   sortPlanName(): void {
