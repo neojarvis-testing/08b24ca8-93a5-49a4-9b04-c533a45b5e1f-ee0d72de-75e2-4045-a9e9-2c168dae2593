@@ -22,8 +22,8 @@
                 <td>{{plan.Description}}</td>
                 <td>{{plan.Status}}</td>
                 <td>
-                    <button *ngIf="plan.Status === 'Active' && !plan.Applied" (click)="applyForPlan(plan)">Apply</button>
-                    <span *ngIf="plan.Status !== 'Active' || plan.Applied">Not Available</span>
+                    <button *ngIf="plan.Status === 'Active' && !alreadyApplied(plan.SavingsPlanId)" (click)="applyForPlan(plan)">Apply</button>
+                    <span *ngIf="plan.Status !== 'Active' || alreadyApplied(plan.SavingsPlanId)">Already Applied</span>
                 </td>
             </tr>
         </tbody>

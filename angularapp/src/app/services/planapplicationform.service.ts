@@ -53,10 +53,10 @@ export class PlanapplicationformService {
 
     getAppliedPlans(userId: number): Observable<PlanApplication[]> {
        const url = `${this.baseUrl}/PlanApplication/user/${userId}`;
-       return this.http.get<PlanApplication[]>(url, { headers: this.getAuthHeaders() });
-          // .pipe( 
-          //   catchError(this.handleError)
-          // );
+       return this.http.get<PlanApplication[]>(url, { headers: this.getAuthHeaders() })
+          .pipe( 
+            catchError(this.handleError)
+          );
      }
 
      

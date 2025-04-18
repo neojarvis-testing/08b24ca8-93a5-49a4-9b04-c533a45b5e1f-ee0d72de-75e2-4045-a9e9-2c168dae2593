@@ -78,18 +78,21 @@ export class UserviewsavingsplanComponent implements OnInit {
   plans: SavingsPlan[] = [];
   filteredPlans: SavingsPlan[] = [];
   searchTerm: string = '';
+  currentUser: any = null;
 
 
-  constructor(private savingPlanService: SavingsplanService, private router: Router) { }
+  constructor(private authService: AuthService, private savingPlanService: SavingsplanService, private planApplicationService: PlanapplicationformService, private router: Router) { }
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getUser();
     this.viewPlan(); 
   }
 
   viewPlan(): void {
     this.savingPlanService.getAllSavingsPlans().subscribe(data => {
       this.plans = data;
-      this.filteredPlans = data; // Initialize filteredPlans with all plans
+      this.filteredPlans = data;
+      console.log(data);
     });
   }
   
@@ -98,11 +101,17 @@ export class UserviewsavingsplanComponent implements OnInit {
       plan.Name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
-  applyForPlan(plan: any): void {
-        plan.Applied = true;
-        console.log(plan.SavingsPlanId);
-        this.router.navigate([`/User/PlanApplication/${plan.SavingsPlanId}`]);
-       }
-       }
+
+  alreadyApplied(savingsId: number)
+  {
+    this.planApplicationService.getAppliedPlans(this.currentUser.UserId).subscribe(data => {
+      this.appliedPlans = data;
+      console.log('Applied Plans:', data);
+    });
+
+  }
+
+}
+ 
 
 
