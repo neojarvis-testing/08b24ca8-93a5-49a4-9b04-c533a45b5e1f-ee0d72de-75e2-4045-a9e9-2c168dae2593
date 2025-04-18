@@ -1,34 +1,40 @@
 <div class="savings-plan-container">
-    <h2>Available Savings Plans</h2>
-    <input type="text" placeholder="Search by plan name" [(ngModel)]="searchTerm" (input)="filterPlans()">
-    <table>
-        <thead>
-            <tr>
-                <th>Plan Name</th>
-                <th>Goal Amount</th>
-                <th>Time Frame</th>
-                <th>Risk Level</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div *ngIf="isLoading" class="loading-spinner">Loading...</div>
+    <div *ngIf="!isLoading">
+        <h2>Available Savings Plans</h2>
+        <input type="text" placeholder="Search by plan name" [(ngModel)]="searchTerm" (input)="filterPlans()">
+        <table>
+            <thead>
+                <tr>
+                    <th>Plan Name</th>
+                    <th>Goal Amount</th>
+                    <th>Time Frame</th>
+                    <th>Risk Level</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr *ngFor="let plan of filteredPlans">
-                <td>{{plan.Name}}</td>
-                <td>{{plan.GoalAmount}}</td>
-                <td>{{plan.TimeFrame}}</td>
-                <td>{{plan.RiskLevel}}</td>
-                <td>{{plan.Description}}</td>
-                <td>{{plan.Status}}</td>
-                <td>
-                    <button *ngIf="plan.Status === 'Active' && !alreadyApplied(plan.SavingsPlanId)" (click)="applyForPlan(plan)">Apply</button>
-                    <span *ngIf="plan.Status !== 'Active' || alreadyApplied(plan.SavingsPlanId)">Already Applied</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    <td>{{plan.Name}}</td>
+                    <td>{{plan.GoalAmount}}</td>
+                    <td>{{plan.TimeFrame}}</td>
+                    <td>{{plan.RiskLevel}}</td>
+                    <td>{{plan.Description}}</td>
+                    <td>{{plan.Status}}</td>
+                    <td>
+                        <ng-container *ngIf="isAlreadyApplied(plan.SavingsPlanId); else notApplied">
+                            <span *ngIf="plan.Status === 'Active'">Already Applied</span>
+                            <span *ngIf="plan.Status !== 'Active'">Not Available</span>
+                        </ng-container>
+                        <ng-template #notApplied>
+                            <button *ngIf="plan.Status === 'Active'" (click)="applyForPlan(plan)">Apply</button>
+                            <span *ngIf="plan.Status !== 'Active'">Not Available</span>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-
-
