@@ -53,15 +53,20 @@
 </div>
 
 <!-- Details Popup -->
-<div *ngIf="showDetailsPopup" class="modal">
-  <div class="modal-content">
-    <button class="close-button" (click)="closeDetailsPopup()">×</button>
-    <h2 class="popup-title">User Details</h2>
-    <div class="popup-body">
+<div *ngIf="showDetailsPopup" class="innovative-modal">
+  <div class="modal-overlay" (click)="closeDetailsPopup()"></div>
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>User Details</h2>
+      <button class="close-button" (click)="closeDetailsPopup()">×</button>
+    </div>
+    <div class="modal-body">
       <p><strong>Username:</strong> {{ selectedUserDetails.username }}</p>
       <p><strong>Email Address:</strong> {{ selectedUserDetails.email }}</p>
       <p><strong>Phone Number:</strong> {{ selectedUserDetails.mobile }}</p>
     </div>
-    <button class="btn btn-secondary" (click)="closeDetailsPopup()">Close</button>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeDetailsPopup()">Close</button>
+    </div>
   </div>
 </div>

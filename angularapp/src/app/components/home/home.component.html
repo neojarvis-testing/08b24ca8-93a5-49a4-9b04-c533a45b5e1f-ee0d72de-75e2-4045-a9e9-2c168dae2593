@@ -19,7 +19,7 @@
     <div class="chit-plans">
       <div
         class="plan-card"
-        *ngFor="let card of cards; let i = index"
+        *ngFor="let card of activeCards; let i = index"
         [ngClass]="{ 'zoomed': zoomStates[i] }"
         (mouseenter)="pauseAnimation()"
         (mouseleave)="resumeAnimation()"
