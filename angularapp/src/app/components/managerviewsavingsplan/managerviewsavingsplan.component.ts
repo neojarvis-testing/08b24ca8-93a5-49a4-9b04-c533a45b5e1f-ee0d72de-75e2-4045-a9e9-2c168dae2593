@@ -11,6 +11,8 @@ import { SavingsPlan } from '../../models/savingsplan.model';
 export class ManagerviewsavingsplanComponent implements OnInit {
 
   savingsPlans: SavingsPlan[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
 
   constructor(private savingsPlanService: SavingsplanService, private router: Router) { }
 
@@ -44,6 +46,19 @@ export class ManagerviewsavingsplanComponent implements OnInit {
   editSavingsPlan(id: number): void {
     this.router.navigate([`/Manager/EditSavingPlan/${id}`])
   }
+  public get paginatedSavingsPlan(): SavingsPlan[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.savingsPlans.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+ 
+  public changePage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+ 
+  public totalPages(): number {
+    return Math.ceil(this.savingsPlans.length / this.itemsPerPage);
+  }
+
 }
 
 

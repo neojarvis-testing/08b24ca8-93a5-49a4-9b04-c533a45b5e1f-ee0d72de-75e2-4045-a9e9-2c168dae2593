@@ -1,38 +1,4 @@
-<!-- <div class="container">
-    <h2>View Savings Plans</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>S.No</th>
-          <th>Name</th>
-          <th>Goal Amount</th>
-          <th>Time Frame</th>
-          <th>Risk Level</th>
-          <th>Description</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let plan of savingsPlans; let i = index">
-          <td>{{plan.SavingsPlanId}}</td>
-          <td>{{ plan.Name }}</td>
-          <td>{{ plan.GoalAmount }}</td>
-          <td>{{ plan.TimeFrame }}</td>
-          <td>{{ plan.RiskLevel }}</td>
-          <td>{{ plan.Description }}</td>
-          <td>{{ plan.Status }}</td>
-          <td>
-            <button class="btn btn-primary" (click)="editSavingsPlan(plan.SavingPlanId)">Edit</button>
-            <button class="btn btn-danger" (click)="deleteSavingsPlan(plan.SavingPlanId)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
-  
-
-  <div class="container">
+  <!-- <div class="container">
     <h2>View Savings Plans</h2>
     <table class="table table-striped">
       <thead>
@@ -64,5 +30,51 @@
       </tbody>
     </table>
   </div>
-  
+   -->
+   <div class="container">
+    <h2>View Savings Plans</h2>
+    <hr>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Goal Amount</th>
+          <th>Time Frame</th>
+          <th>Risk Level</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of paginatedSavingsPlan; let i = index">
+          <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+          <td>{{ plan.Name }}</td>
+          <td>{{ plan.GoalAmount }}</td>
+          <td>{{ plan.TimeFrame }}</td>
+          <td>{{ plan.RiskLevel }}</td>
+          <td>{{ plan.Description }}</td>
+          <td>{{ plan.Status }}</td>
+          <td>
+            <button class="btn btn-primary" (click)="editSavingsPlan(plan.SavingsPlanId)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteSavingsPlan(plan.SavingsPlanId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination" *ngIf="totalPages() > 1">
+      <button class="page-btn" [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+        Previous
+      </button>
+      <button *ngFor="let page of [].constructor(totalPages()); let i = index"
+              [ngClass]="{ 'active': currentPage === (i + 1) }"
+              (click)="changePage(i + 1)">
+        {{ i + 1 }}
+      </button>
+      <button class="page-btn" [disabled]="currentPage === totalPages()" (click)="changePage(currentPage + 1)">
+        Next
+      </button>
+    </div>
+  </div>
   
