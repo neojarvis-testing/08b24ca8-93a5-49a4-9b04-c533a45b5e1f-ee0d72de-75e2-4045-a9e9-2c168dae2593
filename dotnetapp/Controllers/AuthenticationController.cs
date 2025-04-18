@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Models;
 using dotnetapp.Services;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace dotnetapp.Controllers
 {
@@ -51,6 +53,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("Users/{userId}")]
+        [Authorize(Roles = "RegionalManager")]
         public async Task<IActionResult> GetUserById(int userId)
         {
             try
