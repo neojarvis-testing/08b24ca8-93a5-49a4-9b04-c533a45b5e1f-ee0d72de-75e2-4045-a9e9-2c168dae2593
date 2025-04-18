@@ -25,22 +25,21 @@ export class UserplanapplicationformComponent implements OnInit {
     UserId: 0,
     SavingsPlanId: 0
   };
-  savingsPlan: SavingsPlan = 
-  {
+  savingsPlan: SavingsPlan = {
     SavingPlanId: 0,
     Name: '',
     GoalAmount: 0,
     TimeFrame: 0,
-    RiskLevel:null,
+    RiskLevel: null,
     Description: '',
     Status: ''
   };
   selectedFile: File | null = null;
-  minDate: string;
-  maxGoalAmount: number;
+  minDate: string = '';
+  maxGoalAmount: number = 0;
   amountError: string = '';
   fileError: string = '';
-  currentUser: any = null;
+  isFormValid: boolean = false;
 
   constructor(
     private savingsPlanService: SavingsplanService,
@@ -52,22 +51,24 @@ export class UserplanapplicationformComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.currentUser = this.authService.getUser();
-    console.log(this.currentUser);
     this.loadData();
+    this.setMinDate();
   }
 
   loadData(): void {
     this.id = +this.activateRoute.snapshot.params['id'];
-    this.planApplicationForm.UserId = this.currentUser.userId;
+    const currentUser = this.authService.getUser();
+    if (currentUser && currentUser.userId) {
+      this.planApplicationForm.UserId = currentUser.userId;
+    } else {
+      console.error('User not found or invalid.');
+    }
     this.planApplicationForm.SavingsPlanId = this.id;
 
-    this.savingsPlanService.getSavingsPlanById(this.id).subscribe(res => {
+    this.savingsPlanService.getSavingsPlanById(this.id).subscribe((res) => {
       this.savingsPlan = res;
       this.maxGoalAmount = res.GoalAmount;
     });
-
-    this.setMinDate();
   }
 
   setMinDate(): void {
@@ -81,10 +82,10 @@ export class UserplanapplicationformComponent implements OnInit {
   validateAmount(): void {
     if (this.planApplicationForm.AppliedAmount > this.maxGoalAmount) {
       this.amountError = 'Applied Amount must be less than or equal to the goal amount.';
-      this.showErrorPopup(this.amountError);
     } else {
       this.amountError = '';
     }
+    this.updateFormValidity();
   }
 
   onFileChange(event: any): void {
@@ -98,11 +99,11 @@ export class UserplanapplicationformComponent implements OnInit {
         this.fileError = 'Only .jpg, .jpeg, and .png files are allowed.';
         this.selectedFile = null;
         (event.target as HTMLInputElement).value = '';
-        this.showErrorPopup(this.fileError);
       }
     } else {
       this.fileError = 'Proof Document is required.';
     }
+    this.updateFormValidity();
   }
 
   convertToBase64(file: File): void {
@@ -112,18 +113,22 @@ export class UserplanapplicationformComponent implements OnInit {
     };
     reader.onerror = () => {
       this.fileError = 'Error converting file to Base64.';
-      this.showErrorPopup(this.fileError);
     };
     reader.readAsDataURL(file);
   }
 
+  updateFormValidity(): void {
+    this.isFormValid =
+      !this.amountError &&
+      !this.fileError &&
+      this.planApplicationForm.AppliedAmount > 0 &&
+      this.planApplicationForm.ApplicationDate &&
+      this.planApplicationForm.Remarks.trim() !== '' &&
+      this.planApplicationForm.ProofDocument !== '';
+  }
+
   onSubmit(form: NgForm): void {
-    this.validateAmount();
-    if (form.invalid || this.amountError || this.fileError || !this.planApplicationForm.ProofDocument) {
-      if (!this.planApplicationForm.ProofDocument) {
-        this.fileError = 'Proof Document is required.';
-        this.showErrorPopup(this.fileError);
-      }
+    if (!this.isFormValid) {
       return;
     }
     this.submitApplication();
@@ -142,18 +147,14 @@ export class UserplanapplicationformComponent implements OnInit {
         });
       },
       (error) => {
-        this.showErrorPopup('An error occurred while submitting the application.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: 'An error occurred while submitting the application.',
+          confirmButtonColor: '#e74c3c'
+        });
         console.error(error);
       }
     );
-  }
-
-  showErrorPopup(message: string): void {
-    Swal.fire({
-      icon: 'error',
-      title: 'Error!',
-      text: message,
-      confirmButtonColor: '#e74c3c'
-    });
   }
 }

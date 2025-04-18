@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SavingsPlan } from '../../models/savingsplan.model';
 import { SavingsplanService } from '../../services/savingsplan.service';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-managereditsavingsplan',
@@ -86,4 +87,17 @@ export class ManagereditsavingsplanComponent implements OnInit {
       this.errorMessage = 'Please fill out all required fields correctly.';
     }
   }
+  showSuccessModal() {
+    var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+    myModal.show();
+  }
+
+  // Method to close the modal and navigate
+  closeModal() {
+    var myModal = bootstrap.Modal.getInstance(document.getElementById('successModal'));
+    myModal.hide();
+    this.router.navigate([`/Manager/SavingPlans`]);
+  }
+  moveButton($event : any)
+  {}
 }

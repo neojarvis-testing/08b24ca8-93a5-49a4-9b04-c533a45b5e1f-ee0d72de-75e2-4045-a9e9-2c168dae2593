@@ -4,12 +4,12 @@ body {
   background-color: #f4f4f9;
   color: #333;
 }
-
+ 
 h1 {
   text-align: center;
   color: #1a3e72;
 }
-
+ 
 /* Table Styling */
 table {
   width: 100%;
@@ -20,28 +20,28 @@ table {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+ 
 table thead {
   background-color: #1a3e72;
   color: #fff;
 }
-
+ 
 table th,
 table td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-
+ 
 table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-
+ 
 table tbody tr:hover {
   background-color: #d4edda;
   cursor: pointer;
 }
-
+ 
 /* Button Styling */
 .btn {
   padding: 8px 12px;
@@ -51,17 +51,17 @@ table tbody tr:hover {
   font-size: 14px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
+ 
 .btn-primary {
   background-color: #1a3e72;
   color: white;
 }
-
+ 
 .btn-primary:hover {
   background-color: #14325a;
   transform: scale(1.05);
 }
-
+ 
 .btn-secondary {
   background-color: #ff0000;
   /* Red color */
@@ -74,13 +74,13 @@ table tbody tr:hover {
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
+ 
 .btn-secondary:hover {
   background-color: #cc0000; /* Darker red on hover */
   transform: scale(1.1); /* Slightly enlarge on hover */
   color: #fff; /* Ensure text remains white */
 }
-
+ 
 /* Pagination Styling */
 .pagination {
   display: flex;
@@ -89,7 +89,7 @@ table tbody tr:hover {
   gap: 5px;
   margin: 20px 0;
 }
-
+ 
 .pagination button,
 .page-btn {
   padding: 8px 12px;
@@ -99,22 +99,22 @@ table tbody tr:hover {
   border-radius: 4px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
-
+ 
 .pagination button:hover:not(:disabled) {
   background-color: #007BFFff; /* Azure */
   color: #FFFFFFff; /* White */
 }
-
+ 
 .pagination button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
-
+ 
 .pagination button.active {
   background-color: #007BFFff; /* Azure */
   color: #FFFFFFff; /* White */
 }
-
+ 
 /* Popup Styling */
 .innovative-modal {
   position: fixed;
@@ -127,7 +127,7 @@ table tbody tr:hover {
   justify-content: center;
   z-index: 1000;
 }
-
+ 
 .modal-overlay {
   position: absolute;
   top: 0;
@@ -137,7 +137,7 @@ table tbody tr:hover {
   background: rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.4s ease-in-out;
 }
-
+ 
 .modal-container {
   position: relative;
   background: #fff;
@@ -149,7 +149,7 @@ table tbody tr:hover {
   animation: slideIn 0.5s ease-out;
   transform-origin: center;
 }
-
+ 
 /* Enhanced Modal Header */
 .modal-header {
   display: flex;
@@ -159,13 +159,13 @@ table tbody tr:hover {
   border-bottom: 2px solid #f4f4f9;
   padding-bottom: 10px;
 }
-
+ 
 .modal-header h2 {
   margin: 0;
   font-size: 22px;
   color: #1a3e72;
 }
-
+ 
 /* Styled Close Button */
 .close-button {
   background: none;
@@ -177,31 +177,31 @@ table tbody tr:hover {
   cursor: pointer;
   transition: transform 0.2s ease, color 0.3s ease;
 }
-
+ 
 .close-button:hover {
   color: #cc0000;
   /* Darker red on hover */
   transform: scale(1.2);
   /* Slightly enlarge on hover */
 }
-
+ 
 /* Enhanced Modal Body */
 .modal-body {
   font-size: 16px;
   color: #444;
   line-height: 1.6;
 }
-
+ 
 .modal-body p {
   margin: 10px 0;
 }
-
+ 
 .modal-body p span {
   font-weight: bold;
   /* Highlight labels */
   color: #1a3e72;
 }
-
+ 
 .modal-body .details-card {
   background-color: #f9f9fc;
   border: 1px solid #ddd;
@@ -210,34 +210,34 @@ table tbody tr:hover {
   margin-top: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+ 
 .modal-body .details-card p {
   margin: 8px 0;
 }
-
+ 
 /* Modal Footer */
 .modal-footer {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-
+ 
 /* Popup Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
   }
-
+ 
   to {
     opacity: 1;
   }
 }
-
+ 
 @keyframes slideIn {
   from {
     transform: scale(0.8);
   }
-
+ 
   to {
     transform: scale(1);
   }
@@ -254,3 +254,4 @@ table tbody tr:hover {
   border-radius: 8px; /* Rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+ 

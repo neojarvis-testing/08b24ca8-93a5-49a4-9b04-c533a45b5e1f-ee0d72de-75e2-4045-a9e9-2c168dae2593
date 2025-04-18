@@ -15,11 +15,15 @@ import Swal from 'sweetalert2';
 })
 export class UserappliedplansComponent implements OnInit {
   planApplications: PlanApplication[] = [];
-  savingsplans: SavingsPlan[]= [];
-  originalPlanApplications: PlanApplication[] = []; // Keep a copy of the original order
+  savingsplans: SavingsPlan[] = [];
+  originalPlanApplications: PlanApplication[] = [];
   selectedImage: string | null = null;
   currentUser: any = null;
   userID: number = 0;
+
+  // Pagination properties
+  currentPage: number = 1; // Current page
+  itemsPerPage: number = 5; // Records per page
 
   // Sort orders for different columns
   sortPlanNameOrder: 'asc' | 'desc' | null = null;
@@ -42,83 +46,119 @@ export class UserappliedplansComponent implements OnInit {
 
   loadAppliedPlans(): void {
     this.planApplicationService.getAppliedPlans(this.userID).subscribe((applications: PlanApplication[]) => {
-        const planRequests = applications.map((application) =>
-            this.savingsPlanService.getSavingsPlanById(application.SavingsPlanId)
-        );
-        
-        forkJoin([ forkJoin(planRequests)]).subscribe(([plans]) => {
-            applications.forEach((application, index) => {
-                application.SavingsPlan = plans[index];
-            });
+      const planRequests = applications.map((application) =>
+        this.savingsPlanService.getSavingsPlanById(application.SavingsPlanId)
+      );
 
-            this.planApplications = applications;
-            this.originalPlanApplications = [...this.planApplications];
+      forkJoin([forkJoin(planRequests)]).subscribe(([plans]) => {
+        applications.forEach((application, index) => {
+          application.SavingsPlan = plans[index];
         });
-    });
-}
 
-  // Sorting for Plan Name column
+        this.planApplications = applications;
+        this.originalPlanApplications = [...this.planApplications];
+      });
+    });
+  }
+
+  // Pagination logic
+  get paginatedPlans(): PlanApplication[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.planApplications.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  changePage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  totalPages(): number {
+    return Math.ceil(this.planApplications.length / this.itemsPerPage);
+  }
+
+  // Sorting logic for Plan Name column
   sortPlanName(): void {
     if (this.sortPlanNameOrder === 'asc') {
+      // Sort descending
       this.planApplications.sort((a, b) =>
-        this.savingsplans[b.SavingsPlanId]?.Name.localeCompare(this.savingsplans[a.SavingsPlanId]?.Name)
+        b.SavingsPlan?.Name.localeCompare(a.SavingsPlan?.Name)
       );
       this.sortPlanNameOrder = 'desc';
     } else if (this.sortPlanNameOrder === 'desc') {
+      // Reset to original
       this.resetSorting();
     } else {
+      // Sort ascending
       this.planApplications.sort((a, b) =>
-        this.savingsplans[a.SavingsPlanId]?.Name.localeCompare(this.savingsplans[b.SavingsPlanId]?.Name)
+        a.SavingsPlan?.Name.localeCompare(b.SavingsPlan?.Name)
       );
       this.sortPlanNameOrder = 'asc';
     }
+    this.resetOtherSortOrders('sortPlanNameOrder');
   }
 
-  // Sorting for Applied Amount column
+  // Sorting logic for Applied Amount column
   sortAppliedAmount(): void {
     if (this.sortAppliedAmountOrder === 'asc') {
+      // Sort descending
       this.planApplications.sort((a, b) => b.AppliedAmount - a.AppliedAmount);
       this.sortAppliedAmountOrder = 'desc';
     } else if (this.sortAppliedAmountOrder === 'desc') {
+      // Reset to original
       this.resetSorting();
     } else {
+      // Sort ascending
       this.planApplications.sort((a, b) => a.AppliedAmount - b.AppliedAmount);
       this.sortAppliedAmountOrder = 'asc';
     }
+    this.resetOtherSortOrders('sortAppliedAmountOrder');
   }
 
-  // Sorting for Application Date column
+  // Sorting logic for Application Date column
   sortApplicationDate(): void {
     if (this.sortApplicationDateOrder === 'asc') {
+      // Sort descending
       this.planApplications.sort((a, b) =>
         new Date(b.ApplicationDate).getTime() - new Date(a.ApplicationDate).getTime()
       );
       this.sortApplicationDateOrder = 'desc';
     } else if (this.sortApplicationDateOrder === 'desc') {
+      // Reset to original
       this.resetSorting();
     } else {
+      // Sort ascending
       this.planApplications.sort((a, b) =>
         new Date(a.ApplicationDate).getTime() - new Date(b.ApplicationDate).getTime()
       );
       this.sortApplicationDateOrder = 'asc';
     }
+    this.resetOtherSortOrders('sortApplicationDateOrder');
   }
 
-  // Sorting for Status column
+  // Sorting logic for Status column
   sortStatus(): void {
     if (this.sortStatusOrder === 'asc') {
-      this.planApplications.sort((a, b) =>
-        b.Status.localeCompare(a.Status)
-      );
+      // Sort descending
+      this.planApplications.sort((a, b) => b.Status.localeCompare(a.Status));
       this.sortStatusOrder = 'desc';
     } else if (this.sortStatusOrder === 'desc') {
+      // Reset to original
       this.resetSorting();
     } else {
-      this.planApplications.sort((a, b) =>
-        a.Status.localeCompare(b.Status)
-      );
+      // Sort ascending
+      this.planApplications.sort((a, b) => a.Status.localeCompare(b.Status));
       this.sortStatusOrder = 'asc';
     }
+    this.resetOtherSortOrders('sortStatusOrder');
+  }
+
+  // Reset other sort orders except the current one
+  resetOtherSortOrders(currentSortOrder: string): void {
+    const sortOrders = ['sortPlanNameOrder', 'sortAppliedAmountOrder', 'sortApplicationDateOrder', 'sortStatusOrder'];
+    sortOrders.forEach(sortOrder => {
+      if (sortOrder !== currentSortOrder) {
+        this[sortOrder] = null;
+      }
+    });
   }
 
   resetSorting(): void {
@@ -136,7 +176,9 @@ export class UserappliedplansComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      cancelButtonText: 'No, keep it',
+      confirmButtonColor: '#ff4d4d',
+      cancelButtonColor: '#007bff'
     }).then(result => {
       if (result.isConfirmed) {
         this.planApplicationService.deletePlanApplication(planApplicationId).subscribe(() => {

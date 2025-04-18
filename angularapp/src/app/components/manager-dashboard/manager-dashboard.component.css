@@ -1,0 +1,59 @@
+/* Dashboard Container */
+.dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+/* Cards */
+.card {
+  background: linear-gradient(135deg, #f6d365, #fda085);
+  border-radius: 15px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  height: 150px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #444;
+  margin: 5px 0;
+}
+
+/* Status Colors */
+.card p .active {
+  color: #008000; /* Green for Active */
+}
+
+.card p .inactive {
+  color: red; /* Red for Inactive */
+}
+
+.card p .approved {
+  color: #008000; /* Green for Approved */
+}
+
+.card p .rejected {
+  color: red; /* Red for Rejected */
+}
+
