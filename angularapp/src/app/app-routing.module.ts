@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UsernavComponent } from './components/usernav/usernav.component';
@@ -20,6 +20,9 @@ import { UserplanapplicationformComponent } from './components/userplanapplicati
 import { Feedback } from './models/feedback.model';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 
 const routes: Routes = [
   {path:'Home',component:HomeComponent},
@@ -40,7 +43,10 @@ const routes: Routes = [
   {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AddFeedback', component:UseraddfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'error', component:ErrorComponent},
-  {path: '', redirectTo: '/Home', pathMatch: 'full' },
+  {path:'LandingPage', component:LandingPageComponent},
+  {path:'Dashboard', component:DashboardComponent},
+  {path:'ManagerDashboard',component:ManagerDashboardComponent},
+  {path: '', redirectTo: '/Home', pathMatch: 'full' }
   //{path: '**', redirectTo: '/error' }
 ];
  

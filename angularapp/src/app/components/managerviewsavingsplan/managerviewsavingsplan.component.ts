@@ -14,8 +14,6 @@ export class ManagerviewsavingsplanComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
 
-  
-
   constructor(private savingsPlanService: SavingsplanService, private router: Router) { }
 
   ngOnInit(): void {

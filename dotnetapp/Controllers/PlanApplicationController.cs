@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Models;
 using dotnetapp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotnetapp.Controllers
 {
@@ -22,6 +23,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult<IEnumerable<PlanApplication>>> GetAllPlanApplications()
         {
             try
@@ -36,6 +38,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("{applicationId}")]
+        [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult> GetPlanApplicationById(int applicationId)
         {
             try
@@ -55,6 +58,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Customer")]
         public async Task<ActionResult> AddPlanApplication([FromBody] PlanApplication planApplication)
         {
             try
@@ -84,6 +88,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("user/{userId}")]
+        [Authorize(Roles = "Customer")]
         public async Task<ActionResult> GetPlanApplicationsByUserId(int userId)
         {
             try
@@ -98,6 +103,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPut("{applicationId}")]
+        [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult> UpdatePlanApplication(int applicationId, [FromBody] PlanApplication planApplication)
         {
             try
@@ -116,6 +122,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpDelete("{applicationId}")]
+        [Authorize(Roles = "Customer")]
         public async Task<ActionResult> DeletePlanApplication(int applicationId)
         {
             try
