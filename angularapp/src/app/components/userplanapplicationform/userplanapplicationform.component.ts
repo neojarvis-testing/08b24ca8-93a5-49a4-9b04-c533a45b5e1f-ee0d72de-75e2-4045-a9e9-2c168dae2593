@@ -82,6 +82,8 @@ export class UserplanapplicationformComponent implements OnInit {
   validateAmount(): void {
     if (this.planApplicationForm.AppliedAmount > this.maxGoalAmount) {
       this.amountError = 'Applied Amount must be less than or equal to the goal amount.';
+    } else if (this.planApplicationForm.AppliedAmount <= 0) {
+      this.amountError = 'Applied Amount must be greater than 0.';
     } else {
       this.amountError = '';
     }
@@ -110,6 +112,7 @@ export class UserplanapplicationformComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.planApplicationForm.ProofDocument = reader.result as string;
+      this.updateFormValidity(); // Ensure validity is updated after file upload
     };
     reader.onerror = () => {
       this.fileError = 'Error converting file to Base64.';
@@ -118,17 +121,24 @@ export class UserplanapplicationformComponent implements OnInit {
   }
 
   updateFormValidity(): void {
+    // Ensure all required fields are valid
     this.isFormValid =
-      !this.amountError &&
-      !this.fileError &&
-      this.planApplicationForm.AppliedAmount > 0 &&
-      this.planApplicationForm.ApplicationDate &&
-      this.planApplicationForm.Remarks.trim() !== '' &&
-      this.planApplicationForm.ProofDocument !== '';
+      !this.amountError && // No amount error
+      !this.fileError && // No file error
+      this.planApplicationForm.AppliedAmount > 0 && // Applied amount is valid
+      this.planApplicationForm.ApplicationDate && // Application date is valid
+      this.planApplicationForm.Remarks.trim() !== '' && // Remarks are not empty
+      this.planApplicationForm.ProofDocument !== ''; // Proof document is valid
   }
 
   onSubmit(form: NgForm): void {
     if (!this.isFormValid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Form',
+        text: 'Please correct the errors before submitting.',
+        confirmButtonColor: '#e74c3c'
+      });
       return;
     }
     this.submitApplication();
