@@ -9,6 +9,7 @@ import { SavingsPlan } from 'src/app/models/savingsplan.model';
 })
 export class HomeComponent implements OnInit {
   cards: any[] = []; // Holds the plans
+  activeCards: any[] = [];
   zoomStates: boolean[] = []; // To track zoom status of each card
   isHovered: boolean = false; // Track if any card is hovered
   isZoomed: boolean = false; // Track if any card is zoomed
@@ -24,6 +25,8 @@ export class HomeComponent implements OnInit {
       (data) => {
         console.log('Fetched Plans:', data); // Debug fetched data
         this.cards = data; // Assign data to cards
+        console.log(this.cards);
+        this.activeCards = this.cards.filter(data=>data.Status == "Active");
         this.zoomStates = Array(this.cards.length).fill(false); // Initialize zoom states
       },
       (error) => {
