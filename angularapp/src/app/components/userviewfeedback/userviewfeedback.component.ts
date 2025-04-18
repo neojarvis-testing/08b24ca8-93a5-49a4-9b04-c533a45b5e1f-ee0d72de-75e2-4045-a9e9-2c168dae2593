@@ -14,6 +14,7 @@ export class UserviewfeedbackComponent implements OnInit {
   userId: string;
   delPopup: boolean = false;
   feedbackToDel: Feedback | null = null;
+  currentUser: any = null;
  
   // Pagination properties
   currentPage: number = 1;
@@ -22,7 +23,8 @@ export class UserviewfeedbackComponent implements OnInit {
   constructor(private router: Router, private service: FeedbackService, private authService: AuthService) { }
  
   ngOnInit(): void {
-    this.userId = String(this.authService.getUserId());
+    this.currentUser = this.authService.getUser();
+    this.userId = String(this.currentUser.userId);
     this.getFeedbacksByUserId(this.userId);
   }
  

@@ -77,4 +77,7 @@ export class ManagercreatesavingsplanComponent implements OnInit {
       }, index * 300); // Delay of 300ms between each letter
     });
   }
+
+  moveButton($event : any)
+  {}
 }
