@@ -25,6 +25,7 @@ import { UserappliedplansComponent } from './components/userappliedplans/userapp
 import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 //import { LandingPageComponent } from './components/landingpage/landingpage.component';
 
 
@@ -55,6 +56,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ManagerviewapplicationformComponent,
     LandingPageComponent,
     DashboardComponent,
+    ManagerDashboardComponent,
    
   ],
   

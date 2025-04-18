@@ -122,7 +122,7 @@ header .cta-button:hover {
 .testimonials {
   background-color: #f8f9fa; /* Light gray background for better contrast */
   padding: 40px 20px; /* Add padding inside the section */
-  margin: 100px 0; /* Add space above and below the testimonials section */
+  margin: 50px 0; /* Add space above and below the testimonials section */
   border-radius: 10px; /* Slightly rounded corners for a softer look */
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
@@ -134,7 +134,7 @@ header .cta-button:hover {
 }
 
 .testimonial {
-  margin: 20px 0; /* Space between testimonials */
+  margin: 10px 0; /* Space between testimonials */
   font-style: italic; /* Italics to highlight the quotes */
   color: #555; /* Softer text color */
 }

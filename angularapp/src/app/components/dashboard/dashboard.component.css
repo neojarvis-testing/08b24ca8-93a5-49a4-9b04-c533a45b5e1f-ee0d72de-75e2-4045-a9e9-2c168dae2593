@@ -1,219 +1,153 @@
 /* General Styles */
 body {
-    font-family: 'Futura-PT', sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
-  
-  .container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  header {
-    background: linear-gradient(to right, #0a74da, #5ca9f7);
-    color: white;
-    padding: 40px 20px;
-    border-radius: 10px;
-  }
-  
-  header h1 {
-    font-size: 36px;
-    margin: 0;
-  }
-  
-  header p {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-  
-  header .cta-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #ff6f61;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  header .cta-button:hover {
-    background-color: #ff8b7d;
-  }
-  
-  /* Chit Plans Section */
-  .chit-plans-wrapper {
-    width: 100%;
-    overflow: hidden; /* Prevent overflow */
-    margin: 80px 0; /* Increased vertical spacing above and below the card container */
-    padding: 40px 0; /* Add padding for smoother display of zoomed cards */
-  }
-  
-  .chit-plans {
-    display: flex;
-    gap: 20px; /* Space between cards */
-    animation: scroll 20s linear infinite; /* Smooth scrolling effect */
-  }
-  
-  .chit-plans-wrapper.animation-paused .chit-plans {
-    animation-play-state: paused; /* Pause animation on hover or zoom */
-  }
-  
-  .plan-card {
-    flex: 0 0 auto;
-    width: 300px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(16, 16, 16, 0.1);
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.3s, box-shadow 0.3s ease-in-out, border 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 20px; /* Add spacing above each card */
-    margin-bottom: 20px; /* Add spacing below each card */
-  }
-  
-  .plan-card:hover {
-    transform: scale(1.05); /* Pop effect on hover */
-    box-shadow: 0px 8px 12px rgba(16, 16, 16, 0.3);
-  }
-  
-  .plan-card.zoomed {
-    transform: scale(1.3); /* Zoom effect on click */
-    z-index: 10; /* Ensure the zoomed card stays above other elements */
-    border: 2px solid #1266ba; /* Highlight border */
-    position: relative; /* Ensure zoomed card does not overlap with other elements */
-  }
-  
-  .plan-card h2 {
-    color: #1266ba;
-    margin-bottom: 10px;
-    font-size: 18px;
-  }
-  
-  .plan-card p {
-    color: #555;
-    font-size: 14px;
-    line-height: 1.6;
-    margin-bottom: 15px;
-  }
-  
-  .plan-card button {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: white;
-    background-color: #1266ba;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .plan-card button:hover {
-    background-color: #4593e8;
-  }
-  /* Testimonials Section */
-  .testimonials {
-    background-color: #f8f9fa; /* Light gray background for better contrast */
-    padding: 40px 20px; /* Add padding inside the section */
-    margin: 100px 0; /* Add space above and below the testimonials section */
-    border-radius: 10px; /* Slightly rounded corners for a softer look */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  }
-  
-  .testimonials h2 {
-    font-size: 24px; /* Larger font for the title */
-    color: #1266ba; /* Match the primary color theme */
-    margin-bottom: 20px; /* Space after the title */
-  }
-  
-  .testimonial {
-    margin: 20px 0; /* Space between testimonials */
-    font-style: italic; /* Italics to highlight the quotes */
-    color: #555; /* Softer text color */
-  }
-  
-  .testimonial span {
-    display: block;
-    margin-top: 10px; /* Space above the author's name */
-    font-weight: bold;
-    color: #1266ba; /* Match the primary color theme */
-  }
-  
-  /* Call-to-Action Section */
-  .cta {
-    background: linear-gradient(to right, #ff6f61, #ff8b7d); /* Gradient for a vibrant look */
-    color: white; /* White text for contrast */
-    padding: 40px 20px; /* Padding inside the section */
-    border-radius: 10px; /* Rounded corners */
-    margin-top: 100px; /* Space above the Call-to-Action section */
-    text-align: center; /* Center-align the text */
-  }
-  
-  .cta h2 {
-    font-size: 28px; /* Larger font for the title */
-    margin-bottom: 20px; /* Space after the title */
-  }
-  
-  .cta .cta-button {
-    padding: 10px 20px; /* Add padding inside the button */
-    font-size: 16px; /* Slightly larger font size */
-    color: #ff6f61; /* Match the gradient start color */
-    background-color: white; /* White background for contrast */
-    border: none;
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-  }
-  
-  .cta .cta-button:hover {
-    background-color: #f2f2f2; /* Slightly darker background on hover */
-    color: #ff8b7d; /* Match the gradient end color */
-  }
-  
-  /* Footer Section */
-  footer {
-    background: #333; /* Dark background for contrast */
-    color: white; /* White text for readability */
-    padding: 20px; /* Space inside the footer */
-    text-align: center; /* Center-align the content */
-    margin-top: 40px; /* Space above the footer */
-  }
-  
-  footer .social-icons img {
-    width: 24px; /* Icon size */
-    margin: 0 10px; /* Space between icons */
-    cursor: pointer;
-    transition: opacity 0.3s ease; /* Smooth transition for hover effect */
-  }
-  
-  footer .social-icons img:hover {
-    opacity: 0.8; /* Slight opacity change on hover */
-  }
-  
-  /* Keyframes for Moving Effect */
-  @keyframes scroll {
-    0% {
-      transform: translateX(100%);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .chit-plans {
-      flex-direction: column; /* Stack cards vertically on smaller screens */
-      animation: none; /* Disable animation for better readability */
-    }
-  }
-  
-  
-  
+  font-family: 'Futura-PT', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+}
+
+header {
+  background: linear-gradient(to right, #0a74da, #5ca9f7);
+  color: white;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+header p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+/* Chit Plans Section */
+.chit-plans-wrapper {
+  width: 100%;
+  overflow: hidden; /* Prevent overflow */
+  margin: 80px 0; /* Increased vertical spacing above and below the card container */
+  padding: 40px 0; /* Add padding for smoother display of zoomed cards */
+}
+
+.chit-plans {
+  display: flex;
+  gap: 20px; /* Space between cards */
+  animation: scroll 20s linear infinite; /* Smooth scrolling effect */
+}
+
+.chit-plans-wrapper.animation-paused .chit-plans {
+  animation-play-state: paused; /* Pause animation on hover or zoom */
+}
+
+.plan-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(16, 16, 16, 0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s ease-in-out, border 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px; /* Add spacing above each card */
+  margin-bottom: 20px; /* Add spacing below each card */
+}
+
+.plan-card:hover {
+  transform: scale(1.05); /* Pop effect on hover */
+  box-shadow: 0px 8px 12px rgba(16, 16, 16, 0.3);
+}
+
+.plan-card.zoomed {
+  transform: scale(1.3); /* Zoom effect on click */
+  z-index: 10; /* Ensure the zoomed card stays above other elements */
+  border: 2px solid #1266ba; /* Highlight border */
+  position: relative; /* Ensure zoomed card does not overlap with other elements */
+}
+
+.plan-card h2 {
+  color: #1266ba;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.plan-card p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.plan-card button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #1266ba;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.plan-card button:hover {
+  background-color: #4593e8;
+}
+
+/* Testimonials Section */
+.testimonials {
+  background-color: #f8f9fa; /* Light gray background for better contrast */
+  padding: 40px 20px; /* Add padding inside the section */
+  margin: 100px 0; /* Add space above and below the testimonials section */
+  border-radius: 10px; /* Slightly rounded corners for a softer look */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.testimonials h2 {
+  font-size: 24px; /* Larger font for the title */
+  color: #1266ba; /* Match the primary color theme */
+  margin-bottom: 20px; /* Space after the title */
+}
+
+.testimonial {
+  margin: 20px 0; /* Space between testimonials */
+  font-style: italic; /* Italics to highlight the quotes */
+  color: #555; /* Softer text color */
+}
+
+.testimonial span {
+  display: block;
+  margin-top: 10px; /* Space above the author's name */
+  font-weight: bold;
+  color: #1266ba; /* Match the primary color theme */
+}
+
+/* Footer Section */
+footer {
+  background: #333; /* Dark background for contrast */
+  color: white; /* White text for readability */
+  padding: 20px; /* Space inside the footer */
+  text-align: center; /* Center-align the content */
+  margin-top: 40px; /* Space above the footer */
+}
+
+footer .social-icons img {
+  width: 24px; /* Icon size */
+  margin: 0 10px; /* Space between icons */
+  cursor: pointer;
+  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+}
+
+footer .social-icons img:hover {
+  opacity: 0.8; /* Slight opacity change on hover */
+}
