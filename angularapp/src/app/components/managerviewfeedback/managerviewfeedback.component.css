@@ -116,6 +116,39 @@ table tbody tr:hover {
   color: #444;
 }
 
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination .page-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination .page-btn:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.pagination button.active {
+  background-color: #0056b3;
+  font-weight: bold;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
 /* Popup Animations */
 @keyframes popupFadeIn {
   from {

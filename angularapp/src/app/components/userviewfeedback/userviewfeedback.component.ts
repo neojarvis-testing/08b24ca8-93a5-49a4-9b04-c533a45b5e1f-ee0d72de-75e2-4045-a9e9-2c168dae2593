@@ -11,32 +11,26 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 })
 export class UserviewfeedbackComponent implements OnInit {
   feedbacks: Feedback[] = [];
-  feedbackId: string;
   userId: string;
   delPopup: boolean = false;
-  feedbackToDel: Feedback | null;
+  feedbackToDel: Feedback | null = null;
+
+  // Pagination properties
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
 
   constructor(private router: Router, private service: FeedbackService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.userId = String(this.authService.getUserId());
-    //this.loadFeedbacks();
     this.getFeedbacksByUserId(this.userId);
   }
 
-  // loadFeedbacks() {
-  //   this.service.getFeedbacks().subscribe((data) => {
-  //     this.feedbacks = data;
-  //   });
-  // }
-
- 
   public confirmDelete(feedback: Feedback): void {
     console.log("Feedback to delete:", feedback);
     this.feedbackToDel = feedback;
     this.delPopup = true;
-    console.log("Popup state:", this.delPopup);
-}
+  }
 
   public deleteFeedback(): void {
     if (this.feedbackToDel) {
@@ -49,7 +43,6 @@ export class UserviewfeedbackComponent implements OnInit {
   }
 
   public getFeedbacksByUserId(userId: string): void {
-    console.log(userId);
     this.service.getAllFeedbacksByUserId(userId).subscribe((data: Feedback[]) => {
       this.feedbacks = data;
     });
@@ -58,5 +51,19 @@ export class UserviewfeedbackComponent implements OnInit {
   public closeDel(): void {
     this.delPopup = false;
     this.feedbackToDel = null;
+  }
+
+  // Pagination methods
+  public get paginatedFeedbacks(): Feedback[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.feedbacks.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  public changePage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  public totalPages(): number {
+    return Math.ceil(this.feedbacks.length / this.itemsPerPage);
   }
 }
