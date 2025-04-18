@@ -12,8 +12,6 @@ export class ManagerviewsavingsplanComponent implements OnInit {
 
   savingsPlans: SavingsPlan[] = [];
 
-  
-
   constructor(private savingsPlanService: SavingsplanService, private router: Router) { }
 
   ngOnInit(): void {
