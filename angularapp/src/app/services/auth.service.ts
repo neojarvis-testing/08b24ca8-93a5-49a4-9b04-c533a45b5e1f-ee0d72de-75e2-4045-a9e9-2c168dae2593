@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Login } from '../models/login.model';
 import { jwtDecode } from 'jwt-decode';
 import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
@@ -63,9 +64,14 @@ export class AuthService {
     );
   }
 
-  // Fetch user by ID
+
   getUserById(userId: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/Users/${userId}`).pipe(
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}` 
+    });
+  
+    return this.http.get<any>(`${this.baseUrl}/Users/${userId}`, { headers }).pipe(
       catchError((error: HttpErrorResponse) => {
         const backendMessage = error.error || error.message || 'An error occurred while fetching user data.';
         return throwError(() => new Error(backendMessage));

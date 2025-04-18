@@ -71,35 +71,38 @@ export class SavingsplanService {
 
   constructor(private httpClient: HttpClient) {}
 
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('authToken'); 
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwtToken'); // Retrieve token from local storage
+    if (!token) {
+        throw new Error('User is not authenticated.');
+    }
+
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json'
+        Authorization: `Bearer ${token}`
     });
-  }
+}
 
   public addSavingsPlan(requestObject: SavingsPlan): Observable<SavingsPlan> {
-    return this.httpClient.post<SavingsPlan>(this.baseUrl + "/savingsplan", requestObject, { headers: this.getHeaders() });
+    return this.httpClient.post<SavingsPlan>(this.baseUrl + "/savingsplan", requestObject, { headers: this.getAuthHeaders() });
   }
  
   public getAllSavingsPlans(): Observable<SavingsPlan[]> {
-    return this.httpClient.get<SavingsPlan[]>(this.baseUrl + "/savingsplan", { headers: this.getHeaders() });
+    return this.httpClient.get<SavingsPlan[]>(this.baseUrl + "/savingsplan", { headers: this.getAuthHeaders() });
   }
  
   public deleteSavingsPlan(savingsPlanId: number): Observable<void> {
-    return this.httpClient.delete<void>(this.baseUrl + "/savingsplan/" + savingsPlanId, { headers: this.getHeaders() });
+    return this.httpClient.delete<void>(this.baseUrl + "/savingsplan/" + savingsPlanId, { headers: this.getAuthHeaders() });
   }
  
   public getSavingsPlanById(id: number): Observable<SavingsPlan> {
-    return this.httpClient.get<SavingsPlan>(this.baseUrl + "/savingsplan/" + id, { headers: this.getHeaders() });
+    return this.httpClient.get<SavingsPlan>(this.baseUrl + "/savingsplan/" + id, { headers: this.getAuthHeaders() });
   }
  
   public updateSavingsPlan(id: number, requestObject: SavingsPlan): Observable<SavingsPlan> {
-    return this.httpClient.put<SavingsPlan>(this.baseUrl + "/savingsplan/" + id, requestObject, { headers: this.getHeaders() });
+    return this.httpClient.put<SavingsPlan>(this.baseUrl + "/savingsplan/" + id, requestObject, { headers: this.getAuthHeaders() });
   }
  
   public getAppliedPlans(userId: number): Observable<PlanApplication[]> {
-    return this.httpClient.get<PlanApplication[]>(this.baseUrl + "/planapplications/user/" + userId, { headers: this.getHeaders() });
+    return this.httpClient.get<PlanApplication[]>(this.baseUrl + "/planapplications/user/" + userId, { headers: this.getAuthHeaders() });
   }
 }

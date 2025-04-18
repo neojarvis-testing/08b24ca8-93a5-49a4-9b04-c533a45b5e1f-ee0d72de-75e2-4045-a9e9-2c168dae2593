@@ -15,26 +15,36 @@ export class PlanapplicationformService {
 
   constructor(private http: HttpClient) {}
 
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('authToken');
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('jwtToken'); // Retrieve token from local storage
+    if (!token) {
+        throw new Error('User is not authenticated.');
+    }
+
     return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
     });
-  }
+}
+
+  // addPlanApplication(data: PlanApplication): Observable<PlanApplication> {
+  //   return this.http.post<PlanApplication>(`${this.baseUrl}/PlanApplication`, data, { headers: this.getAuthHeaders(), responseType: 'text' as 'json' })
+  //     .pipe(
+  //       catchError(this.handleError)
+  //     );
+  //  }
 
   addPlanApplication(data: PlanApplication): Observable<PlanApplication> {
-    return this.http.post<PlanApplication>(`${this.baseUrl}/PlanApplication`, data, { headers: this.getHeaders(), responseType: 'text' as 'json' })
+    return this.http.post<PlanApplication>(`${this.baseUrl}/PlanApplication`, data, { headers: this.getAuthHeaders() })
       .pipe(
         catchError(this.handleError)
       );
-   }
+  }
     
     deletePlanApplication(planId: number): Observable<void> {
   
        const url = `${this.baseUrl}/PlanApplication/${planId}`;
   
-       return this.http.delete<void>(url, { headers: this.getHeaders() })
+       return this.http.delete<void>(url, { headers: this.getAuthHeaders() })
 
        .pipe(
           catchError(this.handleError)
@@ -43,7 +53,7 @@ export class PlanapplicationformService {
 
     getAppliedPlans(userId: number): Observable<PlanApplication[]> {
        const url = `${this.baseUrl}/PlanApplication/user/${userId}`;
-       return this.http.get<PlanApplication[]>(url, { headers: this.getHeaders() })
+       return this.http.get<PlanApplication[]>(url, { headers: this.getAuthHeaders() })
           .pipe( 
             catchError(this.handleError)
           );
@@ -51,7 +61,7 @@ export class PlanapplicationformService {
 
      
       getAllPlanApplications(): Observable<PlanApplication[]> {
-       return this.http.get<PlanApplication[]>(`${this.baseUrl}/PlanApplication`, { headers: this.getHeaders() })
+       return this.http.get<PlanApplication[]>(`${this.baseUrl}/PlanApplication`, { headers: this.getAuthHeaders() })
        .pipe(
          catchError(this.handleError)
          );
@@ -59,7 +69,7 @@ export class PlanapplicationformService {
      
       updatePlanApplication(planId: number, updatedData: PlanApplication): Observable<PlanApplication> {
       const url = `${this.baseUrl}/PlanApplication/${planId}`;
-      return this.http.put<PlanApplication>(url, updatedData, { headers: this.getHeaders() })
+      return this.http.put<PlanApplication>(url, updatedData, { headers: this.getAuthHeaders() })
        .pipe(
         catchError(this.handleError)
         );
