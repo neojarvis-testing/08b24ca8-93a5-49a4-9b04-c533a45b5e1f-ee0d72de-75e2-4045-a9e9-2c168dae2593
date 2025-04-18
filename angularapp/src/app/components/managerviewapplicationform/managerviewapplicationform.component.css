@@ -1,6 +1,6 @@
 /* Background Wrapper */
 .background-wrapper {
-  background-color: #f3f8ff; /* Light blue background for a professional look */
+  background-color: #f3f8ff;
   padding: 20px;
 }
 
@@ -15,9 +15,9 @@
 /* Page Heading */
 .page-heading {
   text-align: center;
-  font-family: 'Merriweather', serif; /* Finance-professional font */
+  font-family: 'Merriweather', serif;
   font-size: 2.5rem;
-  color: #1d3557; /* Royal blue heading color */
+  color: #1d3557;
   margin-bottom: 20px;
 }
 
@@ -38,28 +38,35 @@
 
 .search-bar:focus {
   box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
-  border-color: #007bff; /* Royal blue border */
+  border-color: #007bff;
 }
 
 /* Table Styling */
 .table {
   width: 100%;
   margin-top: 20px;
-  border-collapse: collapse;
   font-size: 16px;
+  border-collapse: collapse;
 }
 
 .table thead tr {
-  background: linear-gradient(90deg, #1d3557, #007bff); /* Royal blue glossy finish */
-  color: white;
+  background: linear-gradient(90deg, #1d3557, #007bff); /* Royal blue gradient */
+  color: white; /* White text for contrast */
   text-align: center;
 }
 
-.table th, .table td {
-  text-align: center; /* Center-align all columns */
-  vertical-align: middle; /* Vertically center the content */
+.table th {
   padding: 12px;
+  text-align: center; /* Center-align all column headers */
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.table th, .table td {
   border-bottom: 1px solid #e0e0e0;
+  text-align: center; /* Center-align all cells */
+  vertical-align: middle;
+  padding: 12px;
 }
 
 /* Alternating Row Colors */
@@ -73,37 +80,29 @@
 
 /* Hover Effect for Rows */
 .table tbody tr:hover {
-  background-color: #e3f2fd; /* Light blue hover effect */
+  background-color: #e3f2fd;
   transform: scale(1.02);
   transition: all 0.2s ease-in-out;
 }
 
-/* Sort Buttons */
-.sort-btn-container {
-  margin-left: 10px;
-  display: inline-flex; /* Ensures buttons are displayed side-by-side */
-  gap: 5px; /* Adds a gap between the sort buttons */
-}
-
-.sort-btn {
-  background-color: black; /* Sorting button color changed to black */
-  color: white;
+/* Sort Button */
+.sort-button {
+  background: none;
   border: none;
   cursor: pointer;
-  font-size: 14px;
-  padding: 5px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 17px;
+  color: #353333; /* White color for icons */
+  margin-left: 5px;
+  transition: transform 0.2s ease;
 }
 
-.sort-btn:hover {
-  background-color: #333333; /* Darker shade of black on hover */
-  transform: scale(1.1); /* Slight scaling effect */
+.sort-button:hover {
+  transform: scale(1.1);
 }
 
 /* Buttons */
 .action-buttons .approve-button {
-  background: linear-gradient(90deg, #4caf50, #388e3c); /* Green glossy effect */
+  background: linear-gradient(90deg, #4caf50, #388e3c);
   color: white;
   padding: 8px 12px;
   border: none;
@@ -114,13 +113,13 @@
 }
 
 .action-buttons .approve-button:hover {
-  background: linear-gradient(90deg, #45a049, #2e7d32); /* Darker green on hover */
-  transform: scale(1.05); /* Slight scaling */
+  background: linear-gradient(90deg, #45a049, #2e7d32);
+  transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .action-buttons .reject-button {
-  background: linear-gradient(90deg, #f44336, #d32f2f); /* Red glossy effect */
+  background: linear-gradient(90deg, #f44336, #d32f2f);
   color: white;
   padding: 8px 12px;
   border: none;
@@ -130,13 +129,13 @@
 }
 
 .action-buttons .reject-button:hover {
-  background: linear-gradient(90deg, #e53935, #c62828); /* Darker red on hover */
-  transform: scale(1.05); /* Slight scaling */
+  background: linear-gradient(90deg, #e53935, #c62828);
+  transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .view-button {
-  background: linear-gradient(90deg, #007bff, #0056b3); /* Blue glossy effect */
+  background: linear-gradient(90deg, #007bff, #0056b3);
   color: white;
   padding: 8px 12px;
   border: none;
@@ -146,20 +145,9 @@
 }
 
 .view-button:hover {
-  background: linear-gradient(90deg, #0056b3, #003f7f); /* Darker blue on hover */
-  transform: scale(1.05); /* Slight scaling */
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Approved and Rejected Status */
-.approved-status {
-  color: green;
-  font-weight: bold;
-}
-
-.rejected-status {
-  color: red;
-  font-weight: bold;
 }
 
 /* Popup Modal */
@@ -179,7 +167,7 @@
   background-color: #ffffff;
   padding: 20px;
   border-radius: 12px;
-  max-width: 60%; /* Reduced size */
+  max-width: 60%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   position: relative;
   animation: scaleIn 0.3s ease-in-out;
@@ -187,7 +175,7 @@
 
 .popup-content img {
   max-width: 100%;
-  max-height: 50vh; /* Slightly smaller image */
+  max-height: 50vh;
   border-radius: 8px;
 }
 

@@ -13,18 +13,42 @@
       <thead>
         <tr>
           <th>S. No</th>
-          <th>Applicant Name</th>
-          <th>Plan Name</th>
+          <th>
+            Applicant Name
+            <button class="sort-button" (click)="sortColumn('ApplicantName')">
+              <span *ngIf="sortOrder.ApplicantName === 'asc'">&#9650;</span>
+              <span *ngIf="sortOrder.ApplicantName === 'desc'">&#9660;</span>
+              <span *ngIf="!sortOrder.ApplicantName">&#x21C5;</span>
+            </button>
+          </th>
+          <th>
+            Plan Name
+            <button class="sort-button" (click)="sortColumn('PlanName')">
+              <span *ngIf="sortOrder.PlanName === 'asc'">&#9650;</span>
+              <span *ngIf="sortOrder.PlanName === 'desc'">&#9660;</span>
+              <span *ngIf="!sortOrder.PlanName">&#x21C5;</span>
+            </button>
+          </th>
           <th>
             Applied Amount
-            <span class="sort-btn-container">
-              <button class="sort-btn" (click)="sortAmountAscending()">&#9650;</button>
-              <button class="sort-btn" (click)="sortAmountDescending()">&#9660;</button>
-            </span>
+            <button class="sort-button" (click)="sortColumn('AppliedAmount')">
+              <span *ngIf="sortOrder.AppliedAmount === 'asc'">&#9650;</span>
+              <span *ngIf="sortOrder.AppliedAmount === 'desc'">&#9660;</span>
+              <span *ngIf="!sortOrder.AppliedAmount">&#x21C5;</span>
+            </button>
           </th>
-          <th>Application Date</th>
+          <th>
+            Application Date
+            <button class="sort-button" (click)="sortColumn('ApplicationDate')">
+              <span *ngIf="sortOrder.ApplicationDate === 'asc'">&#9650;</span>
+              <span *ngIf="sortOrder.ApplicationDate === 'desc'">&#9660;</span>
+              <span *ngIf="!sortOrder.ApplicationDate">&#x21C5;</span>
+            </button>
+          </th>
           <th>Remarks</th>
-          <th>Status</th>
+          <th>
+            Status
+          </th>
           <th>Proof of Document</th>
         </tr>
       </thead>
