@@ -23,7 +23,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "RegionalManager, Customer")]
+        [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
             var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
@@ -31,7 +31,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpGet("{savingsPlanId}")]
-        //[Authorize(Roles = "RegionalManager")]
+        [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult<SavingsPlan>> GetSavingsPlanById(int savingsPlanId)
         {
             var savingsPlan = await _savingsPlanService.GetSavingsPlanById(savingsPlanId);
@@ -43,7 +43,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "RegionalManager")]
+        [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult> AddSavingsPlan([FromBody] SavingsPlan savingsPlan)
         {
             try
@@ -62,7 +62,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpPut("{savingsPlanId}")]
-        //[Authorize(Roles = "RegionalManager, Customer")]
+        [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult> UpdateSavingsPlan(int savingsPlanId, [FromBody] SavingsPlan savingsPlan)
         {
             if (savingsPlanId != savingsPlan.SavingsPlanId)
@@ -90,7 +90,7 @@ namespace dotnetapp.Controllers
         }
 
         [HttpDelete("{savingsPlanId}")]
-        //[Authorize(Roles = "RegionalManager")]
+        [Authorize(Roles = "RegionalManager")]
         public async Task<ActionResult> DeleteSavingsPlan(int savingsPlanId)
         {
             try
