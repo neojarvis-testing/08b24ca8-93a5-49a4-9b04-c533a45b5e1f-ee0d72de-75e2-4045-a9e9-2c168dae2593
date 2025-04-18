@@ -9,8 +9,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let feedback of feedbacks; let i = index">
-        <td>{{ i + 1 }}</td>
+      <tr *ngFor="let feedback of paginatedFeedbacks; let i = index">
+        <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
         <td>{{ feedback.Comments }}</td>
         <td>
           <button (click)="confirmDelete(feedback)">Delete</button>
@@ -21,6 +21,31 @@
   <ng-template #noData>
     <p>Oops! No records Found</p>
   </ng-template>
+
+  <!-- Pagination Controls -->
+  <div class="pagination" *ngIf="totalPages() > 1">
+    <button
+      class="page-btn"
+      [disabled]="currentPage === 1"
+      (click)="changePage(currentPage - 1)"
+    >
+      Previous
+    </button>
+    <button
+      *ngFor="let page of [].constructor(totalPages()); let i = index"
+      [ngClass]="{ 'active': currentPage === (i + 1) }"
+      (click)="changePage(i + 1)"
+    >
+      {{ i + 1 }}
+    </button>
+    <button
+      class="page-btn"
+      [disabled]="currentPage === totalPages()"
+      (click)="changePage(currentPage + 1)"
+    >
+      Next
+    </button>
+  </div>
 </div>
 
 <!-- Delete Confirmation Modal -->

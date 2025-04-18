@@ -11,8 +11,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let feedback of feedbacks; index as i">
-      <td>{{ i + 1 }}</td>
+    <tr *ngFor="let feedback of paginatedFeedbacks; index as i">
+      <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
       <td>{{ feedback.User?.Username }}</td>
       <td>{{ feedback.Comments }}</td>
       <td>{{ feedback.DateProvided | date: 'mediumDate' }}</td>
@@ -26,6 +26,31 @@
 <ng-template #noData>
   <p class="no-data">Oops! No records Found</p>
 </ng-template>
+
+<!-- Pagination Controls -->
+<div class="pagination" *ngIf="totalPages() > 1">
+  <button
+    class="page-btn"
+    [disabled]="currentPage === 1"
+    (click)="changePage(currentPage - 1)"
+  >
+    Previous
+  </button>
+  <button
+    *ngFor="let page of [].constructor(totalPages()); let i = index"
+    [ngClass]="{ 'active': currentPage === (i + 1) }"
+    (click)="changePage(i + 1)"
+  >
+    {{ i + 1 }}
+  </button>
+  <button
+    class="page-btn"
+    [disabled]="currentPage === totalPages()"
+    (click)="changePage(currentPage + 1)"
+  >
+    Next
+  </button>
+</div>
 
 <!-- Details Popup -->
 <div *ngIf="showDetailsPopup" class="innovative-modal">

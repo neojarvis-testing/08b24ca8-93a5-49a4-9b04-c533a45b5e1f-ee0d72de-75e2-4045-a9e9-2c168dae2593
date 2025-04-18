@@ -15,6 +15,10 @@ export class ManagerviewfeedbackComponent implements OnInit {
   showDetailsPopup: boolean = false; 
   selectedUserDetails: any = {}; 
 
+  // Pagination properties
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+
   constructor(private router: Router, private feedbackService: FeedbackService, private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -50,5 +54,19 @@ export class ManagerviewfeedbackComponent implements OnInit {
   closeDetailsPopup(): void {
     this.showDetailsPopup = false; 
     this.selectedUserDetails = {}; 
+  }
+
+  // Pagination methods
+  public get paginatedFeedbacks(): Feedback[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.feedbacks.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  public changePage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  public totalPages(): number {
+    return Math.ceil(this.feedbacks.length / this.itemsPerPage);
   }
 }
