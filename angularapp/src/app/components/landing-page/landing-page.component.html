@@ -1,56 +1,57 @@
-<div class="container">
-    <marquee class="marquee color-change">Welcome to Finance Hub!!!</marquee>
-  
-    <header>
-      <h1>Finance Hub: Empower Your Financial Journey</h1>
-      <p>Your one-stop solution for financial growth and investment opportunities.</p>
-      <button class="cta-button">Sign Up</button> <!-- Sign Up Button -->
-    </header>
-  
-    <section class="intro">
-      <p>
-        Welcome to Finance Hub—your platform for smart savings and investments! With tailored plans, expert insights, and tools, we empower you to make
+<div class="landing">
+  <!-- First Division -->
+  <div class="first-division">
+    <div class="overlay">
+      <h1>Welcome to Financial Hub</h1>
+      <p class="content">
+        Welcome to Finance Hub—your platform for smart savings and investments!
+        With tailored plans, expert insights, and tools, we empower you to make
         confident financial decisions. Explore our plans and start your journey toward financial success today!
       </p>
-    </section>
-  
-    <!-- Smoothly Moving Chit Plans Section -->
-    <div class="chit-plans-wrapper">
-      <div class="chit-plans">
-        <div class="plan-card" *ngFor="let card of activeCards; let i = index">
-          <h2>{{ card.Name }}</h2> <!-- Plan title -->
-          <p><strong>Goal Amount:</strong> {{ card.GoalAmount | currency }}</p> <!-- Goal amount -->
-          <p><strong>Time Frame:</strong> {{ card.TimeFrame }} months</p> <!-- Time frame -->
-          <p><strong>Risk Level:</strong> {{ card.RiskLevel }}</p> <!-- Risk level -->
-          <button>View Details</button>
+      <button class="cta-button">Get Started</button>
+    </div>
+  </div>
+
+  <!-- Second Division -->
+  <div class="second-division">
+    <div
+      class="cards-wrapper"
+      [ngClass]="{ 'animation-paused': isHovered || isZoomed }"
+      (mouseenter)="pauseAnimation()"
+      (mouseleave)="resumeAnimation()"
+    >
+      <div
+        class="card"
+        *ngFor="let card of activeCards; let i = index"
+        [ngClass]="{ 'zoomed': zoomStates[i] }"
+        (click)="toggleZoom(i)"
+      >
+        <div class="card-content">
+          <h3>{{ card.Name }}</h3>
+          <p><strong>Goal Amount:</strong> {{ card.GoalAmount | currency }}</p>
+          <p><strong>Time Frame:</strong> {{ card.TimeFrame }} months</p>
+          <p><strong>Risk Level:</strong> {{ card.RiskLevel }}</p>
         </div>
       </div>
     </div>
-  
-    <section class="testimonials">
-      <h2>What Our Customers Say</h2>
-      <div class="testimonial">
-        <p>"Finance Hub helped me save in ways I never thought possible. Highly recommended!"</p>
-        <span>— Rahul, Entrepreneur</span>
-      </div>
-      <div class="testimonial">
-        <p>"The plans are flexible and suit my needs perfectly. Great platform!"</p>
-        <span>— Priya, Designer</span>
-      </div>
-    </section>
-  
-    <section class="cta">
-      <h2>Ready to Start Your Financial Journey?</h2>
-      <button class="cta-button">Sign Up Today</button>
-    </section>
-  
-    <footer>
-      <p>&copy; 2025 Finance Hub. All rights reserved.</p>
-      <p>Follow us on:</p>
-      <div class="social-icons">
-        <a href="#"><img src="/assets/facebook.png" alt="Facebook"></a>
-        <a href="#"><img src="/assets/threads (1).png" alt="Threads"></a>
-        <a href="#"><img src="/assets/linkedin.png" alt="LinkedIn"></a>
-      </div>
-    </footer>
   </div>
+
+  <!-- New Section With Background -->
+  <div class="new-generation-section">
+    <h1>Join New Generation Investors</h1>
+    <p class="content">
+      Start your journey into the world of smart investments and secure your financial future.
+    </p>
+    <button class="signup-button">Sign Up</button>
+  </div>
+
+  <!-- Footer Division -->
+  <footer class="footer">
+    <p>&copy; 2025 Financial Hub. All rights reserved.</p>
+    <div class="social-icons">
+      <a href="#"><img src="/assets/facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="/assets/threads (1).png" alt="Threads"></a>
+      <a href="#"><img src="/assets/linkedin.png" alt="LinkedIn"></a>
+    </div>
+  </footer>
+</div>

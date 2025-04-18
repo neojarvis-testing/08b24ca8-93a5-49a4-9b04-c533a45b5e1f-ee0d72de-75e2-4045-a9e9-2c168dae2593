@@ -1,59 +1,93 @@
+/* User Navigation Bar */
 .usernav {
-  background: linear-gradient(to right, #0d47a1, #1976d2);
-  color: rgb(224, 240, 231);
+  background: white; /* White background */
+  color: #0052cc; /* Blue text for contrast */
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
+/* Logo and Title */
 .usernav-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.usernav-logo {
+  height: 50px;
+  width: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.usernav-logo:hover {
+  transform: scale(1.2); /* Pop effect on hover */
+  cursor: pointer;
+}
+
+.usernav-title h2 {
   margin: 0;
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 1.5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  color: #0052cc; /* Blue text */
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
 }
 
+/* Navigation Links */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px; /* Spacing between links */
 }
 
+/* Individual Navigation Link */
 .nav-link {
-  color: white;
-  background-color: #42a5f5;
+  color: #0052cc; /* Blue text */
   text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
+  position: relative;
   transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  opacity: 1; /* Default opacity */
 }
 
-.nav-link:hover {
-  background-color: #1e88e5;
-  color: #e3f2fd;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+/* Underline Animation */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #0052cc; /* Blue underline */
+  transition: width 0.3s ease-in-out;
 }
 
-.active-link {
-  background-color: #146c07;
-  color: white;
+.nav-link:hover::after {
+  width: 100%; /* Expand underline on hover */
 }
 
+/* Blur Effect */
+.nav-links:hover .nav-link {
+  opacity: 0.5; /* Fade non-hovered links */
+}
+
+.nav-links .nav-link:hover {
+  opacity: 1; /* Restore opacity for hovered link */
+}
+
+/* Buttons */
 .customer-btn,
 .logout-btn {
-  background-color: #4d91ff;
+  background-color: #0052cc;
   border: none;
   padding: 10px 20px;
   color: white;
@@ -63,23 +97,24 @@
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .customer-btn:hover,
 .logout-btn:hover {
-  background-color: #ff5252;
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(255, 82, 82, 0.5);
+  background-color: #003c99;
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Active Button Effect */
 .customer-btn:active,
 .logout-btn:active {
-  background-color: #d32f2f;
+  background-color: #002a66;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transform: scale(0.95);
+  transform: scale(0.95); /* Pressed effect */
 }
 
+/* Dropdown Menu */
 .dropdown {
   position: relative;
   display: inline-block;
@@ -88,32 +123,35 @@
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #bff5f5; /* Aqua blue background */
+  background-color: white; /* White background for dropdown */
+  border: 1px solid #0052cc; /* Blue border */
   min-width: 160px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .dropdown-content .dropdown-item {
-  color: black;
+  color: #0052cc; /* Blue text */
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-content .dropdown-item:hover {
-  background-color: #ddd;
+  background-color: #e3f2fd; /* Light blue background on hover */
+  color: #003c99; /* Darker blue text on hover */
 }
 
-.dropdown:hover .dropdown-content,
-.dropdown .nav-link:focus + .dropdown-content,
-.dropdown .nav-link:active + .dropdown-content {
+/* Show Dropdown on Hover */
+.dropdown:hover .dropdown-content {
   display: block;
 }
 
-@media screen and (max-width: 768px) {
+/* Responsive Design */
+@media (max-width: 768px) {
   .usernav {
     flex-direction: column;
     align-items: flex-start;
