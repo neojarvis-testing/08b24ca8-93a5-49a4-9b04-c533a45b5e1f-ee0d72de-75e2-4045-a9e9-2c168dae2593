@@ -112,6 +112,26 @@ button:disabled {
     color: red;
 }
 
+.otp-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .otp-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    animation: popIn 0.5s;
+  }
+
 @media screen and (max-height: 750px) {
     .registration-container {
         height: 100%;

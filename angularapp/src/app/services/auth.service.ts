@@ -7,7 +7,6 @@ import { Login } from '../models/login.model';
 import { jwtDecode } from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -28,7 +27,7 @@ export class AuthService {
     this.updateRole(); // Initialize role on service load
   }
 
-  // Register user
+  // Register user (Step 1: Generate OTP)
   register(newUser: User): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/register`, newUser).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -38,11 +37,32 @@ export class AuthService {
     );
   }
 
-  // Login user
+  // Verify Registration OTP (Step 2: Verify OTP and complete registration)
+  verifyRegistrationOtp(newUser: User, otp: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/verify-registration-otp?otp=${otp}`, newUser).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const backendMessage = error.error || error.message || 'Invalid OTP.';
+        return throwError(() => new Error(backendMessage));
+      })
+    );
+  }
+
+  // Login user (Step 1: Generate OTP)
   login(loginUser: Login): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login`, loginUser).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const backendMessage = error.error || error.message || 'Invalid login credentials.';
+        return throwError(() => new Error(backendMessage));
+      })
+    );
+  }
+
+  // Verify Login OTP (Step 2: Verify OTP and complete login)
+  verifyLoginOtp(loginUser: Login, otp: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/verify-login-otp?otp=${otp}`, loginUser).pipe(
       tap((response) => {
-        const token = response.token;
+        const token = response.message;
+        console.log(response.token);
 
         if (token) {
           const payload = JSON.parse(atob(token.split('.')[1]));
@@ -58,12 +78,32 @@ export class AuthService {
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'Invalid login credentials.';
+        const backendMessage = error.error || error.message || 'Invalid OTP.';
         return throwError(() => new Error(backendMessage));
       })
     );
   }
 
+  // Forgot Password: Send OTP
+  forgotPassword(email: string): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/forgot-password?email=${email}`, email).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const backendMessage = error.error || error.message || 'Failed to send OTP.';
+        return throwError(() => new Error(backendMessage));
+      })
+    );
+  }
+
+  // Verify OTP and Reset Password
+  verifyOtpResetPassword(resetModel: Login, otp: string): Observable<any> {
+    console.log(resetModel);
+    return this.http.put<any>(`${this.baseUrl}/verify-reset-otp?otp=${otp}`, resetModel).pipe(
+      catchError((error: HttpErrorResponse) => {
+        const backendMessage = error.error || error.message || 'Failed to reset password.';
+        return throwError(() => new Error(backendMessage));
+      })
+    );
+  }
 
   getUserById(userId: number): Observable<any> {
     const token = localStorage.getItem('jwtToken');
@@ -101,7 +141,7 @@ export class AuthService {
       userId: decodedToken.userId,
       username: decodedToken.userName,
       role: decodedToken.role,
-      email: decodedToken.email,
+      email: decodedToken.email
     };
   }
   
