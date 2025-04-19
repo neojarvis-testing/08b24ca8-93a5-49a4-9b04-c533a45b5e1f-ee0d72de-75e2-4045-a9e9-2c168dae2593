@@ -16,7 +16,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let plan of filteredPlans">
+                <tr *ngFor="let plan of filteredPlans"
+                    
+        [ngClass]="{'active-plan': plan.Status === 'Active', 'inactive-plan': plan.Status !== 'Active'}">
                     <td>{{plan.Name}}</td>
                     <td>{{plan.GoalAmount}}</td>
                     <td>{{plan.TimeFrame}}</td>
