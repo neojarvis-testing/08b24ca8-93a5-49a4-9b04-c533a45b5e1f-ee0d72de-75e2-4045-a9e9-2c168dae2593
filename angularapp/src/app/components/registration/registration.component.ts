@@ -73,6 +73,12 @@ export class RegistrationComponent implements OnInit {
     this.generateOtp({ valid: true } as NgForm);
   }
 
+  // Close OTP Modal
+  closeOtpModal(): void {
+    this.showOtpModal = false; // Set the modal visibility to false
+    this.otp = ''; // Optionally clear the OTP input field
+  }
+
   // Password validations
   checkLowercase(): boolean {
     return /[a-z]/.test(this.password);

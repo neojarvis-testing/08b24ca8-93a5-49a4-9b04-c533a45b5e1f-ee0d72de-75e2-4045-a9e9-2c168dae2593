@@ -15,9 +15,9 @@ export class LoginComponent implements OnInit {
   otp: string = '';
   newPassword: string = '';
   confirmPassword: string = '';
-  showOtpModal: boolean = false;
-  showForgotPasswordModal: boolean = false;
-  showResetPasswordModal: boolean = false;
+  showOtpModal: boolean = false; // OTP Modal visibility
+  showForgotPasswordModal: boolean = false; // Forgot Password Modal visibility
+  showResetPasswordModal: boolean = false; // Reset Password Modal visibility
   currentUser: any = null;
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -102,6 +102,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // Close OTP Modal
+  closeOtpModal(): void {
+    this.showOtpModal = false; // Hide OTP modal
+    this.otp = ''; // Clear OTP input field
+  }
+
   // Open Forgot Password Modal
   openForgotPassword(): void {
     this.showForgotPasswordModal = true;
@@ -148,11 +154,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-   // Navigation to Register Page
+  // Navigation to Register Page
   navigateToRegister(): void {
     this.router.navigate(['/Register']);
   }
-
 
   // Password validations
   checkLowercase(): boolean {
