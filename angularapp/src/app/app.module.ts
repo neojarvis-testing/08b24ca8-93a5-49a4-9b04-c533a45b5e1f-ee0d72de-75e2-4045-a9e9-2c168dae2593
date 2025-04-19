@@ -25,6 +25,7 @@ import { ManagerviewapplicationformComponent } from './components/managerviewapp
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
+import { LoaderComponent } from './components/loader/loader.component';
 //import { LandingPageComponent } from './components/landingpage/landingpage.component';
 
 
@@ -55,6 +56,7 @@ import { ManagerDashboardComponent } from './components/manager-dashboard/manage
     LandingPageComponent,
     DashboardComponent,
     ManagerDashboardComponent,
+    LoaderComponent,
    
   ],
   
