@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl:'https://8080-aeddfacaccecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api'
-};
+}; 
  
 /*
  * For easier debugging in development mode, you can import the following file
