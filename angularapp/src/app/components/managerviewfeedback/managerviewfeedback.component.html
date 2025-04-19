@@ -1,6 +1,8 @@
 <h1>Feedback Details</h1>
 <hr>
-<table *ngIf="feedbacks.length > 0; else noData">
+
+<!-- Feedback Table -->
+<table *ngIf="dataFetched && feedbacks.length > 0; else noData">
   <thead>
     <tr>
       <th>S.No</th>
@@ -23,12 +25,16 @@
   </tbody>
 </table>
 
+<!-- No Data Message -->
 <ng-template #noData>
-  <p class="no-data">Oops! No records Found</p>
+  <div *ngIf="dataFetched" class="no-data-container">
+    <div class="no-data-icon">😔</div> <!-- Optional icon to enhance message -->
+    <p class="no-data-message">Oops! No feedback records found.</p>
+  </div>
 </ng-template>
 
 <!-- Pagination Controls -->
-<div class="pagination" *ngIf="totalPages() > 1">
+<div class="pagination" *ngIf="dataFetched && totalPages() > 1">
   <button
     class="page-btn"
     [disabled]="currentPage === 1"
