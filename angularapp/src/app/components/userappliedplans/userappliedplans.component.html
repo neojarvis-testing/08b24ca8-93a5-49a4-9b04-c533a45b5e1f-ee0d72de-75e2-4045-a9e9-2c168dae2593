@@ -1,6 +1,6 @@
 <h1 class="page-heading">My Applied Plans</h1>
 
-<table class="styled-table">
+<table class="table styled-table">
   <thead>
     <tr>
       <th>S.No</th>
@@ -80,8 +80,8 @@
 </div>
 
 <!-- Modal for Viewing Image -->
-<div class="modal" *ngIf="selectedImage">
-  <div class="modal-content">
+<div class="popup" *ngIf="selectedImage">
+  <div class="popup-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <img [src]="selectedImage" alt="Proof Document" class="modal-image" />
   </div>
