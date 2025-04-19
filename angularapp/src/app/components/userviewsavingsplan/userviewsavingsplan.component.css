@@ -1,56 +1,117 @@
 .savings-plan-container {
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffffff; /* White background */
   border-radius: 10px;
+  overflow: hidden; /* Prevents overflow during animations */
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animation for container fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .savings-plan-container h2 {
   text-align: center;
   font-size: 24px;
-  color: #171819; /* Change this to your desired color */
+  color: #000000; /* Black text */
   margin-bottom: 20px;
   border-bottom: 2px solid #ddd;
   padding-bottom: 10px;
 }
 
+/* Search bar styling */
 .savings-plan-container input {
   display: block;
   margin: 0 auto 20px;
   padding: 10px;
   width: 80%;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 2px solid transparent; /* Default no visible border */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect by default */
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  color: #000000; /* Black text */
+  background-color: #ffffff; /* White input background */
 }
 
+/* Search bar focus effect */
+.savings-plan-container input:focus {
+  border-color: #0052cc; /* Blue border on focus */
+  box-shadow: 0 0 0 rgba(31, 30, 30, 0); /* Remove shadow on focus */
+  outline: none;
+}
+
+/* Table styling */
 .savings-plan-container table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: collapse; /* Remove spacing between cells and borders */
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.savings-plan-container th, .savings-plan-container td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.savings-plan-container th,
+.savings-plan-container td {
+  padding: 15px;
+  text-align: center; /* Center-align all column data */
+  vertical-align: middle; /* Ensures vertical alignment to the center */
 }
 
 .savings-plan-container th {
-  background-color: #007BFF; /* Change this to your desired color */
-  color: white; /* Text color */
-  padding: 15px;
+  background-color: #0052cc; /* Blue header background */
+  color: #ffffff; /* White text for headers */
   text-align: center;
+  font-weight: bold;
+  border: none; /* No border effect for headers */
 }
 
+/* Default row styling */
+.savings-plan-container tbody tr {
+  border: none; /* No border by default */
+  background-color: #ffffff; /* White background by default */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow by default */
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Hover effect for active plans (green border and background) */
+.savings-plan-container tbody tr.active-plan:hover {
+  border: 3px solid #28a745; /* Green border for active plans */
+  box-shadow: 0 8px 12px rgba(40, 167, 69, 0.5); /* Matching green shadow */
+  background-color: rgba(40, 167, 69, 0.1); /* Light green background */
+  transform: scale(1.02); /* Slightly enlarge the row */
+}
+
+/* Hover effect for inactive plans (red border and background) */
+.savings-plan-container tbody tr.inactive-plan:hover {
+  border: 3px solid #dc3545; /* Red border for inactive plans */
+  box-shadow: 0 8px 12px rgba(220, 53, 69, 0.5); /* Matching red shadow */
+  background-color: rgba(220, 53, 69, 0.1); /* Light red background */
+  transform: scale(1.02); /* Slightly enlarge the row */
+}
+
+/* Button styling */
 .savings-plan-container button {
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #0052cc; /* Blue button background */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
+/* Button hover effect */
 .savings-plan-container button:hover {
-  background-color: #0056b3;
+  background-color: #0046b3; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight zoom effect */
 }
 
 /* Loading spinner styles */

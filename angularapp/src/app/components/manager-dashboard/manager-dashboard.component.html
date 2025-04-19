@@ -24,4 +24,18 @@
       <p>{{ totalCustomers }}</p>
     </div>
   </div>
-
+<!-- Activity Metrics Section -->
+<div class="activity-metrics">
+  <h3 (click)="toggleActivities()" class="activity-header">
+    Recent Activities
+    <span [class]="showActivities ? 'icon-up' : 'icon-down'"></span>
+  </h3>
+  <div *ngIf="showActivities" [@expandCollapse]="showActivities ? 'expanded' : 'collapsed'" class="activity-list">
+    <ul>
+      <li *ngFor="let activity of recentActivities">
+        {{ activity }}
+      </li>
+    </ul>
+  </div>
+</div>
+</div>

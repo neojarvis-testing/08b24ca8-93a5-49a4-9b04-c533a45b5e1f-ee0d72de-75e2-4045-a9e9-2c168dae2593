@@ -112,5 +112,20 @@ export class ManagerDashboardComponent implements OnInit {
   fetchCustomerDetails(): void {
     this.totalCustomers = 150; // Replace with API call if available
   }
-
+  fetchRecentActivities(): void {
+    // Example data, replace with API call
+    this.recentActivities = [
+      'Savings Plan "Retirement Plan" was created.',
+      'User John Doe submitted an application.',
+      'Feedback received from Jane Doe.',
+      'Savings Plan "Vacation Fund" marked as Active.',
+    ];
+  
+    console.log('Recent Activities:', this.recentActivities); // Debugging log
+  }
+  
+  toggleActivities(): void {
+    this.showActivities = !this.showActivities;
+    console.log('Show Activities:', this.showActivities); // Debugging log
+  }
 }

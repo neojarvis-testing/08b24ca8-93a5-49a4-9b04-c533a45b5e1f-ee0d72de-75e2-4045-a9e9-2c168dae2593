@@ -56,3 +56,81 @@
 .card p .rejected {
   color: red; /* Red for Rejected */
 }
+
+
+/* Recent Activities Section */
+.activity-metrics {
+  margin: 20px;
+  background: #ffffff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.activity-header {
+  font-size: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-header .icon-up::before {
+  content: "▲";
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.activity-header .icon-down::before {
+  content: "▼";
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.activity-list {
+  margin-top: 10px;
+}
+
+.activity-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.activity-list li {
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background: #f9f9f9;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.no-activities-message {
+  font-size: 16px;
+  color: #777; /* Light gray text for the "no activities" message */
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Customer Metrics Section */
+.customer-metrics {
+  margin: 20px;
+  background: #ffffff; /* White background */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.customer-metrics h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.customer-metrics .metric {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 10px;
+}
