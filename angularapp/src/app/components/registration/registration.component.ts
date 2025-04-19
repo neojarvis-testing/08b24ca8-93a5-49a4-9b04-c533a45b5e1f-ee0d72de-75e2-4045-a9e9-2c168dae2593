@@ -7,7 +7,7 @@ import { User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
   username: string = '';
@@ -16,15 +16,38 @@ export class RegistrationComponent implements OnInit {
   confirmPassword: string = '';
   mobile: string = '';
   role: 'Customer' | 'RegionalManager' = 'Customer';
-  formSubmitted: boolean = false;
+  otp: string = '';
+  showOtpModal: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
-  register(form: NgForm): void {
-  this.formSubmitted = true;
-  if (form.valid) {
+  // Step 1: Generate OTP
+  generateOtp(form: NgForm): void {
+    if (form.valid) {
+      const newUser: User = {
+        UserId: 0,
+        Email: this.email,
+        Password: this.password,
+        Username: this.username,
+        MobileNumber: this.mobile,
+        UserRole: this.role,
+      };
+
+      this.authService.register(newUser).subscribe({
+        next: () => {
+          this.showOtpModal = true;
+        },
+        error: (error: any) => {
+          alert(error.message || 'Something went wrong. Please try again.');
+        },
+      });
+    }
+  }
+
+  // Step 2: Verify OTP
+  verifyOtp(): void {
     const newUser: User = {
       UserId: 0,
       Email: this.email,
@@ -34,25 +57,23 @@ export class RegistrationComponent implements OnInit {
       UserRole: this.role,
     };
 
-    this.authService.register(newUser).subscribe({
+    this.authService.verifyRegistrationOtp(newUser, this.otp).subscribe({
       next: () => {
         alert('Registration successful!');
         this.router.navigate(['/Login']);
       },
       error: (error: any) => {
-        // Directly display the backend error message
-        alert(error.message || 'Something went wrong. Please try again.');
+        alert(error.message || 'Invalid OTP. Please try again.');
       },
     });
   }
-}
 
-  // Password match validation
-  checkpassword(): boolean {
-    return this.password !== this.confirmPassword;
+  // Resend OTP
+  resendOtp(): void {
+    this.generateOtp({ valid: true } as NgForm);
   }
 
-  // Password strength validations
+  // Password validations
   checkLowercase(): boolean {
     return /[a-z]/.test(this.password);
   }
@@ -71,5 +92,9 @@ export class RegistrationComponent implements OnInit {
 
   checkMinLength(): boolean {
     return this.password.length >= 8;
+  }
+
+  checkpassword(): boolean {
+    return this.password !== this.confirmPassword;
   }
 }

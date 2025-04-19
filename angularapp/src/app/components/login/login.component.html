@@ -1,7 +1,7 @@
 <div class="wrapper">
     <div class="login-container">
       <h1>Login</h1>    
-      <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+      <form #loginForm="ngForm" (ngSubmit)="generateOtp(loginForm)">
           <!-- Username Field -->
           <div class="form-group">
               <label for="email">Email<span class="required">*</span></label>
@@ -29,12 +29,67 @@
           </div>
   
           <!-- Submit Button -->
-          <button type="submit" id="submit" class="btn" [disabled]="!loginForm.valid">Login</button>
+          <button type="submit" id="submit" class="btn" [disabled]="!loginForm.valid">Send OTP</button>
       </form>
+
+      <!-- Forgot Password -->
+      <button class="btn forgot-password-btn" (click)="openForgotPassword()">
+        Forgot Password?
+      </button>
   
       <!-- Register Section -->
       <div class="register-container">
         <p>Don't have an account? <a (click)="navigateToRegister()" class="register-link">Register</a></p>
       </div>
     </div>
+
+</div>
+
+OTP Modal
+<div *ngIf="showOtpModal" class="otp-modal">
+<div class="otp-modal-content">
+  <h2>Enter OTP</h2>
+  <p>A 6-digit OTP has been sent to your email. Please enter it below:</p>
+  <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP"/>
+  <div class="otp-actions">
+    <button (click)="resendOtp()">Resend OTP</button>
+    <button [disabled]="!otp" (click)="verifyOtp()">Login</button>
   </div>
+</div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div *ngIf="showForgotPasswordModal" class="otp-modal">
+<div class="otp-modal-content">
+<h2>Forgot Password</h2>
+<p>Enter your email to receive a 6-digit OTP.</p>
+<input type="email"placeholder="Enter email" [(ngModel)]="email" required />
+<button (click)="sendForgotPasswordOtp()">Send OTP</button>
+</div>
+</div>
+
+Reset Password Modal
+<div *ngIf="showResetPasswordModal" class="otp-modal">
+<div class="otp-modal-content">
+<h2>Reset Password</h2>
+<p>Enter the OTP sent to your email and set a new password.</p>
+<input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" required/>
+<div class="form-group">
+          <input type="password" id="password" name="password" placeholder="New Password" class="form-input" [(ngModel)]="password" 
+          required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" [ngModelOptions]="{standalone : true}" #passwordNgModel="ngModel">
+          <div class="error-message" *ngIf="passwordNgModel.invalid && (passwordNgModel.dirty || passwordNgModel.touched)">
+              Password must include:
+              <ul class="password-requirements">
+                  <li [class.valid]="checkLowercase()">✔ One lowercase letter</li>
+                  <li [class.valid]="checkUppercase()">✔ One uppercase letter</li>
+                  <li [class.valid]="checkDigit()">✔ One digit</li>
+                  <li [class.valid]="checkSpecialChar()">✔ One special character</li>
+                  <li [class.valid]="checkMinLength()">✔ At least 8 characters</li>
+              </ul>
+          </div>
+      </div>
+<input type="password" placeholder="Confirm new password" [(ngModel)]="confirmPassword" required/>
+<button (click)="resetPassword()">Change Password</button>
+</div>
+</div>
+

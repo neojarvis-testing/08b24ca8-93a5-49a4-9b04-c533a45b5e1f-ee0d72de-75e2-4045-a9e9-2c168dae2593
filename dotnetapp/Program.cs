@@ -73,6 +73,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ISavingsPlanService, SavingsPlanService>();
 builder.Services.AddScoped<IPlanApplicationService, PlanApplicationService>();
 builder.Services.AddScoped<IFeedbackService, FeedbackService>();
+builder.Services.AddScoped<OtpService>();
 
 // CORS configuration
 builder.Services.AddCors(options =>

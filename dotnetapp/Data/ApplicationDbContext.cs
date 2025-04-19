@@ -17,6 +17,7 @@ namespace dotnetapp.Data
         public DbSet<SavingsPlan> SavingsPlans { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<OtpModel> Otp {get; set;}
     }
     
 }

@@ -9,8 +9,12 @@ namespace dotnetapp.Services
 {
     public interface IAuthService
     {
-        Task< (int, string)> Registration (User model, string role);
-        Task< (int, string)> Login (LoginModel model);
-        Task<User> GetUserById(int UserId);
+        Task<(int status, string result)> Registration(User model);
+        Task<(int status, string result)> VerifyAndRegister(User model, string otp);
+        Task<(int status, string result)> Login(LoginModel model);
+        Task<(int status, string result)> VerifyAndLogin(LoginModel model, string otp);
+        Task<(int status, string result)> ForgotPassword(string email);
+        Task<(int status, string result)> VerifyOtpResetPassword(LoginModel model, string otp);
+        Task<User> GetUserById(int userId);
     }
 }

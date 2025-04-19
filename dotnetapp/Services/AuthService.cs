@@ -12,14 +12,16 @@ namespace dotnetapp.Services
     {
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _context;
+        private readonly OtpService _otpService;
 
-        public AuthService(IConfiguration configuration, ApplicationDbContext context)
+        public AuthService(IConfiguration configuration, ApplicationDbContext context, OtpService otpService)
         {
             _configuration = configuration;
             _context = context;
+            _otpService = otpService;
         }
 
-        public async Task<(int, string)> Registration(User model, string userRole)
+        public async Task<(int status, string result)> Registration(User model)
         {
             // Check if user already exists
             if (await _context.Users.AnyAsync(u => u.Email == model.Email))
@@ -27,18 +29,33 @@ namespace dotnetapp.Services
                 return (0, "User already exists");
             }
 
+            // Generate and send OTP
+            var otp = await _otpService.GenerateOtpAsync(model.Email);
+            await _otpService.SendOtpEmailAsync(model.Email, otp);
+
+            return (1, "OTP sent to email. Please verify the OTP.");
+        }
+
+        public async Task<(int status, string result)> VerifyAndRegister(User model, string otp)
+        {
+            // Validate OTP
+            var isValidOtp = await _otpService.ValidateOtpAsync(model.Email, otp);
+            if (!isValidOtp)
+            {
+                return (0, "Invalid or expired OTP.");
+            }
+
             // Hash password using SHA256
             model.Password = HashPassword(model.Password);
-            model.UserRole = userRole;
 
             // Add user to database
             _context.Users.Add(model);
             await _context.SaveChangesAsync();
 
-            return (1, "User created successfully");
+            return (1, "User created successfully.");
         }
 
-        public async Task<(int, string)> Login(LoginModel model)
+        public async Task<(int status, string result)> Login(LoginModel model)
         {
             // Find user by email
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
@@ -53,62 +70,59 @@ namespace dotnetapp.Services
                 return (0, "Invalid password");
             }
 
-            // Generate JWT token
+            var otp = await _otpService.GenerateOtpAsync(model.Email);
+            await _otpService.SendOtpEmailAsync(model.Email, otp);
+
+            return (1, "OTP sent to email. Please verify the OTP.");
+
+        }
+
+        public async Task<(int status, string result)> VerifyAndLogin(LoginModel model, string otp)
+        {
+            // Validate OTP
+            var isValidOtp = await _otpService.ValidateOtpAsync(model.Email, otp);
+            if (!isValidOtp)
+            {
+                return (0, "Invalid or expired OTP.");
+            }
+
+            // Find user by email
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             string token = GenerateToken(user);
             return (1, token);
         }
 
-        public async Task<User> GetUserById(int UserId)
+
+        public async Task<User> GetUserById(int userId)
         {
-            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == UserId);
+            return await _context.Users.FirstOrDefaultAsync(u => u.UserId == userId);
         }
-
-
 
         private string GenerateToken(User user)
         {
-            // Retrieve secret key and validate
             var secretKey = _configuration["JWT:SecretKey"];
-            if (string.IsNullOrEmpty(secretKey))
-            {
-                throw new InvalidOperationException("JWT secret key is not configured.");
-            }
-
-            // Retrieve issuer and audience from configuration and validate
             var issuer = _configuration["JWT:ValidIssuer"];
             var audience = _configuration["JWT:ValidAudience"];
-            if (string.IsNullOrEmpty(issuer))
-            {
-                throw new InvalidOperationException("JWT issuer is not configured.");
-            }
-            if (string.IsNullOrEmpty(audience))
-            {
-                throw new InvalidOperationException("JWT audience is not configured.");
-            }
 
-            // Create signing credentials
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
             var signingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // Define claims (use custom names instead of default URIs)
             var claims = new List<Claim>
             {
-                new Claim("userId", user.UserId.ToString()), // Custom claim for userId
-                new Claim("userName", user.Username),        // Custom claim for username
-                new Claim("email", user.Email),             // Custom claim for email
-                new Claim("role", user.UserRole)            // Custom claim for role
+                new Claim("userId", user.UserId.ToString()),
+                new Claim("userName", user.Username),
+                new Claim("email", user.Email),
+                new Claim("role", user.UserRole)
             };
 
-            // Generate token
             var token = new JwtSecurityToken(
                 issuer: issuer,
                 audience: audience,
-                expires: DateTime.UtcNow.AddHours(1), // Token expiration time
+                expires: DateTime.UtcNow.AddHours(1),
                 claims: claims,
                 signingCredentials: signingCredentials
             );
 
-            // Return serialized token
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
@@ -122,6 +136,50 @@ namespace dotnetapp.Services
             }
         }
 
-    
+        public async Task<(int status, string result)> ForgotPassword(string email)
+        {
+            // Check if user exists
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                return (0, "User with provided email does not exist.");
+            }
+
+            // Generate and send OTP
+            var otp = await _otpService.GenerateOtpAsync(email);
+            await _otpService.SendOtpEmailAsync(email, otp);
+
+            return (1, "OTP sent to email. Please verify the OTP to reset your password.");
+        }
+
+        public async Task<(int status, string result)> VerifyOtpResetPassword(LoginModel model, string otp)
+        {
+            // Validate OTP
+            var isValidOtp = await _otpService.ValidateOtpAsync(model.Email, otp);
+            if (!isValidOtp)
+            {
+                return (0, "Invalid or expired OTP.");
+            }
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+
+            if (user == null)
+            {
+                return (0, "User not found.");
+            }
+
+            // Generate a temporary password or accept a new password from the user
+            string newPassword = model.Password; // Or get from model if provided
+            user.Password = HashPassword(newPassword);
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return (1, "Password updated successfully. Use the new password to log in.");
+
+
+        }
+
+
+
+        
     }
 }
