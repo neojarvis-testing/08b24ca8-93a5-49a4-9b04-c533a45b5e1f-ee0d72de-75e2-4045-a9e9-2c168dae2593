@@ -1,41 +1,52 @@
-<div class="manager-dashboard">
-  <div class="dashboard-container">
-    <div class="card">
-      <h3>Total Savings Plans</h3>
-      <p>{{ totalSavingsPlans }}</p>
-      <p><strong class="active">Active:</strong> {{ activeSavingsPlans }}</p>
-      <p><strong class="inactive">Inactive:</strong> {{ inactiveSavingsPlans }}</p>
-    </div>
-
-    <div class="card">
-      <h3>Total Plan Applications</h3>
-      <p>{{ totalPlanApplications }}</p>
-      <p><strong class="approved">Approved:</strong> {{ approvedPlanApplications }}</p>
-      <p><strong class="rejected">Rejected:</strong> {{ rejectedPlanApplications }}</p>
-    </div>
-
-    <div class="card">
-      <h3>Total Feedbacks</h3>
-      <p>{{ totalFeedbacks }}</p>
-    </div>
-
-    <div class="card">
-      <h3>Total Registered Users</h3>
-      <p>{{ totalCustomers }}</p>
-    </div>
+<div class="container">
+<div class="landing-header">
+  <div class="header-content">
+    <h1>Welcome to Finance Hub</h1>
+    <p>
+      Empowering managers to create, manage, and optimize Savings Plans with ease.
+      Finance Hub is your one-stop solution for overseeing plan applications, gathering valuable feedback, and ensuring a seamless experience for all users.
+    </p>
+    <p>
+      With a dynamic and interactive dashboard, stay updated on the latest activities,
+      manage customer feedback, and track key metrics effortlessly.
+    </p>
+    <!-- Button to scroll to the dashboard -->
+    <a (click)="scrollToDashboard()" class="cta-button">Explore the Dashboard</a>
   </div>
-<!-- Activity Metrics Section -->
-<div class="activity-metrics">
-  <h3 (click)="toggleActivities()" class="activity-header">
-    Recent Activities
-    <span [class]="showActivities ? 'icon-up' : 'icon-down'"></span>
-  </h3>
-  <div *ngIf="showActivities" [@expandCollapse]="showActivities ? 'expanded' : 'collapsed'" class="activity-list">
-    <ul>
-      <li *ngFor="let activity of recentActivities">
-        {{ activity }}
-      </li>
-    </ul>
+</div>
+
+<div #dashboardSection id="dashboard" class="animated-dashboard">
+  <div class="dashboard-header">
+    <h2>Manager Dashboard</h2>
+    <p>Monitor and manage all activities and metrics at a glance.</p>
+  </div>
+
+  <div class="manager-dashboard">
+    <div class="dashboard-container">
+      <div class="card">
+        <h3>Total Savings Plans</h3>
+        <p>{{ totalSavingsPlans }}</p>
+        <p><strong class="active">Active:</strong> {{ activeSavingsPlans }}</p>
+        <p><strong class="inactive">Inactive:</strong> {{ inactiveSavingsPlans }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Plan Applications</h3>
+        <p>{{ totalPlanApplications }}</p>
+        <p><strong class="approved">Approved:</strong> {{ approvedPlanApplications }}</p>
+        <p><strong class="rejected">Rejected:</strong> {{ rejectedPlanApplications }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Feedbacks</h3>
+        <p>{{ totalFeedbacks }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Total Registered Users</h3>
+        <p>{{ totalCustomers }}</p>
+      </div>
+    </div>
   </div>
 </div>
 </div>
