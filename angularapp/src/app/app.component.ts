@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,13 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'angularapp';
+  title = 'FinanceHub';
   currentRole: string = 'navbar'; // Default
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private titleService: Title) {}
 
   ngOnInit(): void {
-    // Subscribe to role changes
+    this.titleService.setTitle('Finance Hub');
     this.authService.role$.subscribe(role => {
       this.currentRole = role;
     });

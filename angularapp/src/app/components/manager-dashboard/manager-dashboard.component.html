@@ -1,52 +1,55 @@
 <div class="container">
-<div class="landing-header">
-  <div class="header-content">
-    <h1>Welcome to Finance Hub</h1>
-    <p>
-      Empowering managers to create, manage, and optimize Savings Plans with ease.
-      Finance Hub is your one-stop solution for overseeing plan applications, gathering valuable feedback, and ensuring a seamless experience for all users.
-    </p>
-    <p>
-      With a dynamic and interactive dashboard, stay updated on the latest activities,
-      manage customer feedback, and track key metrics effortlessly.
-    </p>
-    <!-- Button to scroll to the dashboard -->
-    <a (click)="scrollToDashboard()" class="cta-button">Explore the Dashboard</a>
-  </div>
-</div>
-
-<div #dashboardSection id="dashboard" class="animated-dashboard">
-  <div class="dashboard-header">
-    <h2>Manager Dashboard</h2>
-    <p>Monitor and manage all activities and metrics at a glance.</p>
+  <div class="landing-header">
+    <div class="header-content">
+      <h1 class="hero-title">
+        Welcome to <span class="highlight">Finance Hub</span>
+      </h1>
+      <p class="hero-subtitle">
+        Empowering managers to create, manage, and optimize Savings Plans with ease.
+        Finance Hub is your one-stop solution for overseeing plan applications, gathering valuable feedback, and ensuring a seamless experience for all users.
+      </p>
+      <div class="cta-buttons">
+        <a (click)="scrollToDashboard()" class="cta-button">Explore the Dashboard</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/assets/Manager.png" alt="Finance Hub Dashboard" />
+    </div>
   </div>
 
-  <div class="manager-dashboard">
+  <div #dashboardSection id="dashboard" class="manager-dashboard">
+    <div class="dashboard-header">
+      <h2>
+        Manager Dashboard
+        <span class="text-gradient">Overview</span>
+      </h2>
+      <p>Monitor and manage all activities and metrics at a glance.</p>
+    </div>
+
     <div class="dashboard-container">
       <div class="card">
-        <h3>Total Savings Plans</h3>
-        <p>{{ totalSavingsPlans }}</p>
-        <p><strong class="active">Active:</strong> {{ activeSavingsPlans }}</p>
-        <p><strong class="inactive">Inactive:</strong> {{ inactiveSavingsPlans }}</p>
+        <h3>{{ totalSavingsPlans }}</h3>
+        <p>Total Savings Plans</p>
+        <p>Active: {{ activeSavingsPlans }}</p>
+        <p>Inactive: {{ inactiveSavingsPlans }}</p>
       </div>
 
       <div class="card">
-        <h3>Total Plan Applications</h3>
-        <p>{{ totalPlanApplications }}</p>
-        <p><strong class="approved">Approved:</strong> {{ approvedPlanApplications }}</p>
-        <p><strong class="rejected">Rejected:</strong> {{ rejectedPlanApplications }}</p>
+        <h3>{{ totalPlanApplications }}</h3>
+        <p>Total Plan Applications</p>
+        <p>Approved: {{ approvedPlanApplications }}</p>
+        <p>Rejected: {{ rejectedPlanApplications }}</p>
       </div>
 
       <div class="card">
-        <h3>Total Feedbacks</h3>
-        <p>{{ totalFeedbacks }}</p>
+        <h3>{{ totalFeedbacks }}</h3>
+        <p>Total Feedbacks</p>
       </div>
 
       <div class="card">
-        <h3>Total Registered Users</h3>
-        <p>{{ totalCustomers }}</p>
+        <h3>{{ totalCustomers }}</h3>
+        <p>Total Registered Users</p>
       </div>
     </div>
   </div>
-</div>
 </div>
