@@ -10,6 +10,35 @@ h1 {
   color: #1a3e72;
 }
 
+/* No Data Message Styling */
+.no-data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto; /* Auto centers the message */
+  padding: 15px;
+  width: 40%; /* Reduced size for a cleaner look */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.no-data-icon {
+  font-size: 50px; /* Emoji icon size adjusted */
+  color: #007BFF; /* Professional blue */
+  margin-bottom: 10px;
+}
+
+.no-data-message {
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  margin: 0;
+}
+
 /* Table Styling */
 table {
   width: 100%;
@@ -112,96 +141,4 @@ table tbody tr:hover {
 .pagination button.active {
   background-color: #007BFFff;
   color: #FFFFFFff;
-}
-
-/* No Data Message Styling */
-.no-data-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 40px 0;
-  padding: 20px;
-  background-color: #fff3f3;
-  border: 2px dashed #ff6b6b;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.no-data-icon {
-  font-size: 60px;
-  color: #ff6b6b;
-  margin-bottom: 10px;
-}
-
-.no-data-message {
-  font-size: 20px;
-  font-weight: 600;
-  color: #ff6b6b;
-  text-align: center;
-}
-
-/* Popup Styling */
-.innovative-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-.modal-container {
-  position: relative;
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  width: 450px;
-  max-width: 90%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  animation: slideIn 0.5s ease-out;
-  transform-origin: center;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #f4f4f9;
-  padding-bottom: 10px;
-}
-
-.modal-header h2 {
-  margin: 0;
-  font-size: 22px;
-  color: #1a3e72;
-}
-
-.close-button {
-  background: none;
-  border: none;
-  font-size: 22px;
-  font-weight: bold;
-  color: #ff0000;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
-
-.close-button:hover {
-  color: #cc0000;
-  transform: scale(1.2);
 }
