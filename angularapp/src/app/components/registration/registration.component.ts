@@ -15,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   password: string = '';
   confirmPassword: string = '';
   mobile: string = '';
-  role: 'Customer' | 'RegionalManager' = 'Customer';
+  role: 'Customer' | 'RegionalManager' | null = null;
   otp: string = '';
   showOtpModal: boolean = false;
 

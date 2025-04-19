@@ -43,6 +43,7 @@ const routes: Routes = [
   {path:'User/AppliedPlans', component:UserappliedplansComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AddFeedback', component:UseraddfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  
   {path:'error', component:ErrorComponent},
   {path:'LandingPage', component:LandingPageComponent},
   {path:'Dashboard', component:DashboardComponent},
