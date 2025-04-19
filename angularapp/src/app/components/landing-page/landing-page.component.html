@@ -1,57 +1,155 @@
-<div class="landing">
-  <!-- First Division -->
-  <div class="first-division">
-    <div class="overlay">
-      <h1>Welcome to Financial Hub</h1>
-      <p class="content">
-        Welcome to Finance Hub—your platform for smart savings and investments!
-        With tailored plans, expert insights, and tools, we empower you to make
-        confident financial decisions. Explore our plans and start your journey toward financial success today!
-      </p>
-      <button class="cta-button">Get Started</button>
-    </div>
+<div class="finance-hub-landing">
+
+ <!-- Hero Section -->
+
+ <section class="hero-section">
+
+  <div class="hero-content">
+
+   <h1 class="hero-title">YOUR FINANCIAL<br><span class="highlight">POWERHOUSE</span></h1>
+
+   <p class="hero-subtitle">Data-driven insights. Smarter decisions. Unlimited growth.</p>
+
+   <div class="cta-buttons">
+
+    <button class="primary-cta" mat-raised-button color="primary">Explore Tools</button>
+
+    <button class="secondary-cta" mat-stroked-button color="primary">Watch Demo</button>
+
+   </div>
+
   </div>
 
-  <!-- Second Division -->
-  <div class="second-division">
-    <div
-      class="cards-wrapper"
-      [ngClass]="{ 'animation-paused': isHovered || isZoomed }"
-      (mouseenter)="pauseAnimation()"
-      (mouseleave)="resumeAnimation()"
-    >
-      <div
-        class="card"
-        *ngFor="let card of activeCards; let i = index"
-        [ngClass]="{ 'zoomed': zoomStates[i] }"
-        (click)="toggleZoom(i)"
-      >
-        <div class="card-content">
-          <h3>{{ card.Name }}</h3>
-          <p><strong>Goal Amount:</strong> {{ card.GoalAmount | currency }}</p>
-          <p><strong>Time Frame:</strong> {{ card.TimeFrame }} months</p>
-          <p><strong>Risk Level:</strong> {{ card.RiskLevel }}</p>
-        </div>
-      </div>
-    </div>
+  <div class="hero-image">
+
+   <!-- <img src="/assets/pexels-pixabay-259165.jpg" alt="Finance Dashboard"> -->
+
   </div>
 
-  <!-- New Section With Background -->
-  <div class="new-generation-section">
-    <h1>Join New Generation Investors</h1>
-    <p class="content">
-      Start your journey into the world of smart investments and secure your financial future.
-    </p>
-    <button class="signup-button">Sign Up</button>
+ </section>
+
+
+
+ <!-- Stats Section -->
+
+ <section class="stats-section">
+
+  <div class="stat-card">
+
+   <h2 class="stat-number">99.9%</h2>
+
+   <p class="stat-label">Data Accuracy</p>
+
   </div>
 
-  <!-- Footer Division -->
-  <footer class="footer">
-    <p>&copy; 2025 Financial Hub. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="#"><img src="/assets/facebook.png" alt="Facebook"></a>
-      <a href="#"><img src="/assets/threads (1).png" alt="Threads"></a>
-      <a href="#"><img src="/assets/linkedin.png" alt="LinkedIn"></a>
+  <div class="stat-card">
+
+   <h2 class="stat-number">24/7</h2>
+
+   <p class="stat-label">Real-time Monitoring</p>
+
+  </div>
+
+  <div class="stat-card">
+
+   <h2 class="stat-number">1M+</h2>
+
+   <p class="stat-label">Trusted Customers</p>
+
+  </div>
+
+ </section>
+
+
+
+ <!-- Features Section -->
+
+ <section class="features-section">
+
+  <h2 class="section-title">FINANCIAL TOOLS <span class="text-gradient">DESIGNED FOR IMPACT</span></h2>
+
+   
+
+  <div class="features-grid">
+
+   <div class="feature-card">
+
+    <div class="feature-icon">💹</div>
+
+    <h3 class="feature-title">REAL-TIME ANALYTICS</h3>
+
+    <p class="feature-description">Monitor your financial health with live dashboards and customizable reports.</p>
+
+   </div>
+
+    
+
+   <div class="feature-card">
+
+    <div class="feature-icon">📊</div>
+
+    <h3 class="feature-title">ADVANCED FORECASTING</h3>
+
+    <p class="feature-description">Predict future trends with AI-powered financial modeling tools.</p>
+
+   </div>
+
+    
+
+   <div class="feature-card">
+
+    <div class="feature-icon">🔒</div>
+
+    <h3 class="feature-title">SECURE TRANSACTIONS</h3>
+
+    <p class="feature-description">Bank-grade encryption for all your financial operations.</p>
+
+   </div>
+
+  </div>
+
+ </section>
+
+
+
+ <!-- Testimonial Section -->
+
+ <section class="testimonial-section">
+
+  <h2 class="section-title">TRUSTED BY <span class="text-gradient">FINANCIAL LEADERS</span></h2>
+
+  <div class="testimonial-card">
+
+   <p class="testimonial-text">"The Finance Hub transformed how we manage our global operations. The insights we've gained have led to a 30% reduction in operational costs."</p>
+
+   <div class="testimonial-author">
+
+    <img src="assets/images/avatar.jpg" alt="Sarah Johnson" class="author-avatar">
+
+    <div>
+
+     <p class="author-name">SARAH JOHNSON</p>
+
+     <p class="author-title">CFO, TechGlobal Inc.</p>
+
     </div>
-  </footer>
+
+   </div>
+
+  </div>
+
+ </section>
+
+
+
+ <!-- Final CTA -->
+
+ <section class="final-cta">
+
+  <h2 class="cta-title">READY TO <span class="text-gradient">REVOLUTIONIZE</span> YOUR FINANCE OPERATIONS?</h2>
+
+  <button class="cta-button" mat-raised-button color="accent">GET STARTED TODAY</button>
+
+ </section>
+
 </div>

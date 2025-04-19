@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Models;
 using dotnetapp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace dotnetapp.Controllers
 {
@@ -91,6 +92,27 @@ namespace dotnetapp.Controllers
             }
 
             return Ok(new { status = "success", message = result });
+        }
+
+        [HttpGet("Users/{userId}")]
+        [Authorize(Roles = "RegionalManager")]
+        public async Task<IActionResult> GetUserById(int userId)
+        {
+            try
+            {
+                var user = await _authService.GetUserById(userId);
+
+                if (user == null)
+                {
+                    return NotFound(new { message = $"User with ID {userId} was not found." });
+                }
+
+                return Ok(user); // Return the user object directly
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = $"Internal server error: {ex.Message}" });
+            }
         }
     }
 }
