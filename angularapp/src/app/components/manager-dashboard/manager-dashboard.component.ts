@@ -53,6 +53,7 @@ export class ManagerDashboardComponent implements OnInit {
   recentActivities: any[] = [];
   pendingTasks: string[] = [];
   showActivities: boolean = false; // For toggling recent activities
+  showCards: boolean = false;
 
   constructor(
     private savingsPlanService: SavingsplanService,
@@ -112,20 +113,23 @@ export class ManagerDashboardComponent implements OnInit {
   fetchCustomerDetails(): void {
     this.totalCustomers = 150; // Replace with API call if available
   }
-  fetchRecentActivities(): void {
-    // Example data, replace with API call
-    this.recentActivities = [
-      'Savings Plan "Retirement Plan" was created.',
-      'User John Doe submitted an application.',
-      'Feedback received from Jane Doe.',
-      'Savings Plan "Vacation Fund" marked as Active.',
-    ];
-  
-    console.log('Recent Activities:', this.recentActivities); // Debugging log
+  showAnimations = false;
+  toggleAnimations(): void {
+    this.showAnimations = !this.showAnimations;
+    const newState = this.showAnimations ? 'visible' : 'hidden';
   }
-  
+
   toggleActivities(): void {
     this.showActivities = !this.showActivities;
     console.log('Show Activities:', this.showActivities); // Debugging log
+  }
+
+
+  scrollToDashboard(): void {
+    const dashboardSection = document.querySelector('#dashboard');
+    if (dashboardSection) {
+      this.showCards = true; // Ensure content is displayed
+      dashboardSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }
