@@ -30,6 +30,12 @@ export class ManagerviewfeedbackComponent implements OnInit {
 
   loadFeedbacks(): void {
     this.feedbackService.getFeedbacks().subscribe((feedbacks: Feedback[]) => {
+      if (feedbacks.length === 0) {
+        // No feedback records found
+        this.dataFetched = true; // Mark data as fetched
+        return;
+      }
+
       const userRequests = feedbacks.map((feedback) =>
         this.authService.getUserById(feedback.UserId)
       );
@@ -42,6 +48,10 @@ export class ManagerviewfeedbackComponent implements OnInit {
         this.feedbacks = feedbacks;
         this.dataFetched = true; // Mark data as fetched
       });
+    }, (error) => {
+      // Handle error case
+      console.error('Error fetching feedbacks:', error);
+      this.dataFetched = true; // Mark as fetched even if there's an error
     });
   }
 
