@@ -19,6 +19,9 @@ export class ManagerviewfeedbackComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 5;
 
+  // Property to track whether data has been fetched
+  dataFetched: boolean = false;
+
   constructor(private router: Router, private feedbackService: FeedbackService, private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -37,7 +40,7 @@ export class ManagerviewfeedbackComponent implements OnInit {
         });
 
         this.feedbacks = feedbacks;
-        console.log(this.feedbacks);
+        this.dataFetched = true; // Mark data as fetched
       });
     });
   }
