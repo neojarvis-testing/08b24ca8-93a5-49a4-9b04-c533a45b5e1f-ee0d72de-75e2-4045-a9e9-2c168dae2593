@@ -100,19 +100,19 @@ export class ManagerviewapplicationformComponent implements OnInit {
     this.currentPage = page;
   }
 
-  updateApplicationStatus(application: PlanApplication, status="") {
-    console.log(application);
-   
+  updateApplicationStatus(application: PlanApplication, status: 'Approved' | 'Rejected') {
+    console.log('Before Update:', application);
+  
     // Create the updated application object in the format expected by the backend
     const updatedApplication = {
-        PlanApplicationId: application.PlanApplicationId,
-        UserId: application.User.UserId, // Extract UserId from User object
-        SavingsPlanId: application.SavingsPlan.SavingsPlanId, // Extract SavingsPlanId from SavingsPlan object
-        AppliedAmount: application.AppliedAmount,
-        Status: status,
-        ApplicationDate: application.ApplicationDate,
-        Remarks: application.Remarks,
-        ProofDocument: application.ProofDocument
+      PlanApplicationId: application.PlanApplicationId,
+      UserId: application.User?.UserId, // Extract UserId from User object
+      SavingsPlanId: application.SavingsPlan?.SavingsPlanId, // Extract SavingsPlanId from SavingsPlan object
+      AppliedAmount: application.AppliedAmount,
+      Status: status, // Update the status
+      ApplicationDate: application.ApplicationDate,
+      Remarks: application.Remarks,
+      ProofDocument: application.ProofDocument
     };
     console.log(updatedApplication);
     this.planApplicationformService.updatePlanApplication(application.PlanApplicationId, updatedApplication).subscribe(() => {

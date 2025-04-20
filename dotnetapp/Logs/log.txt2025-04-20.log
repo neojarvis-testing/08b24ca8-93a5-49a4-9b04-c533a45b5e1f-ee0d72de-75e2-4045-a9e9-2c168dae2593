@@ -441,3 +441,78 @@
 2025-04-20 11:48:17,993 [77] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
 2025-04-20 11:48:55,098 [82] INFO  dotnetapp.Controllers.AuthenticationController - Received request to fetch details for userId: 2
 2025-04-20 11:48:55,100 [81] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
+2025-04-20 12:12:39,889 [12] INFO  dotnetapp.Controllers.AuthenticationController - Received request to fetch details for userId: 2
+2025-04-20 12:12:39,903 [22] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
+2025-04-20 12:14:39,169 [24] INFO  dotnetapp.Controllers.AuthenticationController - Received request to fetch details for userId: 2
+2025-04-20 12:14:39,171 [24] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
+2025-04-20 12:14:50,299 [21] INFO  dotnetapp.Controllers.AuthenticationController - Received request to fetch details for userId: 2
+2025-04-20 12:14:50,300 [21] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
+2025-04-20 12:15:16,907 [23] INFO  dotnetapp.Controllers.AuthenticationController - Received request to fetch details for userId: 2
+2025-04-20 12:15:16,923 [23] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
+2025-04-20 12:15:25,819 [24] INFO  dotnetapp.Controllers.AuthenticationController - Received request to fetch details for userId: 2
+2025-04-20 12:15:25,820 [22] INFO  dotnetapp.Controllers.AuthenticationController - User with ID 2 fetched successfully.
+2025-04-20 12:39:30,299 [115] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: nklsanthosh03@gmail.com
+2025-04-20 12:39:31,001 [114] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
+2025-04-20 12:42:25,411 [125] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:25,858 [124] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:27,803 [125] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:28,272 [125] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:52,563 [130] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:52,996 [124] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:53,048 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:53,443 [128] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:53,466 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:53,468 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:53,812 [128] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:54,011 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:54,012 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:54,013 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:54,014 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:54,021 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:54,519 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:54,525 [131] ERROR dotnetapp.Controllers.AuthenticationController - An error occurred during registration for email: Test1@gmail.com
+Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException: The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions.
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ThrowAggregateUpdateConcurrencyException(Int32 commandIndex, Int32 expectedRowsAffected, Int32 rowsAffected)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetWithoutPropagationAsync(Int32 commandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at dotnetapp.Services.OtpService.GenerateOtpAsync(String email) in /home/coder/project/workspace/dotnetapp/Services/OtpService.cs:line 32
+   at dotnetapp.Services.AuthService.Registration(User model) in /home/coder/project/workspace/dotnetapp/Services/AuthService.cs:line 33
+   at dotnetapp.Controllers.AuthenticationController.Register(User model) in /home/coder/project/workspace/dotnetapp/Controllers/AuthenticationController.cs:line 36
+2025-04-20 12:42:54,577 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:54,577 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:54,850 [128] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:55,041 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:55,051 [131] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:55,114 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:55,119 [131] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:42:55,479 [128] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:55,750 [129] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:42:56,362 [124] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:43:07,063 [130] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: Test1@gmail.com
+2025-04-20 12:43:07,497 [128] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: Test1@gmail.com
+2025-04-20 12:58:25,809 [62] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: test2@gmail.com
+2025-04-20 12:58:26,308 [62] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: test2@gmail.com
+2025-04-20 12:58:31,338 [62] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: test2@gmail.com
+2025-04-20 12:58:31,731 [64] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: test2@gmail.com
+2025-04-20 12:58:45,402 [57] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: test2@gmail.com
+2025-04-20 12:58:45,816 [66] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: test2@gmail.com
+2025-04-20 12:58:54,416 [57] INFO  dotnetapp.Controllers.AuthenticationController - Received OTP verification request for email: test2@gmail.com
+2025-04-20 12:58:54,424 [57] WARN  dotnetapp.Controllers.AuthenticationController - OTP verification failed for email: test2@gmail.com. Reason: Invalid or expired OTP.
+2025-04-20 12:59:00,130 [64] INFO  dotnetapp.Controllers.AuthenticationController - Received registration request for email: test2@gmail.com
+2025-04-20 12:59:00,520 [64] INFO  dotnetapp.Controllers.AuthenticationController - Registration successful for email: test2@gmail.com
+2025-04-20 13:02:03,452 [39] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: test1@gmail.com
+2025-04-20 13:02:03,464 [41] WARN  dotnetapp.Controllers.AuthenticationController - Forgot-password request failed for email: test1@gmail.com. Reason: User with provided email does not exist.
+2025-04-20 13:02:18,935 [39] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: nklsanthosh03@gmail.com
+2025-04-20 13:02:19,424 [41] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
+2025-04-20 13:05:39,824 [23] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: nklsanthosh03@gmail.com
+2025-04-20 13:05:40,347 [11] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com

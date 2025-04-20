@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Login } from 'src/app/models/login.model';
 
@@ -10,7 +10,8 @@ import { Login } from 'src/app/models/login.model';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+  email: string = '';
+  password: string = '';
   otp: string = '';
   newPassword: string = '';
   confirmPassword: string = '';
@@ -19,43 +20,22 @@ export class LoginComponent implements OnInit {
   showResetPasswordModal: boolean = false; // Reset Password Modal visibility
   currentUser: any = null;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {
-    // Initialize the reactive form
-    this.loginForm = this.fb.group({
-      email: [
-        '',
-        [Validators.required, Validators.email],
-      ],
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*]).{8,}$'
-          ),
-        ],
-      ],
-    });
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.logout();
   }
 
   // Step 1: Generate OTP
-  generateOtp(): void {
-    if (this.loginForm.invalid) {
+  generateOtp(form: NgForm): void {
+    if (!form.valid) {
       alert('Please fill all the required fields with valid data.');
       return;
     }
 
     const loginUser: Login = {
-      Email: this.loginForm.value.email,
-      Password: this.loginForm.value.password,
+      Email: this.email,
+      Password: this.password,
     };
 
     this.authService.login(loginUser).subscribe({
@@ -67,10 +47,11 @@ export class LoginComponent implements OnInit {
           error.error?.message || error.message || 'An unknown error occurred';
 
         if (errorMessage === 'Invalid Email.') {
-          this.loginForm.reset();
+          this.email = '';
+          this.password = '';
           alert('Invalid Email.');
         } else if (errorMessage === 'Invalid Password.') {
-          this.loginForm.controls['password'].reset();
+          this.password = '';
           alert('Invalid Password.');
         } else {
           console.error('Login failed', error);
@@ -83,8 +64,8 @@ export class LoginComponent implements OnInit {
   // Step 2: Verify OTP
   verifyOtp(): void {
     const loginUser: Login = {
-      Email: this.loginForm.value.email,
-      Password: this.loginForm.value.password,
+      Email: this.email,
+      Password: this.password,
     };
 
     this.authService.verifyLoginOtp(loginUser, this.otp).subscribe({
@@ -93,9 +74,9 @@ export class LoginComponent implements OnInit {
         console.log(this.currentUser);
         // Redirect user based on role
         if (this.currentUser.role == 'RegionalManager') {
-          this.router.navigate(['/Manager/Dashboard']);
+          this.router.navigate(['/RegionalManager']);
         } else if (this.currentUser.role == 'Customer') {
-          this.router.navigate(['/User/Home']);
+          this.router.navigate(['/Customer']);
         }
       },
       error: (error: any) => {
@@ -107,8 +88,8 @@ export class LoginComponent implements OnInit {
   // Resend OTP
   resendOtp(): void {
     const loginUser: Login = {
-      Email: this.loginForm.value.email,
-      Password: this.loginForm.value.password,
+      Email: this.email,
+      Password: this.password,
     };
 
     this.authService.login(loginUser).subscribe({
@@ -134,12 +115,7 @@ export class LoginComponent implements OnInit {
 
   // Step 1 for Forgot Password: Send OTP
   sendForgotPasswordOtp(): void {
-    if (!this.loginForm.controls['email'].valid) {
-      alert('Please provide a valid email.');
-      return;
-    }
-
-    this.authService.forgotPassword(this.loginForm.value.email).subscribe({
+    this.authService.forgotPassword(this.email).subscribe({
       next: () => {
         alert('OTP has been sent to your email.');
         this.showForgotPasswordModal = false;
@@ -159,12 +135,16 @@ export class LoginComponent implements OnInit {
     }
 
     var resetModel: Login = {
-      Email: this.loginForm.value.email,
+      Email: this.email,
       Password: this.newPassword,
     };
 
     this.authService.verifyOtpResetPassword(resetModel, this.otp).subscribe({
       next: () => {
+        this.password = '';
+        resetModel = null;
+        this.otp = null;
+        this.newPassword = '';
         alert('Password has been reset successfully.');
         this.showResetPasswordModal = false;
       },
@@ -179,24 +159,28 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/Register']);
   }
 
-  // Password validations for UI
+  // Password validations
   checkLowercase(): boolean {
-    return /[a-z]/.test(this.loginForm.value.password);
+    return /[a-z]/.test(this.password);
   }
 
   checkUppercase(): boolean {
-    return /[A-Z]/.test(this.loginForm.value.password);
+    return /[A-Z]/.test(this.password);
   }
 
   checkDigit(): boolean {
-    return /\d/.test(this.loginForm.value.password);
+    return /\d/.test(this.password);
   }
 
   checkSpecialChar(): boolean {
-    return /[!@#$%^&*]/.test(this.loginForm.value.password);
+    return /[!@#$%^&*]/.test(this.password);
   }
 
   checkMinLength(): boolean {
-    return this.loginForm.value.password?.length >= 8;
+    return this.password.length >= 8;
+  }
+
+  checkpassword(): boolean {
+    return this.password !== this.confirmPassword;
   }
 }
