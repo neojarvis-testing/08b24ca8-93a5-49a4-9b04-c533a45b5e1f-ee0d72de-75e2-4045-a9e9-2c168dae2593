@@ -47,7 +47,7 @@ const routes: Routes = [
 
   {path: '', component:LandingPageComponent },
   {path:'error', component:ErrorComponent},
-  {path: '**', redirectTo: '/error' }
+  {path: '**', redirectTo: '/error' },
 ];
  
  
