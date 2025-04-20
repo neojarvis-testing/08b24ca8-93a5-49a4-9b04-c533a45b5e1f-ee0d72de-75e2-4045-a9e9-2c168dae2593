@@ -93,9 +93,9 @@ export class LoginComponent implements OnInit {
         console.log(this.currentUser);
         // Redirect user based on role
         if (this.currentUser.role == 'RegionalManager') {
-          this.router.navigate(['/RegionalManager']);
+          this.router.navigate(['/Manager/Dashboard']);
         } else if (this.currentUser.role == 'Customer') {
-          this.router.navigate(['/Customer']);
+          this.router.navigate(['/User/Home']);
         }
       },
       error: (error: any) => {

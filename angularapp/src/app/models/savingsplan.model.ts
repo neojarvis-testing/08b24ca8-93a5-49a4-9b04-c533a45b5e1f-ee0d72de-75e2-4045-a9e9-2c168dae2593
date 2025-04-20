@@ -1,5 +1,5 @@
 export interface SavingsPlan{
-    SavingPlanId?:number;
+    SavingsPlanId?:number;
     Name:string;
     GoalAmount:number;
     TimeFrame:number;

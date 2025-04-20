@@ -38,9 +38,8 @@ const routes: Routes = [
   
 
   //{path:'Customer', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
-  {path:'Home',component:HomeComponent },
-  {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
-  //{path:'User/SavingPlans', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['`Customer`'] } },
+  {path:'User/Home',component:HomeComponent, canActivate: [AuthGuard], data: { roles: ['`Customer`'] } },
+  {path:'User/SavingPlans', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['`Customer`'] } },
   {path:'User/PlanApplication/:id', component:UserplanapplicationformComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AppliedPlans', component:UserappliedplansComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
