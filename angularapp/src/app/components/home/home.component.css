@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Second Division */
 .second-division {
-  padding: 0.5rem 0;
+  padding:   0.2rem 0 3.5rem 0; /* Adjusted spacing for proper alignment */
 }
 
 .cards-wrapper {
