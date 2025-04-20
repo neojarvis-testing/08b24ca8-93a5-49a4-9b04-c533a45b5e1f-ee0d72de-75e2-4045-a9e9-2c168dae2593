@@ -4,7 +4,7 @@
         <div>
             <label for="username">Username<span class="required">*</span></label>
             <input type="text" id="username" name="username" [(ngModel)]="username" required pattern="^[^\s]+$" 
-            [ngModelOptions]="{ standalone: true }" #usernameNgModel="ngModel" />
+             #usernameNgModel="ngModel" />
             <div class="error-message" *ngIf="usernameNgModel.invalid &&(usernameNgModel.dirty || usernameNgModel.touched)">
               <p *ngIf="usernameNgModel.errors?.required">Username is required</p>
               <p *ngIf="usernameNgModel.errors?.pattern">Spaces are not allowed</p>
@@ -14,7 +14,7 @@
         <!-- Email Field -->
         <div>
             <label for="email">Email<span class="required">*</span></label>
-            <input type="email" id="email" name="email" [(ngModel)]="email" required email [ngModelOptions]="{standalone : true}" #emailNgModel="ngModel">
+            <input type="email" id="email" name="email" [(ngModel)]="email" required email #emailNgModel="ngModel">
             <div class="error-message" *ngIf="emailNgModel.invalid && (emailNgModel.dirty || emailNgModel.touched)">
                 <p *ngIf="emailNgModel.errors?.required">Email is required</p>
                 <p *ngIf="emailNgModel.errors?.email">Invalid email format</p>
@@ -25,7 +25,7 @@
         <div>
             <label for="password">Password<span class="required">*</span></label>
             <input type="password" id="password" name="password" [(ngModel)]="password" required 
-                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" [ngModelOptions]="{standalone : true}" #passwordNgModel="ngModel">
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" #passwordNgModel="ngModel">
             <div class="error-message" *ngIf="passwordNgModel.invalid && (passwordNgModel.dirty || passwordNgModel.touched)">
                 <p>Password must include at least:</p>
                 <ul class="password-requirements">
@@ -41,7 +41,7 @@
         <!-- Confirm Password Field -->
         <div>
             <label for="confirmPassword">Confirm Password<span class="required">*</span></label>
-            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required [ngModelOptions]="{standalone : true}" #confirmPasswordNgModel="ngModel">
+            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required #confirmPasswordNgModel="ngModel">
             <div class="error-message" *ngIf="confirmPasswordNgModel.invalid && (confirmPasswordNgModel.dirty || confirmPasswordNgModel.touched)">
                 Confirm Password is required
             </div>
@@ -53,7 +53,7 @@
         <!-- Mobile Number Field -->
         <div>
             <label for="mobile">Mobile Number<span class="required">*</span></label>
-            <input type="tel" id="mobile" name="mobile" [(ngModel)]="mobile" required pattern="^[0-9]{10}$" [ngModelOptions]="{standalone : true}" 
+            <input type="tel" id="mobile" name="mobile" [(ngModel)]="mobile" required pattern="^[0-9]{10}$" 
                 #mobileNgModel="ngModel">
             <div class="error-message" *ngIf="mobileNgModel.invalid && (mobileNgModel.dirty || mobileNgModel.touched)">
                 <p *ngIf="mobileNgModel.errors?.required">Mobile number is required</p>
@@ -64,8 +64,8 @@
         <!-- Role Field -->
         <div>
             <label for="role">Role<span class="required">*</span></label>
-            <select id="role" name="role" [(ngModel)]="role" required #roleNgModel="ngModel">
-                <option value="" disabled selected>Select Role</option>
+            <select id="role" name="role" [(ngModel)]="role" required  #roleNgModel="ngModel">
+                <option value="" disabled>Select Your Role</option>
                 <option value="RegionalManager">Regional Manager</option>
                 <option value="Customer">Customer</option>
             </select>
@@ -75,23 +75,9 @@
         </div>
 
         <!-- Submit Button -->
-        <button id="submit" type="submit" [disabled]="!registrationForm.valid">Generate OTP</button>
+        <button id="submit" type="submit" [disabled]="registrationForm.invalid">Generate OTP</button>
     </form>
 </div>
-
-<!-- OTP Modal -->
-<!-- <div *ngIf="showOtpModal" class="otp-modal">
-    <div class="otp-modal-content">
-      <h2>Enter OTP</h2>
-      <p>A 6-digit OTP has been sent to your email. Please enter it below:</p>
-      <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP"/>
-      <div class="otp-actions">
-        <button (click)="resendOtp()">Resend OTP</button>
-        <button [disabled]="!otp" (click)="verifyOtp()">Register</button>
-      </div>
-    </div>
-  </div> -->
-
 
   <div *ngIf="showOtpModal" class="otp-modal">
     <div class="otp-modal-content">
