@@ -12,7 +12,7 @@ declare var bootstrap: any;
 export class ManagereditsavingsplanComponent implements OnInit {
   
   savingsPlan: SavingsPlan = {
-    SavingPlanId: 0,
+    SavingsPlanId: 0,
     Name: '',
     GoalAmount: null,
     TimeFrame: null,
@@ -47,7 +47,7 @@ export class ManagereditsavingsplanComponent implements OnInit {
         this.savingsPlan = data;
 
         
-        this.savingsPlan.SavingPlanId = data.SavingPlanId || savingPlanId;
+        this.savingsPlan.SavingsPlanId = data.SavingsPlanId || savingPlanId;
 
         console.log(this.savingsPlan); 
       },
@@ -69,12 +69,12 @@ export class ManagereditsavingsplanComponent implements OnInit {
       this.savingsPlan.Description &&
       this.savingsPlan.Status
     ) {
-      if (!this.savingsPlan.SavingPlanId) {
+      if (!this.savingsPlan.SavingsPlanId) {
         this.errorMessage = 'Invalid savingPlanId. Cannot update the savings plan.';
         return;
       }
 
-      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.SavingPlanId, this.savingsPlan).subscribe({
+      this.savingsPlanService.updateSavingsPlan(this.savingsPlan.SavingsPlanId, this.savingsPlan).subscribe({
         next: () => {
           this.formSubmitted = true;
           setTimeout(() => this.router.navigate(['/Manager/SavingPlans']), 2000);

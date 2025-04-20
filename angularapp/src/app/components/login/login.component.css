@@ -1,285 +1,178 @@
-/* Wrapper and Base */
+/* Wrapper */
 body,
 html {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom right, rgb(17, 33, 203), #a6c1f1);
-    overflow: hidden;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* Login Container */
+/* Left Side: Image */
+.image-container {
+  flex: 1; /* Take 50% of the space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, rgb(17, 33, 203), #a6c1f1);
+  overflow: hidden;
+}
+
+.login-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container while maintaining aspect ratio */
+  border-radius: 0; /* Optional: Remove border-radius for full coverage */
+}
+
+/* Right Side: Login Form */
 .login-container {
-    width: 90%;
-    max-width: 400px;
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    transform: translateY(0);
-    transition: all 0.3s ease-in-out;
+  flex: 1; /* Take 50% of the space */
+  max-width: 400px;
+  background-color: #ffffff;
+  padding: 50px 30px; /* Increased padding for better spacing */
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center the form vertically */
 }
 
 .login-container h1 {
-    color: #333333;
-    font-size: 28px;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  font-size: 28px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .login-container:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 /* Form Group */
 .form-group {
-    margin-bottom: 20px;
-    text-align: left;
+  margin-bottom: 20px;
+  text-align: left;
 }
 
 label {
-    display: block;
-    margin-bottom: 8px;
-    color: #444444;
-    font-size: 14px;
-    font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  color: #444444;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .required {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
 }
 
 .form-input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 .form-input:focus {
-    border-color: #6a11cb;
-    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
-    outline: none;
+  border-color: #6a11cb;
+  box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  outline: none;
 }
 
 /* Error Message */
 .error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: -5px;
-    margin-bottom: 10px;
-    animation: fadeIn 0.5s;
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.5s;
 }
 
 /* Password Requirements */
 .password-requirements {
-    margin: 5px 0 0;
-    padding: 0;
-    list-style-type: none;
+  margin: 5px 0 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .password-requirements li {
-    font-size: 12px;
-    margin: 3px 0;
+  font-size: 12px;
+  margin: 3px 0;
 }
 
 .password-requirements li.valid {
-    color: green;
+  color: green;
 }
 
 .password-requirements li.invalid {
-    color: red;
+  color: red;
 }
 
 /* Button Styling */
 .btn {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    background: linear-gradient(to right, #0052cc, #71a0f0);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    margin-top: 10px; /* Add spacing above */
-    margin-bottom: 20px; /* Add spacing below */
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  background: linear-gradient(to right, #0052cc, #71a0f0);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .btn:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
-    transform: translateY(-2px);
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+  transform: translateY(-2px);
 }
 
 .btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
 /* Register Section Styling */
 .register-container {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #444444;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #444444;
 }
 
 .register-link {
-    color: #2575fc;
-    font-weight: bold;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
+  color: #2575fc;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .register-link:hover {
-    color: #6a11cb;
+  color: #6a11cb;
 }
-
-/* Modal Overlay */
-.otp-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dim background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure it appears on top */
-  }
-  
-  /* Modal Content */
-  .otp-modal-content {
-    position: relative; /* Enable positioning for close button */
-    background: white;
-    padding: 30px; /* Consistent spacing */
-    border-radius: 10px;
-    text-align: center;
-    animation: popIn 0.5s;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Cross Mark Styling */
-  .close-button {
-    position: absolute;
-    top: 10px; /* Position close to the top */
-    right: 15px; /* Align to the right */
-    font-size: 20px;
-    color: #333; /* Default color */
-    font-weight: bold;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-  }
-  .close-button:hover {
-    color: #ff0000; /* Changes color to red on hover */
-  }
-  
-  /* Modal Header */
-  .otp-modal-content h2 {
-    color: #333333;
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    font-weight: bold;
-  }
-  
-  /* Modal Input */
-  .otp-modal-content input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-  }
-  
-  .otp-modal-content input:focus {
-    border-color: #6a11cb;
-    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
-    outline: none;
-  }
-  
-  /* Modal Actions */
-.otp-actions {
-    margin-top: 20px; /* Add spacing above the actions */
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Add space between buttons */
-}
-
-.otp-actions button {
-    width: 120px; /* Set a fixed width for consistency */
-    height: 40px; /* Set a fixed height for consistency */
-    padding: 10px 0; /* Ensure consistent padding */
-    font-size: 14px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    background: linear-gradient(to right, #0052cc, #71a0f0);
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
-}
-
-.otp-actions button:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb); /* Lighten gradient */
-    transform: translateY(-3px); /* Move up slightly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add hover shadow */
-}
-
-.otp-actions button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-  
-  /* Animation for Modal */
-  @keyframes popIn {
-    from {
-      transform: scale(0.8);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-
-
-
-
-
-
-
-
-
 
 /* Animation */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

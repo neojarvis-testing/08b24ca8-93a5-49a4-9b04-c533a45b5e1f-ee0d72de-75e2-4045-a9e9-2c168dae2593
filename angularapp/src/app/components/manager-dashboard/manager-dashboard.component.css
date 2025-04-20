@@ -1,5 +1,5 @@
 /* General Reset and Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap'); */
 
 body, html {
   margin: 0;
@@ -95,8 +95,9 @@ body, html {
 .manager-dashboard {
   background: #f8fafc;
   border-radius: 16px;
-  padding: 2rem 0; /* Reduced padding */
-  margin: 4rem 0; /* Reduced margin */
+  padding: 2rem 0; 
+  margin: 4rem 0;
+  border: 1px solid #3b82f6;
 }
 
 .dashboard-container {
@@ -162,6 +163,13 @@ body, html {
 .dashboard-header p {
   font-size: 1.2rem; /* Adjusted font size */
   color: #4a5568;
+}
+
+.green{
+  color: green;
+}
+.red{
+  color: red;
 }
 
 /* Responsive Adjustments */
