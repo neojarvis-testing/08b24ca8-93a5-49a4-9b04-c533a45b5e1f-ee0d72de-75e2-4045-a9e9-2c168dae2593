@@ -1,81 +1,62 @@
-/* Background Wrapper */
 .background-wrapper {
-  background-color: #ffffff; /* White background */
-  padding: 25px; /* Increased padding for polished spacing */
-  min-height: 100vh;
+  background-color: #f3f8ff;
+  padding: 20px;
+  min-height: 100vh; /* Ensure full-height background */
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
 }
-
+ 
+/* Optimized Container */
+.container {
+  background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Glossy white background */
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  color: #333; /* Dark color for text */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+ 
+.container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+ 
 /* Page Heading */
 .page-heading {
   text-align: center;
   font-family: 'Merriweather', serif;
-  font-size: 2.8rem; /* Slightly larger for better impact */
-  color: #ffffff; /* White text for contrast */
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  background-color: #0052cc; /* Blue background */
-  padding: 15px; /* Added padding for better spacing */
-  border-radius: 8px; /* Rounded corners for modern look */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  font-size: 3rem; /* Slightly larger heading for better readability */
+  color: #1e3a8a; /* Royal blue for heading */
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
-
-/* Search Bar Wrapper */
+ 
+/* Search Bar with Icon */
 .search-bar-wrapper {
-  width: 100%;
   text-align: center;
   margin-bottom: 30px;
 }
-
-/* Search Bar Container */
+ 
 .search-bar-container {
   position: relative;
   display: inline-block;
-  width: 50%;
 }
-
-/* Search Bar Styling */
+ 
 .search-bar {
-  width: 100%;
-  padding: 15px 20px;
-  border: 1px solid #0052cc;
-  border-radius: 50px;
+  width: 50%;
+  padding: 12px 40px 12px 12px; /* Add padding for icon spacing */
+  border: 1px solid #003580;
+  border-radius: 12px;
   font-size: 16px;
-  font-family: 'Helvetica Neue', sans-serif;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
+ 
 .search-bar:focus {
-  box-shadow: 0 8px 16px rgba(0, 82, 204, 0.3);
-  outline: none;
-  border-color: #003580;
-  background-color: #f3f8ff;
+  box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
+  border-color: #2563eb;
 }
-
-.search-bar:hover {
-  box-shadow: 0 6px 12px rgba(0, 82, 204, 0.2);
-}
-
-/* Search Icon Styling */
-.search-icon {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: #0052cc;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.search-bar-container:hover .search-icon {
-  transform: scale(1.2);
-  color: #003580;
-}
-
+ 
 /* Table Styling */
 .table {
   width: 100%;
@@ -86,105 +67,214 @@
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+ 
 .table thead tr {
-  background-color: #0052cc;
-  color: #ffffff; /* White text for contrast */
+  background: linear-gradient(90deg, #4169e1, #1e90ff); /* Royal blue gradient for header */
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
 }
-
+ 
 .table th {
   padding: 15px;
-  text-align: center;
-  font-weight: bold;
+  text-align: left;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
-
+ 
+.table th .column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
 .table th, .table td {
+  border-bottom: 1px solid #2953ea;
   padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid #e0e0e0;
 }
-
-.table tbody tr {
-  background-color: #ffffff;
-  color: black;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+ 
+/* Alternate Row Colors */
+.table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Light grey for odd rows */
 }
-
+ 
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff; /* White for even rows */
+}
+ 
+/* Hover Effect for Rows */
 .table tbody tr:hover {
+  background-color: #d1e7ff; /* Light royal blue for hover */
   transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0, 82, 204, 0.3);
+  transition: all 0.2s ease-in-out;
 }
-
-/* Buttons Wrapper */
-.page-initiation-buttons {
+ 
+/* Sort Button */
+.sort-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  color: #353333;
+  margin-left: 5px;
+  transition: transform 0.2s ease;
+}
+ 
+.sort-button:hover {
+  transform: scale(1.1);
+}
+ 
+/* Approve and Reject Buttons */
+.action-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px; /* Increased spacing between buttons */
-  margin-top: 20px;
+  gap: 10px;
 }
-
-/* Base Button Styling */
-.page-initiation-button {
-  padding: 15px 25px; /* Adjusted padding for professional look */
-  border: 2px solid transparent; /* Transparent border for hover effect */
-  border-radius: 8px;
-  font-size: 16px;
-  font-family: 'Helvetica Neue', sans-serif;
-  text-transform: uppercase;
+ 
+.action-buttons .approve-button {
+  background: linear-gradient(90deg, #4caf50, #388e3c);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
-
-/* Approve Button */
-.page-initiation-button.approve {
-  background-color: #28a745; /* Green for approve */
-  color: #ffffff;
+ 
+.action-buttons .approve-button:hover {
+  background: linear-gradient(90deg, #45a049, #2e7d32);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-.page-initiation-button.approve:hover {
-  background-color: #ffffff;
-  color: #28a745;
-  border-color: #28a745; /* Green border on hover */
+ 
+.action-buttons .reject-button {
+  background: linear-gradient(90deg, #f44336, #d32f2f);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
-
-/* Reject Button */
-.page-initiation-button.reject {
-  background-color: #dc3545; /* Red for reject */
-  color: #ffffff;
+ 
+.action-buttons .reject-button:hover {
+  background: linear-gradient(90deg, #e53935, #c62828);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
-.page-initiation-button.reject:hover {
-  background-color: #ffffff;
-  color: #dc3545;
-  border-color: #dc3545; /* Red border on hover */
+ 
+/* Status Text Styling */
+.approved-status {
+  color: #4caf50;
+  font-weight: bold;
 }
-
+ 
+.rejected-status {
+  color: #f44336;
+  font-weight: bold;
+}
+ 
 /* View Button */
-.page-initiation-button.view {
-  background-color: #0052cc; /* Blue for view */
-  color: #ffffff;
+.view-button {
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
-
-.page-initiation-button.view:hover {
+ 
+.view-button:hover {
+  background: linear-gradient(90deg, #0056b3, #003f7f);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+ 
+/* Popup Modal */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+.popup-content {
   background-color: #ffffff;
-  color: #0052cc;
-  border-color: #0052cc; /* Blue border on hover */
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 80%;
+  max-height: 80%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: scaleIn 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-/* Active State */
-.page-initiation-button:active {
-  transform: translateY(0); /* Reset lift */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+ 
+.popup-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 8px;
 }
-
-/* Disabled Button Styling */
-.page-initiation-button:disabled {
+ 
+.popup-content .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+ 
+/* Animation for Popup */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+ 
+/* Pagination Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 8px; /* Adds spacing between buttons */
+}
+ 
+.pagination button {
+  margin: 0 2px;
+  padding: 8px 12px;
+  border: 1px solid #0A3A7Aff;
+  background-color: #FEFEFEff;
+  color: #0A3A7Aff;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 17px; /* Reduced font size for button content (including icons) */
+}
+ 
+.pagination button.active,
+.pagination button:hover {
+  background-color: rgb(30, 30, 31);
+  color: #FEFEFEff;
+}
+ 
+.pagination button i {
+  font-size: 12px; /* Adjust this value as needed for the desired icon size */
+}
+ 
+.pagination button:disabled {
   background-color: #cccccc;
   color: #666666;
-  border-color: #aaaaaa;
   cursor: not-allowed;
-  box-shadow: none;
 }

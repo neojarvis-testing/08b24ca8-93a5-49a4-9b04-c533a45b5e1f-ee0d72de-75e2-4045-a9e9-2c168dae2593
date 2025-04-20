@@ -10,7 +10,6 @@ using dotnetapp.Services;
 
 namespace dotnetapp.Controllers
 {
-    //[Authorize]
     [ApiController]
     [Route("api/SavingsPlan")]
     public class SavingsPlanController : ControllerBase
@@ -26,20 +25,34 @@ namespace dotnetapp.Controllers
         [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult<IEnumerable<SavingsPlan>>> GetAllSavingsPlans()
         {
-            var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
-            return Ok(savingsPlans);
+            try
+            {
+                var savingsPlans = await _savingsPlanService.GetAllSavingsPlans();
+                return Ok(savingsPlans);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"An error occurred while fetching savings plans: {ex.Message}" });
+            }
         }
 
         [HttpGet("{savingsPlanId}")]
         [Authorize(Roles = "RegionalManager, Customer")]
         public async Task<ActionResult<SavingsPlan>> GetSavingsPlanById(int savingsPlanId)
         {
-            var savingsPlan = await _savingsPlanService.GetSavingsPlanById(savingsPlanId);
-            if (savingsPlan == null)
+            try
             {
-                return NotFound(new { Message = "Cannot find any savings plan" });
+                var savingsPlan = await _savingsPlanService.GetSavingsPlanById(savingsPlanId);
+                if (savingsPlan == null)
+                {
+                    return NotFound(new { Message = "Cannot find any savings plan with the given ID" });
+                }
+                return Ok(savingsPlan);
             }
-            return Ok(savingsPlan);
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = $"An error occurred while fetching the savings plan: {ex.Message}" });
+            }
         }
 
         [HttpPost]

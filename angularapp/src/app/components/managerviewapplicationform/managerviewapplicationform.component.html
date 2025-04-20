@@ -68,8 +68,8 @@
           <td>{{planApplication.Remarks}}</td>
           <td>
             <div *ngIf="planApplication.Status === 'Pending'" class="action-buttons">
-              <button class="approve-button" (click)="approve(planApplication)">Approve</button>
-              <button class="reject-button" (click)="reject(planApplication)">Reject</button>
+              <button class="approve-button" (click)="updateApplicationStatus(planApplication)">Approve</button>
+              <button class="reject-button" (click)="updateApplicationStatus(planApplication)">Reject</button>
             </div>
             <div *ngIf="planApplication.Status !== 'Pending'">
               <span [ngClass]="{ 

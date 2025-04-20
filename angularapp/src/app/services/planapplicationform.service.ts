@@ -24,14 +24,7 @@ export class PlanapplicationformService {
     return new HttpHeaders({
         Authorization: `Bearer ${token}`
     });
-}
-
-  // addPlanApplication(data: PlanApplication): Observable<PlanApplication> {
-  //   return this.http.post<PlanApplication>(`${this.baseUrl}/PlanApplication`, data, { headers: this.getAuthHeaders(), responseType: 'text' as 'json' })
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     );
-  //  }
+  }
 
   addPlanApplication(data: PlanApplication): Observable<PlanApplication> {
     return this.http.post<PlanApplication>(`${this.baseUrl}/PlanApplication`, data, { headers: this.getAuthHeaders() })
@@ -41,11 +34,8 @@ export class PlanapplicationformService {
   }
     
     deletePlanApplication(planId: number): Observable<void> {
-  
        const url = `${this.baseUrl}/PlanApplication/${planId}`;
-  
        return this.http.delete<void>(url, { headers: this.getAuthHeaders() })
-
        .pipe(
           catchError(this.handleError)
           );

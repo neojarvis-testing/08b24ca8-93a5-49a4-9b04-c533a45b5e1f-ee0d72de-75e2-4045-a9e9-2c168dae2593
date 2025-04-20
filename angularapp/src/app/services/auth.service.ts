@@ -24,98 +24,64 @@ export class AuthService {
       JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
-    this.updateRole(); // Initialize role on service load
+    this.updateRole(); // Initialize role on load
   }
+
+  // User Authentication Methods
 
   // Register user (Step 1: Generate OTP)
   register(newUser: User): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/register`, newUser).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'An unexpected error occurred.';
-        return throwError(() => new Error(backendMessage));
-      })
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'An unexpected error occurred.'))
     );
   }
 
   // Verify Registration OTP (Step 2: Verify OTP and complete registration)
   verifyRegistrationOtp(newUser: User, otp: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/verify-registration-otp?otp=${otp}`, newUser).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'Invalid OTP.';
-        return throwError(() => new Error(backendMessage));
-      })
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'Invalid OTP.'))
     );
   }
 
   // Login user (Step 1: Generate OTP)
   login(loginUser: Login): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/login`, loginUser).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'Invalid login credentials.';
-        return throwError(() => new Error(backendMessage));
-      })
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'Invalid login credentials.'))
     );
   }
 
   // Verify Login OTP (Step 2: Verify OTP and complete login)
   verifyLoginOtp(loginUser: Login, otp: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/verify-login-otp?otp=${otp}`, loginUser).pipe(
-      tap((response) => {
-        const token = response.message;
-        console.log(response.token);
-
-        if (token) {
-          const payload = JSON.parse(atob(token.split('.')[1]));
-          const user = {
-            userId: payload.userId,
-            userName: payload.userName,
-            email: payload.email,
-            role: payload.role,
-          };
-          localStorage.setItem('jwtToken', token);
-          this.currentUserSubject.next(user);
-          this.updateRole(); // Update role after login
-        }
-      }),
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'Invalid OTP.';
-        return throwError(() => new Error(backendMessage));
-      })
+      tap((response) => this.handleLoginSuccess(response)),
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'Invalid OTP.'))
     );
   }
 
   // Forgot Password: Send OTP
   forgotPassword(email: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/forgot-password?email=${email}`, email).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'Failed to send OTP.';
-        return throwError(() => new Error(backendMessage));
-      })
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'Failed to send OTP.'))
     );
   }
 
   // Verify OTP and Reset Password
   verifyOtpResetPassword(resetModel: Login, otp: string): Observable<any> {
-    console.log(resetModel);
     return this.http.put<any>(`${this.baseUrl}/verify-reset-otp?otp=${otp}`, resetModel).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'Failed to reset password.';
-        return throwError(() => new Error(backendMessage));
-      })
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'Failed to reset password.'))
     );
   }
 
+  // User Management Methods
+
+  // Get user by ID
   getUserById(userId: number): Observable<any> {
-    const token = localStorage.getItem('jwtToken');
     const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}` 
+      Authorization: `Bearer ${localStorage.getItem('jwtToken')}`
     });
-  
+
     return this.http.get<any>(`${this.baseUrl}/Users/${userId}`, { headers }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        const backendMessage = error.error || error.message || 'An error occurred while fetching user data.';
-        return throwError(() => new Error(backendMessage));
-      })
+      catchError((error: HttpErrorResponse) => this.handleError(error, 'An error occurred while fetching user data.'))
     );
   }
 
@@ -144,7 +110,15 @@ export class AuthService {
       email: decodedToken.email
     };
   }
-  
+
+  // Logout user
+  logout(): void {
+    localStorage.removeItem('jwtToken');
+    this.currentUserSubject.next(null);
+    this.roleSubject.next('navbar'); // Reset role to default
+  }
+
+  // Role Management Methods
 
   // Update the current role
   private updateRole(): void {
@@ -158,10 +132,28 @@ export class AuthService {
     this.roleSubject.next(role); // Emit the current role
   }
 
-  // Logout user
-  logout(): void {
-    localStorage.removeItem('jwtToken');
-    this.currentUserSubject.next(null);
-    this.roleSubject.next('navbar'); // Reset role to default
+  // Helper Methods
+
+  // Handle login success
+  private handleLoginSuccess(response: any): void {
+    const token = response.message;
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const user = {
+        userId: payload.userId,
+        userName: payload.userName,
+        email: payload.email,
+        role: payload.role,
+      };
+      localStorage.setItem('jwtToken', token);
+      this.currentUserSubject.next(user);
+      this.updateRole(); // Update role after login
+    }
+  }
+
+  // Handle errors
+  private handleError(error: HttpErrorResponse, defaultMessage: string): Observable<never> {
+    const backendMessage = error.error || error.message || defaultMessage;
+    return throwError(() => new Error(backendMessage));
   }
 }

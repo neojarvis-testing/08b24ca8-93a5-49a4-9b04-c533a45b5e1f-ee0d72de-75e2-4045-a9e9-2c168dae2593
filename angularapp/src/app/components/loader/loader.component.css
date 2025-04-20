@@ -15,7 +15,7 @@
   /* Loader */
   .loader {
     --c1: #673b14; /* Brown color */
-    --c2: #0052cc; /* Sand-like color */
+    --c2: #5495f7; /* Sand-like color */
     width: 40px;
     height: 80px;
     border-top: 4px solid var(--c1);
