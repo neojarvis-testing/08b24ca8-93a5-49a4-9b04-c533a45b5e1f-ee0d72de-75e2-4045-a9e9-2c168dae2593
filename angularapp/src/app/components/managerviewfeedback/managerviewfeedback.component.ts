@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { Feedback } from 'src/app/models/feedback.model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,7 +12,7 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 export class ManagerviewfeedbackComponent implements OnInit {
   feedbacks: Feedback[] = [];
   showDetailsPopup: boolean = false; 
-  selectedUserDetails: any = {}; 
+  selectedUserDetails: { Username?: string; Email?: string; MobileNumber?: string } = {}; 
 
   // Pagination properties
   currentPage: number = 1;
@@ -22,12 +21,13 @@ export class ManagerviewfeedbackComponent implements OnInit {
   // Property to track whether data has been fetched
   dataFetched: boolean = false;
 
-  constructor(private router: Router, private feedbackService: FeedbackService, private authService: AuthService) {}
+  constructor(private feedbackService: FeedbackService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loadFeedbacks();
   }
 
+  // Load feedbacks and populate user details
   loadFeedbacks(): void {
     this.feedbackService.getFeedbacks().subscribe((feedbacks: Feedback[]) => {
       if (feedbacks.length === 0) {
@@ -36,13 +36,14 @@ export class ManagerviewfeedbackComponent implements OnInit {
         return;
       }
 
+      // Fetch user details for each feedback
       const userRequests = feedbacks.map((feedback) =>
         this.authService.getUserById(feedback.UserId)
       );
 
       forkJoin(userRequests).subscribe((users) => {
         feedbacks.forEach((feedback, index) => {
-          feedback.User = users[index];
+          feedback.User = users[index]; // Map user details to feedback
         });
 
         this.feedbacks = feedbacks;
@@ -51,19 +52,23 @@ export class ManagerviewfeedbackComponent implements OnInit {
     }, (error) => {
       // Handle error case
       console.error('Error fetching feedbacks:', error);
-      this.dataFetched = true; // Mark as fetched even if there's an error
+      this.dataFetched = true; // Mark data as fetched even if there's an error
     });
   }
 
+  // Show details popup for the selected feedback
   showDetails(feedback: Feedback): void {
-    this.selectedUserDetails = {
-      username: feedback.User?.Username,
-      email: feedback.User?.Email,
-      mobile: feedback.User?.MobileNumber
-    };
-    this.showDetailsPopup = true; 
+    if (feedback.User) {
+      this.selectedUserDetails = {
+        Username: feedback.User.Username,
+        Email: feedback.User.Email,
+        MobileNumber: feedback.User.MobileNumber
+      };
+      this.showDetailsPopup = true;
+    }
   }
 
+  // Close the details popup
   closeDetailsPopup(): void {
     this.showDetailsPopup = false; 
     this.selectedUserDetails = {}; 
