@@ -26,7 +26,7 @@ export class UserplanapplicationformComponent implements OnInit {
     SavingsPlanId: 0
   };
   savingsPlan: SavingsPlan = {
-    SavingPlanId: 0,
+    SavingsPlanId: 0,
     Name: '',
     GoalAmount: 0,
     TimeFrame: 0,

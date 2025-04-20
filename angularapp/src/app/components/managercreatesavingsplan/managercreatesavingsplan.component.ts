@@ -12,7 +12,7 @@ declare var bootstrap: any;
 export class ManagercreatesavingsplanComponent implements OnInit {
 
   newPlan: SavingsPlan = {
-    SavingPlanId: 0,
+    SavingsPlanId: 0,
     Name: '',
     GoalAmount: null,
     TimeFrame: null,
@@ -20,7 +20,8 @@ export class ManagercreatesavingsplanComponent implements OnInit {
     Description: '',
     Status: ''
   };
-  as: boolean = false;
+
+  // as: boolean = false;
   formSubmitted = false;
 
   // Letters for the animation
@@ -38,7 +39,7 @@ export class ManagercreatesavingsplanComponent implements OnInit {
         () => {
           this.showSuccessModal();
           this.newPlan = {
-            SavingPlanId: 0,
+            SavingsPlanId: 0,
             Name: '',
             GoalAmount: null,
             TimeFrame: null,

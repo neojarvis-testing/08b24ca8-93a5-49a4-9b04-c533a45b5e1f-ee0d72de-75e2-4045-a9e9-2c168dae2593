@@ -40,27 +40,45 @@ export class ManagerviewapplicationformComponent implements OnInit {
   }
 
   fetchPlanApplications() {
+    // Step 1: Fetch all the plan applications
     this.planApplicationformService.getAllPlanApplications().subscribe((applications) => {
-      const uniqueUserIds = [...new Set(applications.map(app => app.UserId))];
-      const uniquePlanIds = [...new Set(applications.map(app => app.SavingsPlanId))];
+        // Extract unique UserIds and SavingsPlanIds
+        const uniqueUserIds = [...new Set(applications.map(app => app.UserId))];
+        const uniquePlanIds = [...new Set(applications.map(app => app.SavingsPlanId))];
 
-      forkJoin({
-        users: forkJoin(uniqueUserIds.map(id => this.authService.getUserById(id))),
-        plans: forkJoin(uniquePlanIds.map(id => this.savingsPlanService.getSavingsPlanById(id)))
-      }).subscribe(({ users, plans }) => {
-        const userMap = new Map(users.map(user => [user.UserId, user]));
-        const planMap = new Map(plans.map(plan => [plan.SavingPlanId, plan]));
+        // Step 2: Fetch users and plans in parallel using forkJoin
+        forkJoin({
+            users: forkJoin(uniqueUserIds.map(id => this.authService.getUserById(id))),
+            plans: forkJoin(uniquePlanIds.map(id => this.savingsPlanService.getSavingsPlanById(id)))
+        }).subscribe(({ users, plans }) => {
+            // Step 3: Create maps for quick lookup
+            const userMap = new Map(users.map(user => [user.UserId, user]));
+            const planMap = new Map(plans.map(plan => [plan.SavingsPlanId, plan])); // Ensure property name matches
 
-        this.planApplications = applications.map(app => ({
-          ...app,
-          User: userMap.get(app.UserId),
-          SavingsPlan: planMap.get(app.SavingsPlanId)
-        }));
+            console.log('Plan Map:', planMap); // Debugging log to verify planMap data
 
-        this.filteredPlanApplications = [...this.planApplications];
-      });
+            // Step 4: Map applications to include User and SavingsPlan data
+            this.planApplications = applications.map(app => {
+                const user = userMap.get(app.UserId);
+                const savingsPlan = planMap.get(app.SavingsPlanId);
+
+                // Debugging logs to verify each mapping
+                console.log('Application:', app);
+                console.log('Mapped User:', user);
+                console.log('Mapped SavingsPlan:', savingsPlan);
+
+                return {
+                    ...app,
+                    User: user,
+                    SavingsPlan: savingsPlan
+                };
+            });
+
+            console.log('Mapped Plan Applications:', this.planApplications); // Debugging log to verify final output
+            this.filteredPlanApplications = [...this.planApplications]; // Copy mapped applications to filtered list
+        });
     });
-  }
+}
 
   searchApplications() {
     const searchTerm = this.searchPlanName.toLowerCase().trim();
@@ -82,12 +100,25 @@ export class ManagerviewapplicationformComponent implements OnInit {
     this.currentPage = page;
   }
 
-  updateApplicationStatus(application: PlanApplication, status: 'Approved' | 'Rejected') {
-    const updatedApplication = { ...application, Status: status };
+  updateApplicationStatus(application: PlanApplication) {
+    console.log(application);
+   
+    // Create the updated application object in the format expected by the backend
+    const updatedApplication = {
+        PlanApplicationId: application.PlanApplicationId,
+        UserId: application.User.UserId, // Extract UserId from User object
+        SavingsPlanId: application.SavingsPlan.SavingsPlanId, // Extract SavingsPlanId from SavingsPlan object
+        AppliedAmount: application.AppliedAmount,
+        Status: this.planApplications.Status,
+        ApplicationDate: application.ApplicationDate,
+        Remarks: application.Remarks,
+        ProofDocument: application.ProofDocument
+    };
+    console.log(updatedApplication);
     this.planApplicationformService.updatePlanApplication(application.PlanApplicationId, updatedApplication).subscribe(() => {
-      application.Status = status; // Update the status locally
+        application.Status = status; // Update the status locally
     });
-  }
+}
   filterApplicationsByPlanName() {
     if (this.searchPlanName.trim()) {
       this.filteredPlanApplications = this.planApplications.filter(app => 
