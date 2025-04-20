@@ -1,6 +1,6 @@
 <h1 class="page-heading">My Applied Plans</h1>
 
-<table class="table styled-table">
+<table class="styled-table">
   <thead>
     <tr>
       <th>S.No</th>
@@ -43,9 +43,17 @@
     <tr *ngFor="let item of paginatedPlans; let i = index">
       <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
       <td>{{ item.SavingsPlan?.Name }}</td>
-      <td>{{ item.AppliedAmount }}</td>
+      <td>{{ item.AppliedAmount | currency: 'INR':'symbol':'1.0-0' }}</td>
       <td>{{ item.ApplicationDate }}</td>
-      <td>{{ item.Status }}</td>
+      <td>
+        <span 
+          [ngClass]="{
+            'status-approved': item.Status === 'Approved',
+            'status-rejected': item.Status === 'Rejected'
+          }">
+          {{ item.Status }}
+        </span>
+      </td>
       <td>
         <button class="btn view-button" (click)="viewImage(item.ProofDocument)">View</button>
         <button class="btn delete-button" (click)="deletePlanApplication(item.PlanApplicationId)">Delete</button>
@@ -66,8 +74,7 @@
   <button
     *ngFor="let page of [].constructor(totalPages()); let i = index"
     [ngClass]="{ 'active': currentPage === (i + 1) }"
-    (click)="changePage(i + 1)"
-  >
+    (click)="changePage(i + 1)">
     {{ i + 1 }}
   </button>
   <button
@@ -80,8 +87,8 @@
 </div>
 
 <!-- Modal for Viewing Image -->
-<div class="popup" *ngIf="selectedImage">
-  <div class="popup-content">
+<div class="modal" *ngIf="selectedImage">
+  <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <img [src]="selectedImage" alt="Proof Document" class="modal-image" />
   </div>

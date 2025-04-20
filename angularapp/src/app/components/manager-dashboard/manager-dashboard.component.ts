@@ -48,7 +48,7 @@ export class ManagerDashboardComponent implements OnInit {
   rejectedPlanApplications: number = 0;
 
   totalFeedbacks: number = 0;
-  totalCustomers: number = 0;
+  totalEnrollments: number = 0;
 
   recentActivities: any[] = [];
   pendingTasks: string[] = [];
@@ -70,7 +70,7 @@ export class ManagerDashboardComponent implements OnInit {
     this.fetchSavingsPlans();
     this.fetchPlanApplicationStats();
     this.fetchFeedbacks();
-    this.fetchCustomerDetails();
+    this.fetchEnrollments();
   }
 
   fetchSavingsPlans(): void {
@@ -110,9 +110,17 @@ export class ManagerDashboardComponent implements OnInit {
     );
   }
 
-  fetchCustomerDetails(): void {
-    this.totalCustomers = 150; // Replace with API call if available
+  fetchEnrollments(): void {
+    this.planApplicationService.getAllPlanApplications().subscribe(
+      (data) => {
+        this.totalEnrollments = data.length;
+      },
+      (error) => {
+        console.error('Error fetching feedbacks:', error);
+      }
+    );
   }
+  
   showAnimations = false;
   toggleAnimations(): void {
     this.showAnimations = !this.showAnimations;
