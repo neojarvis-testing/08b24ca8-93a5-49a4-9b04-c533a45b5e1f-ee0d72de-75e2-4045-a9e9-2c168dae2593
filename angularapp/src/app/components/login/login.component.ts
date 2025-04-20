@@ -153,7 +153,18 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-
+// Close Forgot Password Modal
+closeForgotPasswordModal(): void {
+  this.showForgotPasswordModal = false; // Hide Forgot Password modal
+  this.email = ''; // Clear email input field
+}
+// Close Reset Password Modal
+closeResetPasswordModal(): void {
+  this.showResetPasswordModal = false; // Hide Reset Password modal
+  this.otp = ''; // Clear OTP input field
+  this.newPassword = ''; // Clear new password field
+  this.confirmPassword = ''; // Clear confirm password field
+}
   // Navigation to Register Page
   navigateToRegister(): void {
     this.router.navigate(['/Register']);

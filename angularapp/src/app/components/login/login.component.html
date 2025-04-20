@@ -63,6 +63,7 @@
 <!-- Forgot Password Modal -->
 <div *ngIf="showForgotPasswordModal" class="otp-modal">
 <div class="otp-modal-content">
+  <span class="close-button" (click)="closeForgotPasswordModal()">×</span>
 <h2>Forgot Password</h2>
 <p>Enter your email to receive a 6-digit OTP.</p>
 <input type="email"placeholder="Enter email" [(ngModel)]="email" required />
@@ -72,6 +73,7 @@
 
 <div *ngIf="showResetPasswordModal" class="otp-modal">
 <div class="otp-modal-content">
+  <span class="close-button" (click)="closeResetPasswordModal()">×</span>
 <h2>Reset Password</h2>
 <p>Enter the OTP sent to your email and set a new password.</p>
 <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" required/>

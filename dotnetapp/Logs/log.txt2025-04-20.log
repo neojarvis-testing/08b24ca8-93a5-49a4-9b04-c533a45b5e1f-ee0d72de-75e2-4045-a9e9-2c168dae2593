@@ -516,3 +516,25 @@ Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException: The database operati
 2025-04-20 13:02:19,424 [41] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
 2025-04-20 13:05:39,824 [23] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: nklsanthosh03@gmail.com
 2025-04-20 13:05:40,347 [11] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
+2025-04-20 13:22:07,667 [19] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: deepikasankar973@gmail.com
+2025-04-20 13:22:10,157 [19] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: deepikasankar973@gmail.com
+2025-04-20 13:26:04,815 [29] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: deepikasankar973@gmail.com
+2025-04-20 13:26:05,346 [25] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: deepikasankar973@gmail.com
+2025-04-20 13:28:28,868 [38] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikasankar973@gmail.com
+2025-04-20 13:28:29,402 [38] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikasankar973@gmail.com
+2025-04-20 13:50:57,328 [104] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: deepikasankar973@gmail.com
+2025-04-20 13:50:57,892 [106] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: deepikasankar973@gmail.com
+2025-04-20 13:51:46,351 [104] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikasankar973@gmail.com
+2025-04-20 13:51:46,834 [104] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikasankar973@gmail.com
+2025-04-20 13:55:05,363 [88] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikasankar973@gmail.com
+2025-04-20 13:55:05,832 [89] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikasankar973@gmail.com
+2025-04-20 13:57:44,634 [75] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikasankar973@gmail.com
+2025-04-20 13:57:45,123 [75] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikasankar973@gmail.com
+2025-04-20 14:00:47,221 [63] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikasankar973@gmail.com
+2025-04-20 14:00:47,677 [61] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikasankar973@gmail.com
+2025-04-20 14:02:51,778 [59] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikaitsit@gmail.com
+2025-04-20 14:02:52,356 [54] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikaitsit@gmail.com
+2025-04-20 14:04:14,086 [51] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikaitsit@gmail.com
+2025-04-20 14:04:14,727 [49] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikaitsit@gmail.com
+2025-04-20 14:04:55,891 [48] INFO  dotnetapp.Controllers.AuthenticationController - Received forgot-password request for email: deepikaitsit@gmail.com
+2025-04-20 14:04:56,459 [45] INFO  dotnetapp.Controllers.AuthenticationController - Forgot-password request successful for email: deepikaitsit@gmail.com

@@ -161,7 +161,7 @@ label {
     align-items: center;
     z-index: 1000; /* Ensure it appears on top */
 }
- 
+
 .otp-modal-content {
     background: white;
     padding: 20px; /* Slightly more padding for better spacing */
@@ -171,21 +171,41 @@ label {
     animation: popIn 0.5s;
     width: 90%; /* Responsive width */
     max-width: 400px; /* Match the login container size */
+    position: relative; /* Enable positioning for close button */
 }
- 
+
+/* Cross Mark Styling */
+.close-button {
+    position: absolute;
+    top: 10px; /* Position close to the top */
+    right: 15px; /* Align to the right */
+    font-size: 20px;
+    color: #333; /* Default color */
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.close-button:hover {
+    color: red; /* Changes color to red on hover */
+}
+
 .otp-modal-content h2 {
     color: #333333;
     font-size: 24px;
     margin-bottom: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Match the login container heading */
 }
- 
+
 .otp-modal-content p {
     color: #444444;
     font-size: 14px;
     margin-bottom: 20px;
 }
- 
+
 .otp-modal-content input {
     width: 100%;
     padding: 12px;
@@ -196,46 +216,104 @@ label {
     box-sizing: border-box;
     transition: all 0.3s ease;
 }
- 
+
 .otp-modal-content input:focus {
     border-color: #6a11cb;
     box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
     outline: none;
 }
- 
+
 /* Button Styling for OTP Modal */
 .otp-actions {
-  margin-top: 20px; /* Add spacing above the actions */
-  display: flex;
-  justify-content: center;
-  gap: 15px; /* Add space between buttons */
+    margin-top: 20px; /* Add spacing above the actions */
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Add space between buttons */
 }
 
 .otp-actions button {
-  width: 120px; /* Set a fixed width for consistency */
-  height: 40px; /* Set a fixed height for consistency */
-  padding: 10px 0; /* Ensure consistent padding */
-  font-size: 14px;
-  font-weight: bold;
-  color: white;
-  border: none;
-  background: linear-gradient(to right, #0052cc, #71a0f0);
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+    width: 120px; /* Set a fixed width for consistency */
+    height: 40px; /* Set a fixed height for consistency */
+    padding: 10px 0; /* Ensure consistent padding */
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    background: linear-gradient(to right, #0052cc, #71a0f0);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
 }
 
 .otp-actions button:hover {
-  background: linear-gradient(to right, #2575fc, #6a11cb); /* Lighten gradient */
-  transform: translateY(-3px); /* Move up slightly */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add hover shadow */
+    background: linear-gradient(to right, #2575fc, #6a11cb); /* Lighten gradient */
+    transform: translateY(-3px); /* Move up slightly */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add hover shadow */
 }
 
 .otp-actions button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+    background-color: #ccc;
+    cursor: not-allowed;
 }
- 
+
+/* Forgot Password Modal Content */
+.otp-modal-content {
+    background: white;
+    padding: 20px; /* Padding for better spacing */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    text-align: center;
+    animation: popIn 0.5s;
+    width: 90%; /* Responsive width */
+    max-width: 400px; /* Size limit */
+    position: relative; /* For positioning the close button */
+}
+
+/* Close Button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: red;
+}
+
+/* Styling for "Send OTP" Button */
+.otp-modal-content button {
+    width: 100%; /* Full width button */
+    padding: 12px; /* Padding for height */
+    font-size: 16px; /* Font size for readability */
+    font-weight: bold; /* Bold text */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    background: linear-gradient(to right, #0044cc, #6699ff); /* Blue gradient */
+    cursor: pointer; /* Pointer cursor */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover */
+    margin-top: 10px; /* Add spacing above */
+}
+
+.otp-modal-content button:hover {
+    background: linear-gradient(to right, #2575fc, #6a11cb); /* Darker blue hover effect */
+    transform: translateY(-3px); /* Slightly lift the button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.otp-modal-content button:disabled {
+    background-color: #ccc; /* Grey color for disabled state */
+    cursor: not-allowed; /* Not-allowed cursor */
+}
+
 /* Animation for Modal */
 @keyframes popIn {
     from {
@@ -247,7 +325,7 @@ label {
         opacity: 1;
     }
 }
- 
+
 /* Animation */
 @keyframes fadeIn {
     from {
