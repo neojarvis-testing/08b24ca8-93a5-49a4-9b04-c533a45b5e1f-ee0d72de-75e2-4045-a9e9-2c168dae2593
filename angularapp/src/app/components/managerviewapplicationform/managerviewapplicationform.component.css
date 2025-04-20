@@ -1,4 +1,3 @@
-/* Background Wrapper */
 .background-wrapper {
   background-color: #f3f8ff;
   padding: 20px;
@@ -7,7 +6,7 @@
   justify-content: center;
   align-items: center;
 }
-
+ 
 /* Optimized Container */
 .container {
   background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Glossy white background */
@@ -17,12 +16,12 @@
   color: #333; /* Dark color for text */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+ 
 .container:hover {
   transform: translateY(-10px);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
 }
-
+ 
 /* Page Heading */
 .page-heading {
   text-align: center;
@@ -32,18 +31,18 @@
   margin-bottom: 30px;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
-
+ 
 /* Search Bar with Icon */
 .search-bar-wrapper {
   text-align: center;
   margin-bottom: 30px;
 }
-
+ 
 .search-bar-container {
   position: relative;
   display: inline-block;
 }
-
+ 
 .search-bar {
   width: 50%;
   padding: 12px 40px 12px 12px; /* Add padding for icon spacing */
@@ -52,12 +51,12 @@
   font-size: 16px;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
+ 
 .search-bar:focus {
   box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
   border-color: #2563eb;
 }
-
+ 
 /* Table Styling */
 .table {
   width: 100%;
@@ -68,47 +67,47 @@
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+ 
 .table thead tr {
   background: linear-gradient(90deg, #4169e1, #1e90ff); /* Royal blue gradient for header */
   color: white;
   font-weight: bold;
   text-transform: uppercase;
 }
-
+ 
 .table th {
   padding: 15px;
   text-align: left;
   letter-spacing: 1px;
 }
-
+ 
 .table th .column-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-
+ 
 .table th, .table td {
   border-bottom: 1px solid #2953ea;
   padding: 15px;
 }
-
+ 
 /* Alternate Row Colors */
 .table tbody tr:nth-child(odd) {
   background-color: #f9f9f9; /* Light grey for odd rows */
 }
-
+ 
 .table tbody tr:nth-child(even) {
   background-color: #ffffff; /* White for even rows */
 }
-
+ 
 /* Hover Effect for Rows */
 .table tbody tr:hover {
   background-color: #d1e7ff; /* Light royal blue for hover */
   transform: scale(1.02);
   transition: all 0.2s ease-in-out;
 }
-
+ 
 /* Sort Button */
 .sort-button {
   background: none;
@@ -119,18 +118,18 @@
   margin-left: 5px;
   transition: transform 0.2s ease;
 }
-
+ 
 .sort-button:hover {
   transform: scale(1.1);
 }
-
+ 
 /* Approve and Reject Buttons */
 .action-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
 }
-
+ 
 .action-buttons .approve-button {
   background: linear-gradient(90deg, #4caf50, #388e3c);
   color: white;
@@ -140,13 +139,13 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
-
+ 
 .action-buttons .approve-button:hover {
   background: linear-gradient(90deg, #45a049, #2e7d32);
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+ 
 .action-buttons .reject-button {
   background: linear-gradient(90deg, #f44336, #d32f2f);
   color: white;
@@ -156,24 +155,24 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
-
+ 
 .action-buttons .reject-button:hover {
   background: linear-gradient(90deg, #e53935, #c62828);
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+ 
 /* Status Text Styling */
 .approved-status {
   color: #4caf50;
   font-weight: bold;
 }
-
+ 
 .rejected-status {
   color: #f44336;
   font-weight: bold;
 }
-
+ 
 /* View Button */
 .view-button {
   background: linear-gradient(90deg, #007bff, #0056b3);
@@ -184,13 +183,13 @@
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s;
 }
-
+ 
 .view-button:hover {
   background: linear-gradient(90deg, #0056b3, #003f7f);
   transform: scale(1.05);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-
+ 
 /* Popup Modal */
 .popup {
   position: fixed;
@@ -203,7 +202,7 @@
   align-items: center;
   justify-content: center;
 }
-
+ 
 .popup-content {
   background-color: #ffffff;
   padding: 30px;
@@ -217,13 +216,13 @@
   flex-direction: column;
   align-items: center;
 }
-
+ 
 .popup-content img {
   max-width: 100%;
   max-height: 70vh;
   border-radius: 8px;
 }
-
+ 
 .popup-content .close {
   position: absolute;
   top: 10px;
@@ -232,7 +231,7 @@
   cursor: pointer;
   color: #333;
 }
-
+ 
 /* Animation for Popup */
 @keyframes scaleIn {
   from {
@@ -244,7 +243,7 @@
     opacity: 1;
   }
 }
-
+ 
 /* Pagination Styling */
 .pagination {
   display: flex;
@@ -252,7 +251,7 @@
   margin-top: 20px;
   gap: 8px; /* Adds spacing between buttons */
 }
-
+ 
 .pagination button {
   margin: 0 2px;
   padding: 8px 12px;
@@ -263,17 +262,17 @@
   transition: background-color 0.3s ease, color 0.3s ease;
   font-size: 17px; /* Reduced font size for button content (including icons) */
 }
-
+ 
 .pagination button.active,
 .pagination button:hover {
   background-color: rgb(30, 30, 31);
   color: #FEFEFEff;
 }
-
+ 
 .pagination button i {
   font-size: 12px; /* Adjust this value as needed for the desired icon size */
 }
-
+ 
 .pagination button:disabled {
   background-color: #cccccc;
   color: #666666;
