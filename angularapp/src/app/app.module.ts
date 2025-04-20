@@ -23,7 +23,6 @@ import { UserviewsavingsplanComponent } from './components/userviewsavingsplan/u
 import { UserappliedplansComponent } from './components/userappliedplans/userappliedplans.component';
 import { ManagerviewapplicationformComponent } from './components/managerviewapplicationform/managerviewapplicationform.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 import { LoaderComponent } from './components/loader/loader.component';
 //import { LandingPageComponent } from './components/landingpage/landingpage.component';
@@ -54,7 +53,6 @@ import { LoaderComponent } from './components/loader/loader.component';
     UserappliedplansComponent,
     ManagerviewapplicationformComponent,
     LandingPageComponent,
-    DashboardComponent,
     ManagerDashboardComponent,
     LoaderComponent,
    

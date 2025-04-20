@@ -77,10 +77,35 @@ namespace dotnetapp.Services
 
             var mailMessage = new MailMessage
             {
-                From = new MailAddress(smtpEmail),
-                Subject = "Your OTP Code",
-                Body = $"Your OTP is {otp}. It will expire in 3 minutes.",
-                IsBodyHtml = false
+                // From = new MailAddress(smtpEmail),
+                // Subject = "Your OTP Code",
+                // Body = $"Your OTP is {otp}. It will expire in 3 minutes.",
+                // IsBodyHtml = false
+
+                From = new MailAddress(smtpEmail, "Finance Hub"),
+                Subject = "Your Finance Hub OTP Code",
+                Body = $@"
+                    <html>
+                        <body style='font-family: Arial, sans-serif; line-height: 1.6;'>
+                            <div style='max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;'>
+                                <h2 style='text-align: center; color: #4CAF50;'>Finance Hub</h2>
+                                <p>Dear User,</p>
+                                <p>We received a request to perform a secure action using your Finance Hub account. Please use the One-Time Password (OTP) below to proceed:</p>
+                                <div style='text-align: center; margin: 20px 0;'>
+                                    <span style='font-size: 24px; font-weight: bold; color: #333;'>{otp}</span>
+                                </div>
+                                <p>This OTP is valid for <strong>3 minutes</strong>. Please do not share it with anyone for security reasons.</p>
+                                <p>If you did not request this action, please ignore this email or contact our support team immediately.</p>
+                                <p>Thank you for choosing Finance Hub.</p>
+                                <hr style='border: 0; height: 1px; background: #ddd; margin: 20px 0;'>
+                                <p style='font-size: 12px; text-align: center; color: #666;'>
+                                    This is an automated message. Please do not reply to this email.<br>
+                                    For any assistance, contact us at <a href='mailto:financehub.lti@gmail.com'>financehub.lti@gmail.com</a>.
+                                </p>
+                            </div>
+                        </body>
+                    </html>",
+                IsBodyHtml = true
             };
             mailMessage.To.Add(email);
 

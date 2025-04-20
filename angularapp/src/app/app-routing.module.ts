@@ -21,7 +21,6 @@ import { Feedback } from './models/feedback.model';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
 import { ManagerviewsavingsplanComponent } from './components/managerviewsavingsplan/managerviewsavingsplan.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 
 const routes: Routes = [
@@ -47,7 +46,6 @@ const routes: Routes = [
   {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AddFeedback', component:UseraddfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
 
-  {path:'Dashboard', component:DashboardComponent},
   {path: '', component:LandingPageComponent },
   {path:'error', component:ErrorComponent},
   {path: '**', redirectTo: '/error' }

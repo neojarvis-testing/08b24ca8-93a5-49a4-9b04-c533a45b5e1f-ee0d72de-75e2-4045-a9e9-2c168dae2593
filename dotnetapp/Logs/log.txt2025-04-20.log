@@ -4,3 +4,7 @@
 2025-04-20 05:15:11,921 [12] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
 2025-04-20 05:15:51,139 [11] INFO  dotnetapp.Controllers.AuthenticationController - Received OTP verification request for login email: nklsanthosh03@gmail.com
 2025-04-20 05:15:51,323 [19] INFO  dotnetapp.Controllers.AuthenticationController - OTP verification for login successful for email: nklsanthosh03@gmail.com
+2025-04-20 05:37:25,668 [13] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: nklsanthosh03@gmail.com
+2025-04-20 05:37:27,597 [14] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
+2025-04-20 06:51:06,830 [14] INFO  dotnetapp.Controllers.AuthenticationController - Received login request for email: nklsanthosh03@gmail.com
+2025-04-20 06:51:08,879 [14] INFO  dotnetapp.Controllers.AuthenticationController - Login successful for email: nklsanthosh03@gmail.com
