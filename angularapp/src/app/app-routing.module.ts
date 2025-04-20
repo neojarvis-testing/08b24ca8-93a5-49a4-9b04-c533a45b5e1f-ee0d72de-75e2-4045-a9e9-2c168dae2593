@@ -35,6 +35,7 @@ const routes: Routes = [
   {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/Feedback', component:ManagerviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/Dashboard',component:ManagerDashboardComponent},
 
   {path:'Customer', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/SavingPlans', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['`Customer`'] } },
@@ -45,7 +46,6 @@ const routes: Routes = [
   {path:'error', component:ErrorComponent},
   {path:'LandingPage', component:LandingPageComponent},
   {path:'Dashboard', component:DashboardComponent},
-  {path:'ManagerDashboard',component:ManagerDashboardComponent},
   {path: '', redirectTo: '/Home', pathMatch: 'full' }
   //{path: '**', redirectTo: '/error' }
 ];

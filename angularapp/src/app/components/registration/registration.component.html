@@ -80,7 +80,7 @@
 </div>
 
 <!-- OTP Modal -->
-<div *ngIf="showOtpModal" class="otp-modal">
+<!-- <div *ngIf="showOtpModal" class="otp-modal">
     <div class="otp-modal-content">
       <h2>Enter OTP</h2>
       <p>A 6-digit OTP has been sent to your email. Please enter it below:</p>
@@ -90,4 +90,20 @@
         <button [disabled]="!otp" (click)="verifyOtp()">Register</button>
       </div>
     </div>
-  </div>
+  </div> -->
+
+
+  <div *ngIf="showOtpModal" class="otp-modal">
+    <div class="otp-modal-content">
+        <!-- Cross mark to close the modal -->
+        <span class="close-button" (click)="closeOtpModal()">×</span>
+        <h2 class="otp-header">Enter OTP</h2>
+        <p>A 6-digit OTP has been sent to your email.</p>
+        <p> Please enter it below within 3 minutes:</p>
+        <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" />
+        <div class="otp-actions">
+            <button (click)="resendOtp()">Resend OTP</button>
+            <button [disabled]="!otp" (click)="verifyOtp()">Register</button>
+        </div>
+    </div>
+</div>

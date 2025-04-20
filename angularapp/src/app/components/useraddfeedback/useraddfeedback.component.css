@@ -1,49 +1,56 @@
 /* General Body Styling */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif; /* Modern font for readability */
   margin: 0;
-  background-color: #aaaaaf;
+  background-color: #f4f4f9; /* Soft background color */
   color: #333;
-  overflow: hidden; 
-  position: relative; 
+  overflow: hidden;
+  position: relative;
 }
 
 /* Feedback Container Styling */
 .add-feedback-container {
-  max-width: 1000px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: rgb(174, 192, 230);
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-style: italic;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* Centered Heading */
 .centered-heading {
-  text-align: center;
-  font-size: 24px;
+  font-size: 28px; /* Larger font size for emphasis */
+  font-weight: bold;
   color: #333;
+  margin-bottom: 10px;
+}
+
+.subheading {
+  font-size: 16px;
+  color: #666;
   margin-bottom: 20px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  font-style: italic;
 }
 
 /* Form Styling */
 .form-container {
   padding: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background-color: #f9f9f9;
   border-radius: 10px;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  text-align: left; /* Align labels to the left */
 }
 
 .form-group label {
-  font-weight: bold;
   display: block;
+  font-weight: bold;
   margin-bottom: 5px;
   font-size: 16px;
+  color: #333;
 }
 
 .required {
@@ -52,46 +59,54 @@ body {
 
 textarea {
   width: 100%;
-  min-height: 200px;
-  padding: 10px;
+  min-height: 150px;
+  padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 14px;
   resize: vertical;
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  transition: all 0.2s ease;
 }
 
 textarea:focus {
   outline: none;
-  border-color: rgb(40, 82, 167);
-  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+  border-color: #1a73e8;
+  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
 }
 
 /* Validation Message */
 .validation-message {
-  color: red;
+  color: #d93025;
   font-size: 14px;
   margin-top: 5px;
 }
 
 /* Button Styling */
+.form-group-submit {
+  text-align: center; /* Center-align the button */
+}
+
 .btn-success {
-  background-color: rgb(40, 82, 167);
+  background-color: #1a73e8; /* Google-like blue */
   color: white;
-  padding: 10px 20px;
+  padding: 12px 30px;
   border: none;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 25px;
+  transition: all 0.3s ease;
 }
 
 .btn-success:disabled {
-  background-color: #6c757d;
+  background-color: #b0bec5;
   cursor: not-allowed;
 }
 
 .btn-success:hover:enabled {
-  background-color: rgb(30, 72, 157);
+  background-color: #1669c1;
   transform: scale(1.05);
 }
 
@@ -102,54 +117,14 @@ textarea:focus {
   left: 50%;
   transform: translate(-50%, -50%);
   background: white;
-  padding: 30px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Strong popup shadow */
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   text-align: center;
   z-index: 1001;
-  animation: popupFadeIn 0.6s ease-out, popupScaleIn 0.6s ease-out;
-  max-width: 500px;
+  animation: popupFadeIn 0.3s ease-out, popupScaleIn 0.3s ease-out;
+  max-width: 400px;
   width: 90%;
-}
-
-/* Shadow Overlay for Entire Body */
-body.popup-open::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7); /* Darker overlay for better focus */
-  z-index: 1000;
-}
-
-/* Popup Fade-In, Fade-Out, and Scale-In Animation */
-@keyframes popupFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes popupFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes popupScaleIn {
-  from {
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  to {
-    transform: translate(-50%, -50%) scale(1);
-  }
 }
 
 .popup-content p {
@@ -160,17 +135,36 @@ body.popup-open::before {
 }
 
 .popup-content button {
-  background-color: #007bff;
+  background-color: #1a73e8;
   color: white;
   border: none;
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-radius: 25px;
+  transition: all 0.3s ease;
 }
 
 .popup-content button:hover {
-  background-color: #0056b3;
+  background-color: #1669c1;
   transform: scale(1.05);
+}
+
+/* Popup Animations */
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popupScaleIn {
+  from {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+  }
 }

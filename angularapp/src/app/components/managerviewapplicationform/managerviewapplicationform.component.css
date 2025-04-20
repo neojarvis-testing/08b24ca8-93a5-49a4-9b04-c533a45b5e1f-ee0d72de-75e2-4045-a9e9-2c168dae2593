@@ -10,12 +10,11 @@
 
 /* Optimized Container */
 .container {
-  /* background: linear-gradient(145deg, #0052cc, #0052cc); */
-  background-color: #0052cc; /* Background updated to blue */
+  background: linear-gradient(145deg, #ffffff, #f9f9f9); /* Glossy white background */
   padding: 40px;
   border-radius: 25px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  color: white;
+  color: #333; /* Dark color for text */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -29,9 +28,9 @@
   text-align: center;
   font-family: 'Merriweather', serif;
   font-size: 3rem; /* Slightly larger heading for better readability */
-  color: #ffffff;
+  color: #1e3a8a; /* Royal blue for heading */
   margin-bottom: 30px;
-  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Search Bar with Icon */
@@ -50,7 +49,6 @@
   padding: 12px 40px 12px 12px; /* Add padding for icon spacing */
   border: 1px solid #003580;
   border-radius: 12px;
-  border-radius: 50px; /* Curved corners like Google search bar */
   font-size: 16px;
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
@@ -59,15 +57,6 @@
   box-shadow: 0 0 12px rgba(0, 123, 255, 0.6);
   border-color: #2563eb;
 }
-
-/* .search-icon {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  font-size: 18px;
-  color: #003580;
-} */
 
 /* Table Styling */
 .table {
@@ -83,14 +72,14 @@
 .table thead tr {
   background: linear-gradient(90deg, #4169e1, #1e90ff); /* Royal blue gradient for header */
   color: white;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .table th {
   padding: 15px;
   text-align: left;
-  font-weight: bold;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 .table th .column-header {
@@ -100,25 +89,25 @@
 }
 
 .table th, .table td {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #2953ea;
   padding: 15px;
 }
 
-/* Alternate Column Colors */
-.table tbody tr td:nth-child(odd) {
-  background-color: #f3f8ff; /* Light blue background for odd columns */
+/* Alternate Row Colors */
+.table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Light grey for odd rows */
 }
 
-.table tbody tr td:nth-child(even) {
-  background-color: #ffffff; /* White background for even columns */
+.table tbody tr:nth-child(even) {
+  background-color: #ffffff; /* White for even rows */
 }
 
 /* Hover Effect for Rows */
-/* .table tbody tr:hover {
-  background-color: #d1e7ff;  
+.table tbody tr:hover {
+  background-color: #d1e7ff; /* Light royal blue for hover */
   transform: scale(1.02);
   transition: all 0.2s ease-in-out;
-} */
+}
 
 /* Sort Button */
 .sort-button {
