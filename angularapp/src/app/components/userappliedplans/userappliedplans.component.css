@@ -15,9 +15,20 @@ body {
 }
 
 /* Table Header Styling */
-.styled-table thead tr {
-  background: #0052cc; /* Blue background */
-  color: #ffffff; /* White text */
+.table.styled-table thead tr {
+  background-color: #0052cc; /* Set header background to blue */
+  color: #ffffff; /* Set header text color to white */
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+}
+
+.table.styled-table thead th {
+  background-color: #0052cc; /* Blue background for <th> */
+  color: #ffffff; /* White text for <th> */
+  padding: 16px 20px;
+  text-align: center; /* Center-align the text */
   font-family: 'Lora', serif;
   font-size: 18px;
   text-transform: capitalize;
@@ -28,7 +39,7 @@ body {
 .styled-table tbody tr {
   background-color: #ffffff; /* White background for rows */
   color: #000000; /* Black text */
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
@@ -38,13 +49,20 @@ body {
 
 .styled-table tbody tr:hover {
   background-color: #d1e7ff !important; /* Interactive hover effect */
-  transform: scale(1.02);
+  transform: scale(1.02); /* Pop effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Shadow effect */
 }
 
-.styled-table th, .styled-table td {
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #eef1f4;
+}
+
+.styled-table th,
+.styled-table td {
   padding: 16px 20px;
   text-align: center; /* Center-align the text */
 }
+
 /* Center alignment for specific columns */
 .styled-table th:nth-child(1),
 .styled-table td:nth-child(1), /* S.No Column */
@@ -57,24 +75,6 @@ body {
 .styled-table th:nth-child(6),
 .styled-table td:nth-child(6) { /* Actions Column */
   text-align: center;
-}
-
-.styled-table tbody tr {
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:hover {
-  background-color: #d1e7ff !important; /* Interactive hover effect */
-  transform: scale(1.02);
-}
-
-.styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #eef1f4;
 }
 
 /* Sort Button Styling */
@@ -101,7 +101,7 @@ body {
   cursor: pointer;
   font-size: 14px;
   border-radius: 6px;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
 }
 
 .view-button {
@@ -114,6 +114,7 @@ body {
 .view-button:hover {
   background-color: #218838;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Pop effect */
 }
 
 .delete-button {
@@ -125,6 +126,7 @@ body {
 .delete-button:hover {
   background-color: #c82333;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Pop effect */
 }
 
 /* Modal Styling */
@@ -190,7 +192,7 @@ body {
   background-color: #FEFEFEff;
   color: #0A3A7Aff;
   border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   font-size: 12px; /* Reduced font size for button content (including icons) */
 }
 
@@ -198,6 +200,8 @@ body {
 .pagination button:hover {
   background-color: #0A3A7Aff;
   color: #FEFEFEff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+  transform: scale(1.05); /* Pop effect */
 }
 
 .pagination button i {

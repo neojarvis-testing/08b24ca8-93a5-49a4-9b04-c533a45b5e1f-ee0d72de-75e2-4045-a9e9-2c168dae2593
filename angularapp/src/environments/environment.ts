@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl:'https://8080-aeddfacaccecdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api'
+  apiUrl:'https://8080-cfbddbeccdcdecaaeaadadfeeddeeaecdae.premiumproject.examly.io/api'
 };
  
 /*

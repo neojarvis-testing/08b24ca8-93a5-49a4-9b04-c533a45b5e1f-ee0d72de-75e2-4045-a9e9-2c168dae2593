@@ -60,6 +60,7 @@ h1 {
   background: url('/assets/pexels-markus-winkler-1430818-19783681.jpg') no-repeat center center;
   background-size: cover;
   height: 650px;
+  padding: 40px 20px; /* Added padding for better spacing */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,8 +72,8 @@ h1 {
   align-items: center;
   gap: 30px;
   overflow: hidden;
-  width: 90%;
-  animation: moveCards 20s linear infinite;
+  width: 100%; /* Ensure cards are not cut off */
+  animation: moveCards 20s linear infinite; /* Smooth movement */
   animation-play-state: running;
 }
 
@@ -81,17 +82,19 @@ h1 {
 }
 
 .card {
-  font-family: 'Roboto', sans-serif; /* Change this to your preferred font */
-  flex: 0 0 250px;
+  font-family: 'Roboto', sans-serif; /* Preferred font */
+  flex: 0 0 250px; /* Ensure all cards have the same width */
+  height: 250px; /* Ensure all cards have the same height (square shape) */
   background: white;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: transform 0.3s ease, border 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
   position: relative;
-  margin-top: 30px;
+  margin-top: 37px;
   margin-bottom: 40px;
+  cursor: pointer; /* Add pointer cursor to indicate interactivity */
 }
 
 .card-content {
@@ -109,6 +112,20 @@ h1 {
 
 .card:hover {
   box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05); /* Pop effect on hover */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Persistent Zoom on Click */
+.card.clicked {
+  transform: scale(1.2); /* Zoom effect on click */
+  box-shadow: 0px 12px 16px rgba(0, 0, 0, 0.3);
+  border: 2px solid #0052cc;
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.card.clicked:hover {
+  transform: scale(1.25); /* Slightly larger hover effect when clicked */
 }
 
 @keyframes moveCards {
