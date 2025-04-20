@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using log4net;
+using log4net.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,6 +69,11 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Myconnstring"))
 );
+
+
+// Configuring log4net
+var logRepository = LogManager.GetRepository(System.Reflection.Assembly.GetEntryAssembly());
+XmlConfigurator.Configure(logRepository, new FileInfo("log4net.config"));
 
 // Dependency injection for services
 builder.Services.AddScoped<IAuthService, AuthService>();

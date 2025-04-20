@@ -16,11 +16,10 @@ export class ManagerviewapplicationformComponent implements OnInit {
   searchPlanName: string = '';
   popupImageSrc: string = '';
   showPopup: boolean = false;
-
-  // Pagination properties
   currentPage: number = 1;
   itemsPerPage: number = 5;
 
+  
   // Sorting state for each column
   sortOrder: { [key: string]: 'asc' | 'desc' | '' } = {
     ApplicantName: '',
@@ -37,31 +36,81 @@ export class ManagerviewapplicationformComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllPlanApplications();
+    this.fetchPlanApplications();
   }
 
-  // Fetch all plan applications and load details in parallel
-  getAllPlanApplications() {
-    this.planApplicationformService.getAllPlanApplications().subscribe((applications: PlanApplication[]) => {
-      const userRequests = applications.map((application) =>
-        this.authService.getUserById(application.UserId)
-      );
-      const planRequests = applications.map((application) =>
-        this.savingsPlanService.getSavingsPlanById(application.SavingsPlanId)
-      );
+  fetchPlanApplications() {
+    this.planApplicationformService.getAllPlanApplications().subscribe((applications) => {
+      const uniqueUserIds = [...new Set(applications.map(app => app.UserId))];
+      const uniquePlanIds = [...new Set(applications.map(app => app.SavingsPlanId))];
 
-      forkJoin([forkJoin(userRequests), forkJoin(planRequests)]).subscribe(([users, plans]) => {
-        applications.forEach((application, index) => {
-          application.User = users[index];
-          application.SavingsPlan = plans[index];
-        });
+      forkJoin({
+        users: forkJoin(uniqueUserIds.map(id => this.authService.getUserById(id))),
+        plans: forkJoin(uniquePlanIds.map(id => this.savingsPlanService.getSavingsPlanById(id)))
+      }).subscribe(({ users, plans }) => {
+        const userMap = new Map(users.map(user => [user.UserId, user]));
+        const planMap = new Map(plans.map(plan => [plan.SavingPlanId, plan]));
 
-        this.planApplications = applications;
+        this.planApplications = applications.map(app => ({
+          ...app,
+          User: userMap.get(app.UserId),
+          SavingsPlan: planMap.get(app.SavingsPlanId)
+        }));
+
         this.filteredPlanApplications = [...this.planApplications];
       });
     });
   }
 
+  searchApplications() {
+    const searchTerm = this.searchPlanName.toLowerCase().trim();
+    if (searchTerm) {
+      this.filteredPlanApplications = this.planApplications.filter(app =>
+        app.SavingsPlan?.Name?.toLowerCase().includes(searchTerm)
+      );
+    } else {
+      this.filteredPlanApplications = [...this.planApplications];
+    }
+  }
+
+  get paginatedApplications(): PlanApplication[] {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredPlanApplications.slice(start, start + this.itemsPerPage);
+  }
+
+  changePage(page: number) {
+    this.currentPage = page;
+  }
+
+  updateApplicationStatus(application: PlanApplication, status: 'Approved' | 'Rejected') {
+    const updatedApplication = { ...application, Status: status };
+    this.planApplicationformService.updatePlanApplication(application.PlanApplicationId, updatedApplication).subscribe(() => {
+      application.Status = status; // Update the status locally
+    });
+  }
+  filterApplicationsByPlanName() {
+    if (this.searchPlanName.trim()) {
+      this.filteredPlanApplications = this.planApplications.filter(app => 
+        app.SavingsPlan?.Name?.toLowerCase().includes(this.searchPlanName.toLowerCase())
+      );
+    } else {
+      this.filteredPlanApplications = [...this.planApplications];
+    }
+  }
+
+
+  // Pagination logic
+  get paginatedPlanApplications(): PlanApplication[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.filteredPlanApplications.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+
+  totalPages(): number {
+    return Math.ceil(this.filteredPlanApplications.length / this.itemsPerPage);
+  }
+
+  
   // Generic sorting method for columns
   sortColumn(column: string) {
     // Toggle sort order: asc -> desc -> reset
@@ -116,49 +165,5 @@ export class ManagerviewapplicationformComponent implements OnInit {
         return '';
     }
   }
-
-  // Filter applications by plan name
-  filterApplicationsByPlanName() {
-    if (this.searchPlanName.trim()) {
-      this.filteredPlanApplications = this.planApplications.filter(app => 
-        app.SavingsPlan?.Name?.toLowerCase().includes(this.searchPlanName.toLowerCase())
-      );
-    } else {
-      this.filteredPlanApplications = [...this.planApplications];
-    }
-  }
-
-  // Approve a pending application
-  approve(planApplication: PlanApplication) {
-    if (planApplication.Status === 'Pending') {
-      const updatedApplication = { ...planApplication, Status: 'Approved' };
-      this.planApplicationformService.updatePlanApplication(updatedApplication.PlanApplicationId, updatedApplication).subscribe(() => {
-        planApplication.Status = 'Approved'; // Update status directly after success
-      });
-    }
-  }
-
-  // Reject a pending application
-  reject(planApplication: PlanApplication) {
-    if (planApplication.Status === 'Pending') {
-      const updatedApplication = { ...planApplication, Status: 'Rejected' };
-      this.planApplicationformService.updatePlanApplication(updatedApplication.PlanApplicationId, updatedApplication).subscribe(() => {
-        planApplication.Status = 'Rejected'; // Update status directly after success
-      });
-    }
-  }
-
-  // Pagination logic
-  get paginatedPlanApplications(): PlanApplication[] {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return this.filteredPlanApplications.slice(startIndex, startIndex + this.itemsPerPage);
-  }
-
-  changePage(pageNumber: number): void {
-    this.currentPage = pageNumber;
-  }
-
-  totalPages(): number {
-    return Math.ceil(this.filteredPlanApplications.length / this.itemsPerPage);
-  }
+  
 }

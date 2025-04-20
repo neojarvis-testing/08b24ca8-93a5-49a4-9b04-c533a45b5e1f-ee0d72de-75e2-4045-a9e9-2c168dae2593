@@ -25,30 +25,32 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 
 const routes: Routes = [
-  {path:'Home',component:HomeComponent},
+
   {path:'Register', component:RegistrationComponent},
   {path:'Login', component:LoginComponent},
   
-  {path:'RegionalManager', component:ManagerviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  //{path:'RegionalManager', component:ManagerviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
+  {path:'Manager/Dashboard',component:ManagerDashboardComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/SavingPlans', component:ManagerviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/AddSavingPlan',component:ManagercreatesavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/EditSavingPlan/:id', component:ManagereditsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/ApplicationForms', component:ManagerviewapplicationformComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
   {path:'Manager/Feedback', component:ManagerviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['RegionalManager'] }},
-  {path:'Manager/Dashboard',component:ManagerDashboardComponent},
+  
 
-  {path:'Customer', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
-  {path:'User/SavingPlans', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['`Customer`'] } },
+  //{path:'Customer', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  {path:'Home',component:HomeComponent },
+  {path:'User/SavingPlans', component:UserviewsavingsplanComponent},
+  //{path:'User/SavingPlans', component:UserviewsavingsplanComponent, canActivate: [AuthGuard], data: { roles: ['`Customer`'] } },
   {path:'User/PlanApplication/:id', component:UserplanapplicationformComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AppliedPlans', component:UserappliedplansComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/Feedbacks',component:UserviewfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   {path:'User/AddFeedback', component:UseraddfeedbackComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
-  
-  {path:'error', component:ErrorComponent},
-  {path:'LandingPage', component:LandingPageComponent},
+
   {path:'Dashboard', component:DashboardComponent},
-  {path: '', redirectTo: '/Home', pathMatch: 'full' }
-  //{path: '**', redirectTo: '/error' }
+  {path: '', component:LandingPageComponent },
+  {path:'error', component:ErrorComponent},
+  {path: '**', redirectTo: '/error' }
 ];
  
  

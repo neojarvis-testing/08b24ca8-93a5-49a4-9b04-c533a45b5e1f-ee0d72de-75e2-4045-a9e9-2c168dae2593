@@ -64,8 +64,8 @@
         <!-- Role Field -->
         <div>
             <label for="role">Role<span class="required">*</span></label>
-            <select id="role" name="" [(ngModel)]="role" required #roleNgModel="ngModel">
-                <option value="Select Role"  selected>Select Role</option>
+            <select id="role" name="" [(ngModel)]="role" required #roleNgModel="ngModel" [ngModelOptions]="{standalone : true}">
+                <option value="" disabled selected>Select Role</option>
                 <option value="RegionalManager">Regional Manager</option>
                 <option value="Customer">Customer</option>
             </select>

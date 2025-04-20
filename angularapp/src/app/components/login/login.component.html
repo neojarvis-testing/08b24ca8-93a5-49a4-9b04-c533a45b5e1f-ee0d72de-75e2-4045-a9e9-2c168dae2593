@@ -70,14 +70,13 @@
 </div>
 </div>
 
-Reset Password Modal
 <div *ngIf="showResetPasswordModal" class="otp-modal">
 <div class="otp-modal-content">
 <h2>Reset Password</h2>
 <p>Enter the OTP sent to your email and set a new password.</p>
 <input type="text" maxlength="6" [(ngModel)]="otp" placeholder="Enter OTP" required/>
 <div class="form-group">
-          <input type="password" id="password" name="password" placeholder="New Password" class="form-input" [(ngModel)]="password" 
+          <input type="password" id="password" name="password" placeholder="New Password" class="form-input" [(ngModel)]="newPassword" 
           required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$" [ngModelOptions]="{standalone : true}" #passwordNgModel="ngModel">
           <div class="error-message" *ngIf="passwordNgModel.invalid && (passwordNgModel.dirty || passwordNgModel.touched)">
               Password must include:
