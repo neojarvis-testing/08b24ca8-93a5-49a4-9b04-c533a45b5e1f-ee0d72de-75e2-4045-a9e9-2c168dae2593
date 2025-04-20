@@ -100,7 +100,7 @@ export class ManagerviewapplicationformComponent implements OnInit {
     this.currentPage = page;
   }
 
-  updateApplicationStatus(application: PlanApplication) {
+  updateApplicationStatus(application: PlanApplication, status="") {
     console.log(application);
    
     // Create the updated application object in the format expected by the backend
@@ -109,7 +109,7 @@ export class ManagerviewapplicationformComponent implements OnInit {
         UserId: application.User.UserId, // Extract UserId from User object
         SavingsPlanId: application.SavingsPlan.SavingsPlanId, // Extract SavingsPlanId from SavingsPlan object
         AppliedAmount: application.AppliedAmount,
-        Status: this.planApplications.Status,
+        Status: status,
         ApplicationDate: application.ApplicationDate,
         Remarks: application.Remarks,
         ProofDocument: application.ProofDocument
